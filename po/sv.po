@@ -1,99 +1,99 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: popt 1.6.1\n"
+"Project-Id-Version: popt\n"
 "POT-Creation-Date: 2001-01-15 16:42-0500\n"
-"PO-Revision-Date: 2000-06-20 00:07+0200\n"
+"PO-Revision-Date: 2001-01-16 00:40+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: popt.c:29
 msgid "unknown errno"
-msgstr ""
+msgstr "okänt felnummer"
 
 #: popt.c:758
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
-msgstr ""
+msgstr "flaggtypen (%d) är inte implementerad i popt\n"
 
 #: popt.c:893
 msgid "missing argument"
-msgstr ""
+msgstr "saknat argument"
 
 #: popt.c:895
 msgid "unknown option"
-msgstr ""
+msgstr "okänd flagga"
 
 #: popt.c:897
 msgid "mutually exclusive logical operations requested"
-msgstr ""
+msgstr "ömsesidigt uteslutande logiska operationer begärdes"
 
 #: popt.c:899
 msgid "aliases nested too deeply"
-msgstr ""
+msgstr "alias är nästlade för djupt"
 
 #: popt.c:901
 msgid "error in paramter quoting"
-msgstr ""
+msgstr "fel i parametercitering"
 
 #: popt.c:903
 msgid "invalid numeric value"
-msgstr ""
+msgstr "ogiltigt numeriskt värde"
 
 #: popt.c:905
 msgid "number too large or too small"
-msgstr ""
+msgstr "talet för stort eller för litet"
 
 #: popt.c:909
 msgid "unknown error"
-msgstr ""
+msgstr "okänt fel"
 
 #: popthelp.c:28
 msgid "Show this help message"
-msgstr "Visa detta hjälpmeddelande"
+msgstr "Visa denna hjälptext"
 
 #: popthelp.c:29
 msgid "Display brief usage message"
-msgstr "Visa ett kortfattat användningsmeddelande"
+msgstr "Visa en kortfattad användningstext"
 
 #: popthelp.c:60
 msgid "NONE"
-msgstr ""
+msgstr "INGEN"
 
 #: popthelp.c:61
 msgid "VAL"
-msgstr ""
+msgstr "VAL"
 
 #: popthelp.c:62
 msgid "INT"
-msgstr ""
+msgstr "INT"
 
 #: popthelp.c:63
 msgid "LONG"
-msgstr ""
+msgstr "LONG"
 
 #: popthelp.c:64
 msgid "STRING"
-msgstr ""
+msgstr "STRING"
 
 #: popthelp.c:65
 msgid "FLOAT"
-msgstr ""
+msgstr "FLOAT"
 
 #: popthelp.c:66
 msgid "DOUBLE"
-msgstr ""
+msgstr "DOUBLE"
 
 #: popthelp.c:67
 msgid "ARG"
-msgstr ""
+msgstr "ARG"
 
 #: popthelp.c:240
 msgid "Usage:"
-msgstr ""
+msgstr "Användning:"
 
 #: popthelp.c:259
 msgid "[OPTION...]"
-msgstr ""
+msgstr "[FLAGGA...]"
