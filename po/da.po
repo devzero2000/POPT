@@ -11,20 +11,20 @@ msgstr ""
 
 #: popt.c:29
 msgid "unknown errno"
-msgstr ""
+msgstr "ukendt fejlnr."
 
 #: popt.c:758
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
-msgstr ""
+msgstr "tilvalgstype (%d) er ikke implimenteret i popt\n"
 
 #: popt.c:893
 msgid "missing argument"
-msgstr ""
+msgstr "mangler argument"
 
 #: popt.c:895
 msgid "unknown option"
-msgstr ""
+msgstr "ukendt tilvalg"
 
 #: popt.c:897
 msgid "mutually exclusive logical operations requested"
@@ -48,7 +48,7 @@ msgstr ""
 
 #: popt.c:909
 msgid "unknown error"
-msgstr ""
+msgstr "ukendt fejl"
 
 #: popthelp.c:28
 msgid "Show this help message"
@@ -60,7 +60,7 @@ msgstr "Vis kortfattet brugsanvisning"
 
 #: popthelp.c:60
 msgid "NONE"
-msgstr ""
+msgstr "INGEN"
 
 #: popthelp.c:61
 msgid "VAL"
@@ -92,8 +92,8 @@ msgstr ""
 
 #: popthelp.c:240
 msgid "Usage:"
-msgstr ""
+msgstr "Brug:"
 
 #: popthelp.c:259
 msgid "[OPTION...]"
-msgstr ""
+msgstr "[TILVALG...]"
