@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.3\n"
-"POT-Creation-Date: 2002-01-19 09:14-0500\n"
+"POT-Creation-Date: 2002-06-07 17:27-0400\n"
 "PO-Revision-Date: 2000-02-11 13:01+0200\n"
 "Last-Translator: Nilgun Belma Buguner <nilgun@technologist.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
@@ -58,55 +58,55 @@ msgstr ""
 msgid "unknown error"
 msgstr "bilinmeyen hata"
 
-#: popthelp.c:53
+#: popthelp.c:56
 msgid "Show this help message"
 msgstr "Bu yardým iletisini gösterir"
 
-#: popthelp.c:54
+#: popthelp.c:57
 msgid "Display brief usage message"
 msgstr "Kýsa bir kullaným iletisi göster"
 
-#: popthelp.c:57
+#: popthelp.c:60
 #, fuzzy
 msgid "Display option defaults in message"
 msgstr "Kýsa bir kullaným iletisi göster"
 
-#: popthelp.c:99
+#: popthelp.c:102
 msgid "NONE"
 msgstr "YOK"
 
-#: popthelp.c:100
+#: popthelp.c:103
 msgid "VAL"
 msgstr "DEÐ"
 
-#: popthelp.c:101
+#: popthelp.c:104
 msgid "INT"
 msgstr "INT"
 
-#: popthelp.c:102
+#: popthelp.c:105
 msgid "LONG"
 msgstr "LONG"
 
-#: popthelp.c:103
+#: popthelp.c:106
 msgid "STRING"
 msgstr "STRING"
 
-#: popthelp.c:104
+#: popthelp.c:107
 msgid "FLOAT"
 msgstr "FLOAT"
 
-#: popthelp.c:105
+#: popthelp.c:108
 msgid "DOUBLE"
 msgstr "DOUBLE"
 
-#: popthelp.c:106
+#: popthelp.c:109
 msgid "ARG"
 msgstr "ARG"
 
-#: popthelp.c:459
+#: popthelp.c:467
 msgid "Usage:"
 msgstr "Kullanýmý:"
 
-#: popthelp.c:481
+#: popthelp.c:489
 msgid "[OPTION...]"
 msgstr "[SEÇENEK...]"
