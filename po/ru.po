@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.1\n"
-"POT-Creation-Date: 2001-05-05 11:12-0400\n"
+"POT-Creation-Date: 2001-05-29 08:54-0400\n"
 "PO-Revision-Date: 2001-01-21 21:00-0500\n"
 "Last-Translator: Eugene Kanter <eugene@blackcatlinux.com>\n"
 "Language-Team: Black Cat Linux Team <blackcat-support@blackcatlinux.com>\n"
@@ -13,48 +13,48 @@ msgstr ""
 msgid "unknown errno"
 msgstr "неизвестный номер ошибки"
 
-#: popt.c:849
+#: popt.c:851
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
 msgstr "обработка параметра (%d) в popt не предусмотрена\n"
 
-#: popt.c:1012
+#: popt.c:1014
 msgid "missing argument"
 msgstr "пропущен аргумент"
 
-#: popt.c:1014
+#: popt.c:1016
 msgid "unknown option"
 msgstr "неизвестный параметр"
 
-#: popt.c:1016
+#: popt.c:1018
 msgid "mutually exclusive logical operations requested"
 msgstr "запрошены взаимно исключающие логические операции"
 
-#: popt.c:1018
+#: popt.c:1020
 msgid "opt->arg should not be NULL"
 msgstr ""
 
-#: popt.c:1020
+#: popt.c:1022
 msgid "aliases nested too deeply"
 msgstr "превышен уровень допустимой рекурсии подстановок"
 
-#: popt.c:1022
+#: popt.c:1024
 msgid "error in parameter quoting"
 msgstr "ошибкa помещения параметров в кавычки"
 
-#: popt.c:1024
+#: popt.c:1026
 msgid "invalid numeric value"
 msgstr "неправильное числовое значение"
 
-#: popt.c:1026
+#: popt.c:1028
 msgid "number too large or too small"
 msgstr "числовое значение за пределами предусмотренного"
 
-#: popt.c:1028
+#: popt.c:1030
 msgid "memory allocation failed"
 msgstr ""
 
-#: popt.c:1032
+#: popt.c:1034
 msgid "unknown error"
 msgstr "неизвестная ошибка"
 
