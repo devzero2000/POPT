@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.2\n"
-"POT-Creation-Date: 2001-07-07 14:18-0400\n"
+"POT-Creation-Date: 2001-07-11 00:55-0400\n"
 "PO-Revision-Date: 2001-05-10 13:53+0900\n"
 "Last-Translator: Jong-Hoon Ryu <queenrjh@chollian.net>\n"
 "Language-Team: Korean Linux Extension project <kle@kldp.org>\n"
