@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.3\n"
-"POT-Creation-Date: 2001-09-21 11:20-0400\n"
+"POT-Creation-Date: 2002-01-19 09:14-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Leandro Lucarella <luca@linuxmendoza.org.ar>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,100 +18,100 @@ msgstr ""
 msgid "unknown errno"
 msgstr "errno desconocido"
 
-#: popt.c:892
+#: popt.c:917
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
 msgstr "tipo de opción (%d) no implementada en popt\n"
 
-#: popt.c:1100
+#: popt.c:1132
 msgid "missing argument"
 msgstr "falta argumento"
 
-#: popt.c:1102
+#: popt.c:1134
 msgid "unknown option"
 msgstr "opción desconocida"
 
-#: popt.c:1104
+#: popt.c:1136
 msgid "mutually exclusive logical operations requested"
 msgstr "requerida operación lógica mutuamente exclusiva"
 
-#: popt.c:1106
+#: popt.c:1138
 msgid "opt->arg should not be NULL"
 msgstr ""
 
-#: popt.c:1108
+#: popt.c:1140
 msgid "aliases nested too deeply"
 msgstr "alias anidados muy profundamente"
 
-#: popt.c:1110
+#: popt.c:1142
 msgid "error in parameter quoting"
 msgstr "error en cita de parámetros"
 
-#: popt.c:1112
+#: popt.c:1144
 msgid "invalid numeric value"
 msgstr "valor numérico inválido"
 
-#: popt.c:1114
+#: popt.c:1146
 msgid "number too large or too small"
 msgstr "número muy largo o muy pequeño"
 
-#: popt.c:1116
+#: popt.c:1148
 msgid "memory allocation failed"
 msgstr ""
 
-#: popt.c:1120
+#: popt.c:1152
 msgid "unknown error"
 msgstr "error desconocido"
 
-#: popthelp.c:47
+#: popthelp.c:53
 msgid "Show this help message"
 msgstr "Muestra este mensaje de ayuda"
 
-#: popthelp.c:48
+#: popthelp.c:54
 msgid "Display brief usage message"
 msgstr "Indica el modo de uso resumido"
 
-#: popthelp.c:51
+#: popthelp.c:57
 #, fuzzy
 msgid "Display option defaults in message"
 msgstr "Indica el modo de uso resumido"
 
-#: popthelp.c:93
+#: popthelp.c:99
 msgid "NONE"
 msgstr "NONE"
 
-#: popthelp.c:94
+#: popthelp.c:100
 msgid "VAL"
 msgstr "VAL"
 
-#: popthelp.c:95
+#: popthelp.c:101
 msgid "INT"
 msgstr "INT"
 
-#: popthelp.c:96
+#: popthelp.c:102
 msgid "LONG"
 msgstr "LONG"
 
-#: popthelp.c:97
+#: popthelp.c:103
 msgid "STRING"
 msgstr "STRING"
 
-#: popthelp.c:98
+#: popthelp.c:104
 msgid "FLOAT"
 msgstr "FLOAT"
 
-#: popthelp.c:99
+#: popthelp.c:105
 msgid "DOUBLE"
 msgstr "DOUBLE"
 
-#: popthelp.c:100
+#: popthelp.c:106
 msgid "ARG"
 msgstr "ARG"
 
-#: popthelp.c:438
+#: popthelp.c:459
 msgid "Usage:"
 msgstr "Modo de Uso:"
 
-#: popthelp.c:460
+#: popthelp.c:481
 msgid "[OPTION...]"
 msgstr "[OPCIÓN...]"
