@@ -1,339 +1,97 @@
-#                                               -*- Autoconf -*-
-# Process this file with autoconf to produce a configure script.
+AC_INIT(popt.h)
+AC_CANONICAL_SYSTEM
+AC_PREREQ(2.12)
+AC_CONFIG_HEADERS
+AM_INIT_AUTOMAKE(popt, 1.10.1)
+AM_CONFIG_HEADER(config.h)
 
-AC_PREREQ(2.63)
-AC_INIT([popt],[1.17.DEVEL],[popt-devel@rpm5.org])
+ALL_LINGUAS="cs da de es eu_ES fi fr gl hu id is it ja ko no pl pt pt_BR ro ru sk sl sr sv tr uk wa zh zh_CN.GB2312"
 
-AC_CONFIG_SRCDIR([lookup3.c])
-AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_MACRO_DIR([m4])
-
-# Must come before AM_INIT_AUTOMAKE.
-AC_CONFIG_AUX_DIR([build-aux])
-AC_CANONICAL_HOST
-AM_INIT_AUTOMAKE([1.11 color-tests -Wall -Werror foreign])
-#
-# Checks for programs.
-# Set common system defines for POSIX extensions, such as GNU_SOURCE
-# Must be called before any macros that run the compiler (like AC-PROG-LIBTOOL)
-AC_USE_SYSTEM_EXTENSIONS
-AM_GNU_GETTEXT_VERSION([0.17])
-AM_GNU_GETTEXT([external])
-AM_ICONV
-AM_MAINTAINER_MODE
-# Libtool library interface versions 
-# Library code modified:                              REVISION++
-# Interfaces changed/added/removed:   CURRENT++       REVISION=0
-# Interfaces added:                             AGE++
-# Interfaces removed:                           AGE=0
-AC_SUBST(LT_CURRENT, 0)
-AC_SUBST(LT_REVISION, 0)
-AC_SUBST(LT_AGE, 8)
-
-
+AC_ISC_POSIX
 
 AC_PROG_CC
-AC_PROG_CC_STDC
+AC_GCC_TRADITIONAL
+AM_C_PROTOTYPES
 AC_SYS_LARGEFILE
-AC_PROG_MAKE_SET
+
+dnl AM_DISABLE_SHARED
+AM_PROG_LIBTOOL
+
 AC_PROG_INSTALL
-AC_PROG_LIBTOOL
 
-# Turn gcc warning
+if test "X$CC" = Xgcc; then
+    CFLAGS="-Wall $CFLAGS"
+fi
 
-AC_ARG_ENABLE([gcc-warnings],
-  [AS_HELP_STRING([--enable-gcc-warnings],
-                  [turn on GCC warnings (for developers)@<:@default=no@:>@])],
-  [case $enableval in
-     yes|no) ;;
-     *)      AC_MSG_ERROR([bad value $enableval for gcc-warnings option]) ;;
-   esac
-   popt_gcc_warnings=$enableval],
-  [popt_gcc_warnings=no]
-)
+dnl XXX lose rpm libs
+LIBS=
+addlib() {
+  l=$1
+  shift
+  case "$target" in 
+    *-*-solaris*)	LIBS="$LIBS -L$l -R $l $*";;
+    *)		LIBS="$LIBS -L$l $*";;
+  esac
+}
 
-AS_IF([test "x$popt_gcc_warnings" = xyes],
-  [ # Add/Delete as needed
-  popt_CFLAGS_ADD([-Wall], [POPT_CFLAGS])
-  popt_CFLAGS_ADD([-pedantic], [POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wextra], [POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wformat-y2k], [POPT_CFLAGS])
-  popt_CFLAGS_ADD([-fdiagnostics-show-option],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-funit-at-a-time],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-fstrict-aliasing],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wstrict-overflow],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-fstrict-overflow],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wpointer-arith],[POPT_CFLAGS])
-  ])
+dnl
+dnl if CC is gcc, we can rebuild the dependencies (since the depend rule
+dnl requires gcc).  If it's not, don't rebuild dependencies -- use what was
+dnl shipped with RPM.
+dnl
+if test X"$GCC" = "Xyes" ; then
+    TARGET="depend allprogs"
+else
+    TARGET="everything"
+    #
+    # let the Makefile know that we're done with `depend', since we don't
+    # have gcc we're not going to rebuild our dependencies at all.
+    #
+    echo > .depend-done
+fi
+AC_SUBST(TARGET)
 
-# build popt with mudflap instrumentation (GCC only)
-popt_gcc_mudflap=no
-AC_ARG_ENABLE([mudflap],
- [AS_HELP_STRING([--enable-mudflap],
-                  [build POPT with mudflap instrumentation (@<:@default=no@:>@) (with GCC only) (EXPERIMENTAL)])],
- [case $enableval in
-     yes|no) ;;
-     *)      AC_MSG_ERROR([bad value $enableval for mudflap option]) ;;
-   esac
-   popt_gcc_mudflap=$enableval],
-[ popt_gcc_mudflap=no ])
+dnl XXX Choose /usr/lib or /usr/lib64 for library installs.
+MARK64=
+case "${target_cpu}" in
+x86_64*|powerpc64*|ppc64*|sparc64*|s390x*)        MARK64=64 ;;
+esac
+AC_SUBST(MARK64)
 
-AS_IF([ test x"$popt_gcc_mudflap" = x"yes" ], 
-      [
-        AS_IF([test "x$GCC" != x],
-              [ 
-		old_CFLAGS="$CFLAGS"
-		CFLAGS="$CFLAGS -fmudflap"
-		old_LDFLAGS="$LDFLAGS"
-		LDFLAGS="$LDFLAGS -lmudflap"
-		AC_LINK_IFELSE([AC_LANG_PROGRAM([[]], [[]])],[popt_gcc_mudflap=yes],[popt_gcc_mudflap=fail])
-		CFLAGS="$old_CFLAGS"
-		LDFLAGS="$old_LDFLAGS"
-		AS_IF([ test "$popt_gcc_mudflap" = fail ],
-                      [
- 	  	       AC_MSG_WARN([--enable-mudflap requires a compiler which understands this option.])
-                      ],
-                      [
-                        popt_CFLAGS_ADD([-fmudflap], [POPT_CFLAGS])
-                	popt_LDFLAGS_ADD([-lmudflap], [POPT_LDFLAGS])
-                        # XXX: memory leak ?
-                        #MUDFLAP_OPTIONS="-mode-check -abbreviate -viol-abort -check-initialization -print-leaks"
-                        MUDFLAP_OPTIONS="-mode-check -abbreviate -check-initialization"
-			AC_SUBST([MUDFLAP_OPTIONS])
-                      ])
-              ],
-              [ AC_MSG_WARN([--enable-mudflap requires GCC])]
-        )
-      ])
-     
+AC_CHECK_HEADERS(alloca.h float.h libintl.h mcheck.h unistd.h)
+AC_MSG_CHECKING(for /usr/ucblib in LIBS)
+if test -d /usr/ucblib ; then
+	if test "$build" = "mips-sni-sysv4" ; then
+		addlib /usr/ccs/lib -lc
+	fi
 
-# build popt instrumented for -fPIE (GCC only)
-AC_ARG_ENABLE([build-pie],
-  [AS_HELP_STRING([--enable-build-pie],
-                  [build POPT as Position Independent Executable (PIE) (@<:@default=yes@:>@ with GCC only)])],
-  [case $enableval in
-     yes|no) ;;
-     *)      AC_MSG_ERROR([bad value $enableval for build-pie option]) ;;
-   esac
-   popt_gcc_pie=$enableval],
-  [popt_gcc_pie=yes]
-)
-AS_IF([test "x$popt_gcc_pie" = xyes],
-      [
-        AS_IF([test "x$GCC" != x],
-              [ popt_CFLAGS_ADD([-fpie], [POPT_CFLAGS])
-                popt_LDFLAGS_ADD([-pie], [POPT_LDFLAGS])
-              ],
-              [ AC_MSG_WARN([--enable-build-pie requires GCC])]
-        )
-      ])
-AC_SUBST([POPT_LDFLAGS])
+	addlib /usr/ucblib
+	
+	AC_MSG_RESULT(yes)
+else
+	AC_MSG_RESULT(no)
+fi
 
-# build popt instrumented for extra optimization/security (GCC only)
-# -fno-delete-null-pointer as the kernel does http://patchwork.kernel.org/patch/36060/
-# GNU GCC (usually "gcc")
-AS_IF([test "x$GCC" != x],
- [ for c in -fno-delete-null-pointer-checks -D_FORTIFY_SOURCE=2 -fstack-protector -fexceptions
-   do
-  	popt_CFLAGS_ADD([$c], [POPT_CFLAGS])
-   done
- ])
-# Misc CFLAGS 
-popt_CFLAGS_ADD([-D_REENTRANT], [POPT_CFLAGS])
-# Finally put an AC_SUBST for all the CFLAGS above
-AC_SUBST([POPT_CFLAGS])
+if test ! -f ../rpm.c
+then
+  AC_MSG_CHECKING(for GNU xgettext)
+  xgettext --version 2>&1 | grep 'GNU gettext' >/dev/null 2>&1 || AC_MSG_ERROR([
+  *** GNU gettext is required. The latest version
+  *** is always available from ftp://ftp.gnu.org/gnu/gettext/.])
+  AC_MSG_RESULT(yes)
+fi
 
-# 
-
-# Support for running test cases using valgrind:
-
-use_valgrind=false
-VALGRIND_ENVIRONMENT=""
-AC_ARG_ENABLE(valgrind,
-[  --enable-valgrind       Use valgrind when running unit tests. ],
-[ use_valgrind=true ])
-
-AS_IF([ test x"$use_valgrind" = x"true" ], 
-      [
-        AC_CHECK_PROG(HAVE_VALGRIND, valgrind, yes, no)
-        AS_IF([ test x$HAVE_VALGRIND = no ],
-              [
-                AC_MSG_ERROR([You have asked for Valgrind support but Valgrind not found in PATH. ])
-              ],
-              [ 
-              AS_IF([ test x$enable_shared = xyes ],
-                    [ 
-              		VALGRIND_ENVIRONMENT="libtool --mode=execute "
-                    ]
-              )
-              VALGRIND_ENVIRONMENT="$VALGRIND_ENVIRONMENT valgrind -q --error-exitcode=3 --leak-check=yes --leak-check=full --log-file=\$(builddir)/popt-valgrind-result --suppressions=\$(srcdir)/popt-vg.supp "
-              AC_SUBST([VALGRIND_ENVIRONMENT])
-              ])
-      ])
-     
-AM_CONDITIONAL([USE_VALGRIND], [test x$use_valgrind != no])
-
-#  Checks for doxygen support. 
-AC_PATH_PROG(DOXYGEN, doxygen, NO_DOXYGEN)
-AC_ARG_ENABLE(doxygen,
-    AS_HELP_STRING([--disable-doxygen],[disable doxygen API docs generation ]),
-    [DOXYGEN_ENABLE=$enableval,
-    if test x$DOXYGEN_ENABLE != xno 
-    then 
-        if test "$DOXYGEN" != NO_DOXYGEN 
-        then
-           DOXYGEN_ENABLE=yes
-        else
-           DOXYGEN_ENABLE=no
-	   AC_MSG_WARN([You have asked doxygen docs generation but doxygen isn't in the PATH])
-        fi
-    fi],
-    [DOXYGEN_ENABLE=yes])
-AM_CONDITIONAL([DOXYGEN_ENABLE], [test x$DOXYGEN != xNO_DOXYGEN])
-
-
-# Check for gcov support.
-# Check for lcov  Makefile conditional
-AC_PATH_PROG(LCOV,lcov, NO_LCOV)
-AC_ARG_ENABLE(build-gcov,
-    AS_HELP_STRING([--enable-build-gcov], [build POPT instrumented for gcov @<:@default=no@:>@.]), 
-    [enable_build_gcov=${enableval}],
-    [enable_build_gcov=no])
-
-AS_IF([test "x$enable_build_gcov" != xno],
-       [
-        if  test "x$GCC" != x
-        then
-            popt_CFLAGS_ADD([-fprofile-arcs -ftest-coverage], [POPT_CFLAGS])
-            AC_SUBST([POPT_CFLAGS])
-        else
-            LCOV=NO_LCOV
-        fi 
-       ])
-AM_CONDITIONAL([HAVE_LCOV], [test x$LCOV != xNO_LCOV])
-
-# Check for api-sanity-autotest.pl Makefile conditional support for check-local
-AC_PATH_PROG(API_SANITY_AUTOTEST,api-sanity-autotest.pl,NO_API_SANITY_AUTOTEST)
-AM_CONDITIONAL([HAVE_API_SANITY_AUTOTEST], [test "x$API_SANITY_AUTOTEST" != xNO_API_SANITY_AUTOTEST])
-# Check for splint Makefile conditional support 
-AC_PATH_PROG(SPLINT,splint,NO_SPLINT)
-AM_CONDITIONAL([HAVE_SPLINT],[test "x$SPLINT" != xNO_SPLINT])
-# Check for mccabe makefile conditional support
-AC_PATH_PROG(MCCABE,pmccabe,NO_MCCABE)
-AM_CONDITIONAL([HAVE_MCCABE],[test "x$MCCABE" != xNO_MCCABE])
-# Checks for libraries.
-
-# Checks for header files.
-AC_CHECK_HEADERS([assert.h glob.h fnmatch.h fcntl.h float.h langinfo.h libintl.h limits.h sys/ioctl.h wchar.h alloca.h])
-
-# Checks for typedefs, structures, and compiler characteristics.
-AC_C_INLINE
-AC_TYPE_OFF_T
-AC_TYPE_SIZE_T
-AC_TYPE_SSIZE_T
-AC_TYPE_UID_T
-AC_TYPE_UINT16_T
-AC_TYPE_UINT32_T
-AC_TYPE_UINT8_T
-AC_TYPE_INT64_T
-
-# Checks for library functions.
 AC_CHECK_FUNC(setreuid, [], [
     AC_CHECK_LIB(ucb, setreuid, [if echo $LIBS | grep -- -lucb >/dev/null ;then :; else LIBS="$LIBS -lc -lucb" USEUCB=y;fi])
 ])
-AC_CHECK_FUNCS([getuid geteuid iconv mtrace __secure_getenv setregid stpcpy strerror vasprintf srandom])
-# drop AC_FUNC_MALLOC, REALLOC and STRTOD
-AC_CHECK_FUNCS([malloc realloc strtod memset nl_langinfo stpcpy strchr strerror strrchr])
+AC_CHECK_FUNCS(getuid geteuid mtrace __secure_getenv setregid strerror)
 
-AC_ARG_ENABLE([ld-version-script],
-              AS_HELP_STRING([--enable-ld-version-script],[enable/disable use of linker version script.
-                              (default is system dependent)]),
-              [have_ld_version_script=$enableval],
-              [have_ld_version_script=yes] )
 
-AS_IF([test "x$have_ld_version_script" = xyes],
-  [ 
-	dnl check for version script support in the linker (GNU ld, or Solaris ld style)
-	AC_CACHE_CHECK([for ld --version-script], [popt_cv_ld_version_script], [dnl
-  cat > conftest.c <<EOF
-void cl_symbol1(void) {}
-void cli_symbol2(void) {}
-EOF
-  cat > conftest.map <<EOF
-RELEASE
-{
-	global:
-		cl_*;
-	local:
-		*;
-};
-PRIVATE
-{
-	global:
-		cli_*;
-	local:
-		*;
-};
-EOF
-  dnl check for GNU ld style linker version script
-  if AC_TRY_COMMAND([${CC-cc} $CFLAGS $pic_flag $LDFLAGS -shared
-				-o conftest.so conftest.c
-				-Wl,--version-script,conftest.map
-		       1>&AS_MESSAGE_LOG_FD]);
-  then
-      LD_VERSION_SCRIPT_FLAG=--version-script
-      popt_cv_ld_version_script=yes
-  else
-	dnl check for Solaris ld style linker version script
-	if AC_TRY_COMMAND([${CC-cc} $CFLAGS $pic_flag $LDFLAGS -shared
-				-o conftest.so conftest.c
-				-Wl,-M,conftest.map
-			1>&AS_MESSAGE_LOG_FD]);
-	then
-		LD_VERSION_SCRIPT_FLAG=-M
-		popt_cv_ld_version_script=yes;
-	else
-		popt_cv_ld_version_script=no
-	fi
-  fi
- have_ld_version_script=$popt_cv_ld_version_script
- rm -f conftest*])
-  ])
+AM_GNU_GETTEXT
 
-AC_SUBST([LD_VERSION_SCRIPT_FLAG])
-AM_CONDITIONAL([HAVE_LD_VERSION_SCRIPT],[test "$have_ld_version_script" = "yes"])
+POPT_SOURCE_PATH="`pwd`"
+AC_DEFINE_UNQUOTED(POPT_SOURCE_PATH, "$POPT_SOURCE_PATH",
+	[Full path to popt top_srcdir.])
+AC_SUBST(POPT_SOURCE_PATH)
 
-# Autofu for pkgconfig 
-# Define a (hope) portable Libs pkgconfig directive that 
-# - Don't harm if the default library search path include ${libdir}
-#   (https://bugzilla.novell.com/show_bug.cgi?id=529921)
-# - Don't require a not upstream patch to pkgconfig
-#   (https://bugs.freedesktop.org/show_bug.cgi?id=16095)
-popt_pkgconfig_libs='-L${libdir} -lpopt'
-case "${host}" in
-    *-*-linux*)
-	case "${libdir}" in
-	    /usr/lib|/usr/lib64|/lib|/lib64)
-       		   popt_pkgconfig_libs='-lpopt'
-		;;
-    		*)
-		popt_pkgconfig_libs='-L${libdir} -lpopt'
-	;;
-	esac
-      ;;
-    *-*-gnu*)
-	case "${libdir}" in
-	    /usr/lib|/usr/lib64|/lib|/lib64)
-       		   popt_pkgconfig_libs='-lpopt'
-		;;
-    		*)
-		popt_pkgconfig_libs='-L${libdir} -lpopt'
-	;;
-	esac
-      ;;
-esac
-AC_SUBST([POPT_PKGCONFIG_LIBS],"$popt_pkgconfig_libs")
-
-AC_CONFIG_FILES([Makefile Doxyfile popt.pc popt.spec po/Makefile.in
-    auto/Makefile auto/desc ])
-AC_OUTPUT
+AC_OUTPUT([Doxyfile Makefile intl/Makefile po/Makefile.in])
