@@ -53,6 +53,7 @@ struct poptOption poptAliasOptions[] = {
 /*@-castfcnptr@*/
 /*@observer@*/ /*@unchecked@*/
 struct poptOption poptHelpOptions[] = {
+  { NULL, '\0', POPT_ARG_INTL_DOMAIN, PACKAGE, 0, NULL, NULL},
   { NULL, '\0', POPT_ARG_CALLBACK, (void *)&displayArgs, '\0', NULL, NULL },
   { "help", '?', 0, NULL, '?', N_("Show this help message"), NULL },
   { "usage", '\0', 0, NULL, 'u', N_("Display brief usage message"), NULL },
