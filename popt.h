@@ -217,7 +217,8 @@ typedef void (*poptCallbackType) (poptContext con,
 		/*@null@*/ const struct poptOption * opt,
 		/*@null@*/ const char * arg,
 		/*@null@*/ const void * data)
-	/*@*/;
+	/*@globals internalState @*/
+	/*@modifies internalState @*/;
 
 /** \ingroup popt
  * Initialize popt context.
@@ -348,9 +349,9 @@ int poptAddItem(poptContext con, poptItem newItem, int flags)
  * @return		0 on success, POPT_ERROR_ERRNO on failure
  */
 int poptReadConfigFile(poptContext con, const char * fn)
-	/*@globals fileSystem, internalState @*/
+	/*@globals errno, fileSystem, internalState @*/
 	/*@modifies con->execs, con->numExecs,
-		fileSystem, internalState @*/;
+		errno, fileSystem, internalState @*/;
 
 /** \ingroup popt
  * Read default configuration from /etc/popt and $HOME/.popt.
