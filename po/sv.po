@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.3\n"
-"POT-Creation-Date: 2002-01-19 09:14-0500\n"
+"POT-Creation-Date: 2002-06-07 17:27-0400\n"
 "PO-Revision-Date: 2001-07-12 22:26+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -58,54 +58,54 @@ msgstr "minnesallokering misslyckades"
 msgid "unknown error"
 msgstr "okänt fel"
 
-#: popthelp.c:53
+#: popthelp.c:56
 msgid "Show this help message"
 msgstr "Visa denna hjälptext"
 
-#: popthelp.c:54
+#: popthelp.c:57
 msgid "Display brief usage message"
 msgstr "Visa en kortfattad användningstext"
 
-#: popthelp.c:57
+#: popthelp.c:60
 msgid "Display option defaults in message"
 msgstr "Visa standardalternativ för flaggor i meddelande"
 
-#: popthelp.c:99
+#: popthelp.c:102
 msgid "NONE"
 msgstr "INGET"
 
-#: popthelp.c:100
+#: popthelp.c:103
 msgid "VAL"
 msgstr "VÄRDE"
 
-#: popthelp.c:101
+#: popthelp.c:104
 msgid "INT"
 msgstr "HELTAL"
 
-#: popthelp.c:102
+#: popthelp.c:105
 msgid "LONG"
 msgstr "LÅNG"
 
-#: popthelp.c:103
+#: popthelp.c:106
 msgid "STRING"
 msgstr "STRÄNG"
 
-#: popthelp.c:104
+#: popthelp.c:107
 msgid "FLOAT"
 msgstr "FLYTTAL"
 
-#: popthelp.c:105
+#: popthelp.c:108
 msgid "DOUBLE"
 msgstr "DUBBEL"
 
-#: popthelp.c:106
+#: popthelp.c:109
 msgid "ARG"
 msgstr "ARG"
 
-#: popthelp.c:459
+#: popthelp.c:467
 msgid "Usage:"
 msgstr "Användning:"
 
-#: popthelp.c:481
+#: popthelp.c:489
 msgid "[OPTION...]"
 msgstr "[FLAGGA...]"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.3\n"
-"POT-Creation-Date: 2002-01-19 09:14-0500\n"
+"POT-Creation-Date: 2002-06-07 17:27-0400\n"
 "PO-Revision-Date: 2000-09-05 12:30+0200\n"
 "Last-Translator: Roman Maurer <roman.maurer@hermes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -58,55 +58,55 @@ msgstr ""
 msgid "unknown error"
 msgstr ""
 
-#: popthelp.c:53
+#: popthelp.c:56
 msgid "Show this help message"
 msgstr "Prika¾i to sporoèilo s pomoèjo"
 
-#: popthelp.c:54
+#: popthelp.c:57
 msgid "Display brief usage message"
 msgstr "Prika¾i kratko sporoèilo o uporabi"
 
-#: popthelp.c:57
+#: popthelp.c:60
 #, fuzzy
 msgid "Display option defaults in message"
 msgstr "Prika¾i kratko sporoèilo o uporabi"
 
-#: popthelp.c:99
+#: popthelp.c:102
 msgid "NONE"
 msgstr ""
 
-#: popthelp.c:100
+#: popthelp.c:103
 msgid "VAL"
 msgstr ""
 
-#: popthelp.c:101
+#: popthelp.c:104
 msgid "INT"
 msgstr ""
 
-#: popthelp.c:102
+#: popthelp.c:105
 msgid "LONG"
 msgstr ""
 
-#: popthelp.c:103
+#: popthelp.c:106
 msgid "STRING"
 msgstr ""
 
-#: popthelp.c:104
+#: popthelp.c:107
 msgid "FLOAT"
 msgstr ""
 
-#: popthelp.c:105
+#: popthelp.c:108
 msgid "DOUBLE"
 msgstr ""
 
-#: popthelp.c:106
+#: popthelp.c:109
 msgid "ARG"
 msgstr ""
 
-#: popthelp.c:459
+#: popthelp.c:467
 msgid "Usage:"
 msgstr ""
 
-#: popthelp.c:481
+#: popthelp.c:489
 msgid "[OPTION...]"
 msgstr ""
