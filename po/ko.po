@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6\n"
 "POT-Creation-Date: 2001-07-16 21:53-0400\n"
-"PO-Revision-Date: 2001-07-29 21:40+0900\n"
+"PO-Revision-Date: 2001-09-06 20:06+0900\n"
 "Last-Translator: Jong-Hoon Ryu <redhat4u@netian.com>\n"
 "Language-Team: GNU Translation project <ko@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,11 @@ msgstr "알 수 없는 오류코드(errno) 입니다"
 #: popt.c:892
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
-msgstr "%d 옵션은 popt 에서 사용되는 옵션이 아닙니다\n"
+msgstr "옵션 유형(%d)은 popt에서 사용할 수 없습니다\n"
 
 #: popt.c:1100
 msgid "missing argument"
-msgstr "인수값이 지정되지 않았습니다"
+msgstr "인수가 지정되지 않았습니다"
 
 #: popt.c:1102
 msgid "unknown option"
@@ -32,7 +32,7 @@ msgstr "양쪽에 배타적 논리 연산이 지정되었습니다"
 
 #: popt.c:1106
 msgid "opt->arg should not be NULL"
-msgstr "옵션->인수값이 NULL 로 되어서는 안됩니다"
+msgstr "옵션->인수가 NULL이 되어서는 안됩니다"
 
 #: popt.c:1108
 msgid "aliases nested too deeply"
@@ -40,15 +40,15 @@ msgstr "별칭(alias)이 복잡하게 설정되었습니다"
 
 #: popt.c:1110
 msgid "error in parameter quoting"
-msgstr "매개변수의 값에 오류가 있습니다"
+msgstr "매개변수에 오류가 있습니다"
 
 #: popt.c:1112
 msgid "invalid numeric value"
-msgstr "잘못된 숫자값 입니다"
+msgstr "잘못된 수치 값입니다"
 
 #: popt.c:1114
 msgid "number too large or too small"
-msgstr "숫자값이 너무 크거나 너무 적습니다"
+msgstr "숫자가 너무 크거나 너무 적습니다"
 
 #: popt.c:1116
 msgid "memory allocation failed"
