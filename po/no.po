@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.2\n"
-"POT-Creation-Date: 2001-05-29 15:54-0400\n"
+"POT-Creation-Date: 2001-06-05 15:09-0400\n"
 "PO-Revision-Date: 2001-01-23 22:52+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -13,48 +13,48 @@ msgstr ""
 msgid "unknown errno"
 msgstr "ukjent errno"
 
-#: popt.c:871
+#: popt.c:883
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
 msgstr "flaggtype (%d) ikke implementert i popt\n"
 
-#: popt.c:1034
+#: popt.c:1048
 msgid "missing argument"
 msgstr "manglende argument"
 
-#: popt.c:1036
+#: popt.c:1050
 msgid "unknown option"
 msgstr "ukjent flagg"
 
-#: popt.c:1038
+#: popt.c:1052
 msgid "mutually exclusive logical operations requested"
 msgstr "gjensidig eksluderende logiske operasjoner forespurt"
 
-#: popt.c:1040
+#: popt.c:1054
 msgid "opt->arg should not be NULL"
 msgstr ""
 
-#: popt.c:1042
+#: popt.c:1056
 msgid "aliases nested too deeply"
 msgstr "aliaser med for dype løkker"
 
-#: popt.c:1044
+#: popt.c:1058
 msgid "error in parameter quoting"
 msgstr "feil i parametersitering"
 
-#: popt.c:1046
+#: popt.c:1060
 msgid "invalid numeric value"
 msgstr "ugyldig numerisk verdi"
 
-#: popt.c:1048
+#: popt.c:1062
 msgid "number too large or too small"
 msgstr "tallet er for stort eller lite"
 
-#: popt.c:1050
+#: popt.c:1064
 msgid "memory allocation failed"
 msgstr ""
 
-#: popt.c:1054
+#: popt.c:1068
 msgid "unknown error"
 msgstr "ukjent feil"
 
@@ -66,42 +66,42 @@ msgstr "Vis denne hjelpmeldingen"
 msgid "Display brief usage message"
 msgstr "Vis kort bruksmelding"
 
-#: popthelp.c:62
+#: popthelp.c:64
 msgid "NONE"
 msgstr "INGEN"
 
-#: popthelp.c:63
+#: popthelp.c:65
 msgid "VAL"
 msgstr "VERDI"
 
-#: popthelp.c:64
+#: popthelp.c:66
 msgid "INT"
 msgstr "HELTALL"
 
-#: popthelp.c:65
+#: popthelp.c:67
 msgid "LONG"
 msgstr "LONG"
 
-#: popthelp.c:66
+#: popthelp.c:68
 msgid "STRING"
 msgstr "STRENG"
 
-#: popthelp.c:67
+#: popthelp.c:69
 msgid "FLOAT"
 msgstr "FLYTTALL"
 
-#: popthelp.c:68
+#: popthelp.c:70
 msgid "DOUBLE"
 msgstr "DOUBLE"
 
-#: popthelp.c:69
+#: popthelp.c:71
 msgid "ARG"
 msgstr "ARG"
 
-#: popthelp.c:249
+#: popthelp.c:255
 msgid "Usage:"
 msgstr "Bruk:"
 
-#: popthelp.c:271
+#: popthelp.c:277
 msgid "[OPTION...]"
 msgstr "[FLAGG...]"
