@@ -2,6 +2,8 @@
 
 AUTOMAKE_OPTIONS = 1.4 foreign
 
+LINT = splint
+
 EXTRA_DIST = autogen.sh CHANGES $(man_MANS) popt.spec \
 	testit.sh test-poptrc \
 	po/*.in po/*.po po/popt.pot \
@@ -38,9 +40,9 @@ man_MANS = popt.3
 sources:
 	@echo $(libpopt_la_SOURCES:%=popt/%)
 
-.PHONY: lclint
-lclint:
-	lclint ${DEFS} ${INCLUDES} ${libpopt_la_SOURCES}
+.PHONY: lint
+lint:
+	$(LINT) ${DEFS} ${INCLUDES} ${libpopt_la_SOURCES}
 
 CVSTAG = $(PACKAGE)-$(subst .,_,$(VERSION))
 
