@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.2\n"
-"POT-Creation-Date: 2001-06-16 21:10-0400\n"
+"POT-Creation-Date: 2001-07-05 17:54-0400\n"
 "PO-Revision-Date: 2001-06-27 11:05+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -58,54 +58,54 @@ msgstr "minneallokering feilet"
 msgid "unknown error"
 msgstr "ukjent feil"
 
-#: popthelp.c:32
+#: popthelp.c:104
 msgid "Show this help message"
 msgstr "Vis denne hjelpmeldingen"
 
-#: popthelp.c:33
+#: popthelp.c:105
 msgid "Display brief usage message"
 msgstr "Vis kort bruksmelding"
 
-#: popthelp.c:36
+#: popthelp.c:108
 msgid "Display option defaults in message"
 msgstr "Vis forvalgte flagg i melding"
 
-#: popthelp.c:71
+#: popthelp.c:147
 msgid "NONE"
 msgstr "INGEN"
 
-#: popthelp.c:72
+#: popthelp.c:148
 msgid "VAL"
 msgstr "VERDI"
 
-#: popthelp.c:73
+#: popthelp.c:149
 msgid "INT"
 msgstr "HELTALL"
 
-#: popthelp.c:74
+#: popthelp.c:150
 msgid "LONG"
 msgstr "LONG"
 
-#: popthelp.c:75
+#: popthelp.c:151
 msgid "STRING"
 msgstr "STRENG"
 
-#: popthelp.c:76
+#: popthelp.c:152
 msgid "FLOAT"
 msgstr "FLYTTALL"
 
-#: popthelp.c:77
+#: popthelp.c:153
 msgid "DOUBLE"
 msgstr "DOUBLE"
 
-#: popthelp.c:78
+#: popthelp.c:154
 msgid "ARG"
 msgstr "ARG"
 
-#: popthelp.c:354
+#: popthelp.c:441
 msgid "Usage:"
 msgstr "Bruk:"
 
-#: popthelp.c:376
+#: popthelp.c:463
 msgid "[OPTION...]"
 msgstr "[FLAGG...]"
