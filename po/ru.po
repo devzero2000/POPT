@@ -67,9 +67,8 @@ msgid "Display brief usage message"
 msgstr "Показать краткую инструкцию по использованию"
 
 #: popthelp.c:36
-#, fuzzy
 msgid "Display option defaults in message"
-msgstr "Показать краткую инструкцию по использованию"
+msgstr "Показать параметры по умолчанию"
 
 #: popthelp.c:71
 msgid "NONE"
