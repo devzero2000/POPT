@@ -1,12 +1,12 @@
 /*
-    Popt Library Test Program Number Too
-
+    Popt Library Test Program Number Too 
+    
     --> "a real world test of popt bugs" <--
 
     Copyright (C) 1999 US Interactive, Inc.
 
     This program can be used under the GPL or LGPL at your
-    whim as long as this Copyright remains attached.
+    whim as long as this Copyright remains attached.  
 */
 
 #include "system.h"
@@ -26,7 +26,7 @@ char *contentPath		= NULL;
 char *dbPassword		= NULL;
 char *dbUserName		= NULL;
 
-char *rcfile = "test-poptrc";
+char *rcfile = "createuser-defaults";
 char *username=NULL;
 
 char *password			= NULL;
@@ -45,7 +45,7 @@ char *dayphone			= NULL;
 char *fax			= NULL;
 
 
-int
+int 
 main(int argc, const char ** argv) {
 
     poptContext optCon;   /* context for parsing command-line options */
@@ -123,26 +123,12 @@ main(int argc, const char ** argv) {
     optionsTable[1].arg = databaseOptionsTable;
     optionsTable[2].arg = userOptionsTable;
 
-#if defined(HAVE_MCHECK_H) && defined(HAVE_MTRACE)
+#if HAVE_MCHECK_H && HAVE_MTRACE
     mtrace();   /* Trace malloc only if MALLOC_TRACE=mtrace-output-file. */
 #endif
 
-    optCon = poptGetContext("test2", argc, argv, optionsTable, 0);
-#ifdef HAVE_STDLIB_H
-    rcfile = getenv ("testpoptrc");
-    if (rcfile != NULL ) { 
-    (void) poptReadConfigFile(optCon, rcfile );
-    }
-    else {
-    (void) poptReadConfigFile(optCon, "./test-poptrc");
-/* XXXX: make distcheck succed : test2 is in popt-<version>/_build */
-    (void) poptReadConfigFile(optCon, "../../test-poptrc");
-    }
-#else
-    (void) poptReadConfigFile(optCon, "./test-poptrc");
-/* XXXX: make distcheck succed : test2 is in popt-<version>/_build */
-    (void) poptReadConfigFile(optCon, "../../test-poptrc");
-#endif
+    optCon = poptGetContext("createuser", argc, argv, optionsTable, 0);
+    poptReadConfigFile(optCon, rcfile );
 
     /* although there are no options to be parsed, check for --help */
     poptGetNextOpt(optCon);
