@@ -21,7 +21,7 @@ msgstr "errno desconocido"
 #: popt.c:917
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
-msgstr "tipo de opción (%d) no implementada en popt\n"
+msgstr "tipo de opcin (%d) no implementada en popt\n"
 
 #: popt.c:1132
 msgid "missing argument"
@@ -29,11 +29,11 @@ msgstr "falta argumento"
 
 #: popt.c:1134
 msgid "unknown option"
-msgstr "opción desconocida"
+msgstr "opcin desconocida"
 
 #: popt.c:1136
 msgid "mutually exclusive logical operations requested"
-msgstr "requerida operación lógica mutuamente exclusiva"
+msgstr "requerida operacin lgica mutuamente exclusiva"
 
 #: popt.c:1138
 msgid "opt->arg should not be NULL"
@@ -45,15 +45,15 @@ msgstr "alias anidados muy profundamente"
 
 #: popt.c:1142
 msgid "error in parameter quoting"
-msgstr "error en cita de parámetros"
+msgstr "error en cita de parmetros"
 
 #: popt.c:1144
 msgid "invalid numeric value"
-msgstr "valor numérico inválido"
+msgstr "valor numrico invlido"
 
 #: popt.c:1146
 msgid "number too large or too small"
-msgstr "número muy largo o muy pequeño"
+msgstr "nmero muy largo o muy pequeo"
 
 #: popt.c:1148
 msgid "memory allocation failed"
@@ -114,4 +114,4 @@ msgstr "Modo de Uso:"
 
 #: popthelp.c:481
 msgid "[OPTION...]"
-msgstr "[OPCIÓN...]"
+msgstr "[OPCIN...]"
