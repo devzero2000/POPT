@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.1\n"
-"POT-Creation-Date: 2001-06-16 21:10-0400\n"
+"POT-Creation-Date: 2001-07-05 17:54-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,54 +63,54 @@ msgstr ""
 msgid "unknown error"
 msgstr ""
 
-#: popthelp.c:32
+#: popthelp.c:104
 msgid "Show this help message"
 msgstr ""
 
-#: popthelp.c:33
+#: popthelp.c:105
 msgid "Display brief usage message"
 msgstr ""
 
-#: popthelp.c:36
+#: popthelp.c:108
 msgid "Display option defaults in message"
 msgstr ""
 
-#: popthelp.c:71
+#: popthelp.c:147
 msgid "NONE"
 msgstr ""
 
-#: popthelp.c:72
+#: popthelp.c:148
 msgid "VAL"
 msgstr ""
 
-#: popthelp.c:73
+#: popthelp.c:149
 msgid "INT"
 msgstr ""
 
-#: popthelp.c:74
+#: popthelp.c:150
 msgid "LONG"
 msgstr ""
 
-#: popthelp.c:75
+#: popthelp.c:151
 msgid "STRING"
 msgstr ""
 
-#: popthelp.c:76
+#: popthelp.c:152
 msgid "FLOAT"
 msgstr ""
 
-#: popthelp.c:77
+#: popthelp.c:153
 msgid "DOUBLE"
 msgstr ""
 
-#: popthelp.c:78
+#: popthelp.c:154
 msgid "ARG"
 msgstr ""
 
-#: popthelp.c:354
+#: popthelp.c:441
 msgid "Usage:"
 msgstr ""
 
-#: popthelp.c:376
+#: popthelp.c:463
 msgid "[OPTION...]"
 msgstr ""

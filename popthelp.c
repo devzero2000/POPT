@@ -11,6 +11,78 @@
 #include "system.h"
 #include "poptint.h"
 
+#if !defined(HAVE_STPCPY) && !defined(__LCLINT__)
+static char * stpcpy (char * dest, const char * src)
+	/*@modifies *dest @*/;
+{
+  do
+    *dest++ = *src;
+  while (*src++ != '\0');
+  return dest - 1;
+}
+#endif
+
+#if !defined(HAVE_STPNCPY) && !defined(__LCLINT__)
+static char * stpncpy (char * dest, const char * src, size_t n)
+{
+  char c;
+  char *s = dest;
+
+  if (n >= 4)
+    {
+      size_t n4 = n >> 2;
+
+      for (;;)
+	{
+	  c = *src++;
+	  *dest++ = c;
+	  if (c == '\0')
+	    break;
+	  c = *src++;
+	  *dest++ = c;
+	  if (c == '\0')
+	    break;
+	  c = *src++;
+	  *dest++ = c;
+	  if (c == '\0')
+	    break;
+	  c = *src++;
+	  *dest++ = c;
+	  if (c == '\0')
+	    break;
+	  if (--n4 == 0)
+	    goto last_chars;
+	}
+      n -= dest - s;
+      goto zero_fill;
+    }
+
+ last_chars:
+  n &= 3;
+  if (n == 0)
+    return dest;
+
+  for (;;)
+    {
+      c = *src++;
+      --n;
+      *dest++ = c;
+      if (c == '\0')
+	break;
+      if (n == 0)
+	return dest;
+    }
+
+ zero_fill:
+  while (n-- > 0)
+    dest[n] = '\0';
+
+  return dest - 1;
+}
+#endif
+
+/**
+ */
 static void displayArgs(poptContext con,
 		/*@unused@*/ enum poptCallbackReason foo,
 		struct poptOption * key, 
@@ -39,6 +111,8 @@ struct poptOption poptHelpOptions[] = {
 } ;
 /*@=castfcnptr@*/
 
+/**
+ */
 /*@observer@*/ /*@null@*/ static const char *const
 getTableTranslationDomain(/*@null@*/ const struct poptOption *table)
 	/*@*/
@@ -53,6 +127,8 @@ getTableTranslationDomain(/*@null@*/ const struct poptOption *table)
     return NULL;
 }
 
+/**
+ */
 /*@observer@*/ /*@null@*/ static const char *const
 getArgDescrip(const struct poptOption * opt,
 		/*@-paramuse@*/		/* FIX: wazzup? */
@@ -79,7 +155,10 @@ getArgDescrip(const struct poptOption * opt,
     }
 }
 
-static /*@only@*/ /*@null@*/ char * singleOptionDefaultValue(int lineLength,
+/**
+ */
+static /*@only@*/ /*@null@*/ char *
+singleOptionDefaultValue(int lineLength,
 		const struct poptOption * opt,
 		/*@-paramuse@*/	/* FIX: i18n macros disable with lclint */
 		/*@null@*/ const char * translation_domain)
@@ -140,6 +219,8 @@ static /*@only@*/ /*@null@*/ char * singleOptionDefaultValue(int lineLength,
     return l;
 }
 
+/**
+ */
 static void singleOptionHelp(FILE * fp, int maxLeftCol, 
 		const struct poptOption * opt,
 		/*@null@*/ const char * translation_domain)
@@ -278,6 +359,8 @@ out:
     left = _free(left);
 }
 
+/**
+ */
 static int maxArgWidth(const struct poptOption * opt,
 		       /*@null@*/ const char * translation_domain)
 	/*@*/
@@ -315,6 +398,8 @@ static int maxArgWidth(const struct poptOption * opt,
     return max;
 }
 
+/**
+ */
 static void singleTableHelp(FILE * fp,
 		/*@null@*/ const struct poptOption * table, int left,
 		/*@null@*/ const char * translation_domain)
@@ -345,6 +430,8 @@ static void singleTableHelp(FILE * fp,
     }
 }
 
+/**
+ */
 static int showHelpIntro(poptContext con, FILE * fp)
 	/*@modifies *fp, fileSystem @*/
 {
@@ -379,6 +466,8 @@ void poptPrintHelp(poptContext con, FILE * fp, /*@unused@*/ int flags)
     singleTableHelp(fp, con->options, leftColWidth, NULL);
 }
 
+/**
+ */
 static int singleOptionUsage(FILE * fp, int cursor, 
 		const struct poptOption * opt,
 		/*@null@*/ const char *translation_domain)
@@ -419,6 +508,8 @@ static int singleOptionUsage(FILE * fp, int cursor,
     return cursor + len + 1;
 }
 
+/**
+ */
 static int singleTableUsage(FILE * fp,
 		int cursor, const struct poptOption * opt,
 		/*@null@*/ const char * translation_domain)
@@ -442,6 +533,8 @@ static int singleTableUsage(FILE * fp,
     return cursor;
 }
 
+/**
+ */
 static int showShortOptions(const struct poptOption * opt, FILE * fp,
 		/*@null@*/ char * str)
 	/*@modifies *str, *fp, fileSystem @*/
