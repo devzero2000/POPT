@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.2\n"
-"POT-Creation-Date: 2001-05-29 08:54-0400\n"
+"POT-Creation-Date: 2001-05-29 15:54-0400\n"
 "PO-Revision-Date: 2001-05-10 13:53+0900\n"
 "Last-Translator: Jong-Hoon Ryu <queenrjh@chollian.net>\n"
 "Language-Team: Korean Linux Extension project <kle@kldp.org>\n"
@@ -13,48 +13,48 @@ msgstr ""
 msgid "unknown errno"
 msgstr "알 수 없는 오류코드(errno) 입니다"
 
-#: popt.c:851
+#: popt.c:871
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
 msgstr "%d 옵션은 popt 에서 사용되는 옵션이 아닙니다\n"
 
-#: popt.c:1014
+#: popt.c:1034
 msgid "missing argument"
 msgstr "인수값이 지정되지 않았습니다"
 
-#: popt.c:1016
+#: popt.c:1036
 msgid "unknown option"
 msgstr "알 수 없는 옵션입니다"
 
-#: popt.c:1018
+#: popt.c:1038
 msgid "mutually exclusive logical operations requested"
 msgstr "양쪽에 배타적 논리 연산이 지정되었습니다"
 
-#: popt.c:1020
+#: popt.c:1040
 msgid "opt->arg should not be NULL"
 msgstr "옵션->인수값이 NULL 로 되어서는 안됩니다"
 
-#: popt.c:1022
+#: popt.c:1042
 msgid "aliases nested too deeply"
 msgstr "별칭(alias)이 복잡하게 설정되었습니다"
 
-#: popt.c:1024
+#: popt.c:1044
 msgid "error in parameter quoting"
 msgstr "매개변수의 값에 오류가 있습니다"
 
-#: popt.c:1026
+#: popt.c:1046
 msgid "invalid numeric value"
 msgstr "잘못된 숫자값 입니다"
 
-#: popt.c:1028
+#: popt.c:1048
 msgid "number too large or too small"
 msgstr "숫자값이 너무 크거나, 너무 적습니다"
 
-#: popt.c:1030
+#: popt.c:1050
 msgid "memory allocation failed"
 msgstr "메모리 할당에 실패했습니다"
 
-#: popt.c:1034
+#: popt.c:1054
 msgid "unknown error"
 msgstr "알 수 없는 오류입니다"
 
