@@ -2,86 +2,86 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.3\n"
 "POT-Creation-Date: 2003-12-30 08:12-0500\n"
-"PO-Revision-Date: 2001-06-08 01:35+0000\n"
-"Last-Translator: Richard Allen <ra@hp.is>\n"
-"Language-Team: is <kde-isl@mmedia.is>\n"
+"PO-Revision-Date: 2001-06-27 11:05+0200\n"
+"Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
+"Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 "Report-Msgid-Bugs-To: \n"
 
 #: popt.c:35
 msgid "unknown errno"
-msgstr "óþekkt villunúmer"
+msgstr "ukjent errno"
 
 #: popt.c:964
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
-msgstr "rofagerðin (%d) er ekki studd í popt\n"
+msgstr "flaggtype (%d) ikke implementert i popt\n"
 
 #: popt.c:1184
 msgid "missing argument"
-msgstr "vantar viðfang"
+msgstr "manglende argument"
 
 #: popt.c:1186
 msgid "unknown option"
-msgstr "óþekktur rofi"
+msgstr "ukjent flagg"
 
 #: popt.c:1188
 msgid "mutually exclusive logical operations requested"
-msgstr "beðið um rofa sem slökkva hvor á öðrum"
+msgstr "gjensidig eksluderende logiske operasjoner forespurt"
 
 #: popt.c:1190
 msgid "opt->arg should not be NULL"
-msgstr "opt->arg ætti ekki að vera NULL"
+msgstr "opt->arg må ikke være NULL"
 
 #: popt.c:1192
 msgid "aliases nested too deeply"
-msgstr "alíasar of flóknir"
+msgstr "aliaser med for dype løkker"
 
 #: popt.c:1194
 msgid "error in parameter quoting"
-msgstr "villa í viðföngum (gæsalappir og svo frv.)"
+msgstr "feil i parametersitering"
 
 #: popt.c:1196
 msgid "invalid numeric value"
-msgstr "ógilt tölulegt gildi"
+msgstr "ugyldig numerisk verdi"
 
 #: popt.c:1198
 msgid "number too large or too small"
-msgstr "talan of stór eða smá"
+msgstr "tallet er for stort eller lite"
 
 #: popt.c:1200
 msgid "memory allocation failed"
-msgstr "ekki tókst að taka frá minni"
+msgstr "minneallokering feilet"
 
 #: popt.c:1204
 msgid "unknown error"
-msgstr "óþekkt villa"
+msgstr "ukjent feil"
 
 #: popthelp.c:58 popthelp.c:73
 msgid "Show this help message"
-msgstr "Sýna þessa hjálp"
+msgstr "Vis denne hjelpmeldingen"
 
 #: popthelp.c:59 popthelp.c:74
 msgid "Display brief usage message"
-msgstr "Sýna stuttar notkunarleiðbeiningar"
+msgstr "Vis kort bruksmelding"
 
 #: popthelp.c:62 popthelp.c:77
 msgid "Display option defaults in message"
-msgstr "Sýna sjálfgefin gildi rofa í skilaboðum"
+msgstr "Vis forvalgte flagg i melding"
 
 #: popthelp.c:122
 msgid "NONE"
-msgstr "ENGIN"
+msgstr "INGEN"
 
 #: popthelp.c:124
 msgid "VAL"
-msgstr "VAL"
+msgstr "VERDI"
 
 #: popthelp.c:128
 msgid "INT"
-msgstr "INT"
+msgstr "HELTALL"
 
 #: popthelp.c:129
 msgid "LONG"
@@ -89,11 +89,11 @@ msgstr "LONG"
 
 #: popthelp.c:130
 msgid "STRING"
-msgstr "STRING"
+msgstr "STRENG"
 
 #: popthelp.c:131
 msgid "FLOAT"
-msgstr "FLOAT"
+msgstr "FLYTTALL"
 
 #: popthelp.c:132
 msgid "DOUBLE"
@@ -105,8 +105,8 @@ msgstr "ARG"
 
 #: popthelp.c:508
 msgid "Usage:"
-msgstr "Notkun:"
+msgstr "Bruk:"
 
 #: popthelp.c:532
 msgid "[OPTION...]"
-msgstr "[ROFI...]"
+msgstr "[FLAGG...]"

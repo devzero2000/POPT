@@ -1,160 +1,117 @@
-# translation of popt-1.14.pot to Finnish
-# Copyright © 2008 Free Software Foundation, Inc.
-# This file is distributed under the same license as the popt package.
-# This file is put in the public domain.
-# Jorma Karvonen <karvjorm@users.sf.net>, 2008.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: popt 1.14\n"
-"Report-Msgid-Bugs-To: <popt-devel@rpm5.org>\n"
-"POT-Creation-Date: 2010-11-04 17:12-0400\n"
-"PO-Revision-Date: 2008-02-21 18:19+0200\n"
-"Last-Translator: Jorma Karvonen <karvjorm@users.sf.net>\n"
-"Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
+"Project-Id-Version: popt 1.6.3\n"
+"POT-Creation-Date: 2003-12-30 08:12-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: fi\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.11.4\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Report-Msgid-Bugs-To: \n"
 
-#  errno - number of last error (defined by the ISO C standard)
-#: popt.c:53
+#: popt.c:35
 msgid "unknown errno"
-msgstr "tuntematon errno-virhenumeroarvo"
+msgstr ""
 
-#: popt.c:1419
+#: popt.c:964
 #, c-format
-msgid "option type (%u) not implemented in popt\n"
-msgstr "valitsintyyppiä (%u) ei ole toteutettu popt-ohjelmassa\n"
+msgid "option type (%d) not implemented in popt\n"
+msgstr ""
 
-#: popt.c:1864
+#: popt.c:1184
 msgid "missing argument"
-msgstr "puuttuva argumentti"
+msgstr ""
 
-#: popt.c:1866
+#: popt.c:1186
 msgid "unknown option"
-msgstr "tuntematon valitsin"
+msgstr ""
 
-#: popt.c:1868
+#: popt.c:1188
 msgid "mutually exclusive logical operations requested"
-msgstr "pyydettyjä loogisia toimintoja ei voi käyttää yhdessä"
+msgstr ""
 
-#: popt.c:1870
+#: popt.c:1190
 msgid "opt->arg should not be NULL"
-msgstr "”opt->arg”-valitsinargumentti ei saa olla NULL"
+msgstr ""
 
-#: popt.c:1872
+#: popt.c:1192
 msgid "aliases nested too deeply"
-msgstr "liian monta aliasta sisäkkäin"
+msgstr ""
 
-#: popt.c:1874
+#: popt.c:1194
 msgid "error in parameter quoting"
-msgstr "virhe parametrien lainauksessa"
+msgstr ""
 
-#: popt.c:1876
+#: popt.c:1196
 msgid "invalid numeric value"
-msgstr "virheellinen numeroarvo"
+msgstr ""
 
-#: popt.c:1878
+#: popt.c:1198
 msgid "number too large or too small"
-msgstr "numero on liian iso tai liian pieni"
+msgstr ""
 
-#: popt.c:1880
+#: popt.c:1200
 msgid "memory allocation failed"
-msgstr "muistin varaus ei onnistunut"
-
-#: popt.c:1882
-msgid "config file failed sanity test"
 msgstr ""
 
-#: popt.c:1884
-msgid "option does not take an argument"
-msgstr ""
-
-#: popt.c:1886
-msgid "stack underflow"
-msgstr ""
-
-#: popt.c:1888
-msgid "stack overflow"
-msgstr ""
-
-#: popt.c:1892
+#: popt.c:1204
 msgid "unknown error"
-msgstr "tuntematon virhe"
+msgstr ""
 
-#: popthelp.c:83 popthelp.c:94
+#: popthelp.c:58 popthelp.c:73
 msgid "Show this help message"
-msgstr "Näytä tämä ohje"
+msgstr ""
 
-#: popthelp.c:84 popthelp.c:95
+#: popthelp.c:59 popthelp.c:74
 msgid "Display brief usage message"
-msgstr "Näytä lyhyt käyttöohje"
+msgstr ""
 
-#: popthelp.c:98
+#: popthelp.c:62 popthelp.c:77
 msgid "Display option defaults in message"
-msgstr "Näytä valitsinoletukset ohjeessa"
-
-#: popthelp.c:100
-msgid "Terminate options"
-msgstr "Lopettamisvalitsimet"
-
-#: popthelp.c:199
-msgid "Help options:"
-msgstr "Ohjevalitsimet:"
-
-#: popthelp.c:200
-msgid "Options implemented via popt alias/exec:"
 msgstr ""
-"Valitsimet toteutettu ”popt alias”-määrittelyillä tai ”popt exec”-"
-"määrittelyillä:"
 
-#: popthelp.c:208
+#: popthelp.c:122
 msgid "NONE"
-msgstr "EI MITÄÄN"
-
-#: popthelp.c:210
-msgid "VAL"
-msgstr "ARVO"
-
-#: popthelp.c:214
-msgid "INT"
-msgstr "INT-KOKONAISLUKU"
-
-#: popthelp.c:215
-msgid "SHORT"
 msgstr ""
 
-#: popthelp.c:216
+#: popthelp.c:124
+msgid "VAL"
+msgstr ""
+
+#: popthelp.c:128
+msgid "INT"
+msgstr ""
+
+#: popthelp.c:129
 msgid "LONG"
-msgstr "LONG-KOKONAISLUKU"
+msgstr ""
 
-#: popthelp.c:217
-msgid "LONGLONG"
-msgstr "LONGLONG-KOKONAISLUKU"
-
-#: popthelp.c:218
+#: popthelp.c:130
 msgid "STRING"
-msgstr "MERKKIJONO"
+msgstr ""
 
-#: popthelp.c:219
+#: popthelp.c:131
 msgid "FLOAT"
-msgstr "FLOAT-LIUKULUKU"
+msgstr ""
 
-#: popthelp.c:220
+#: popthelp.c:132
 msgid "DOUBLE"
-msgstr "DOUBLE-LIUKULUKU"
+msgstr ""
 
-#: popthelp.c:223
+#: popthelp.c:133
 msgid "ARG"
-msgstr "ARGUMENTTI"
+msgstr ""
 
-#: popthelp.c:663
+#: popthelp.c:508
 msgid "Usage:"
-msgstr "Käyttö:"
+msgstr ""
 
-#: popthelp.c:689
+#: popthelp.c:532
 msgid "[OPTION...]"
-msgstr "[VALITSIN...]"
+msgstr ""
