@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: popt 1.6.3\n"
+"Project-Id-Version: popt\n"
 "POT-Creation-Date: 2002-01-19 09:14-0500\n"
-"PO-Revision-Date: 2001-01-21 19:31+00:00\n"
+"PO-Revision-Date: 2002-02-13 18:32+0000\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <morais@kde.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-latin1\n"
-"Content-Transfer-Encoding: none\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: popt.c:29
 msgid "unknown errno"
@@ -32,7 +32,7 @@ msgstr "foram pedidas operações lógicas mutuamente exclusivas"
 
 #: popt.c:1138
 msgid "opt->arg should not be NULL"
-msgstr ""
+msgstr "opt->arg não deve ser NULL"
 
 #: popt.c:1140
 msgid "aliases nested too deeply"
@@ -52,7 +52,7 @@ msgstr "número demasiado grando ou pequeno"
 
 #: popt.c:1148
 msgid "memory allocation failed"
-msgstr ""
+msgstr "alocação de memória falhou"
 
 #: popt.c:1152
 msgid "unknown error"
@@ -67,9 +67,8 @@ msgid "Display brief usage message"
 msgstr "Mostrar uma mensagem de utilização sucinta"
 
 #: popthelp.c:57
-#, fuzzy
 msgid "Display option defaults in message"
-msgstr "Mostrar uma mensagem de utilização sucinta"
+msgstr "Mostrar valor por omissão das opções na mensagem"
 
 #: popthelp.c:99
 msgid "NONE"
