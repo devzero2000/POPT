@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.2\n"
 "POT-Creation-Date: 2001-06-16 21:10-0400\n"
-"PO-Revision-Date: 2001-01-23 22:52+01:00\n"
+"PO-Revision-Date: 2001-06-27 11:05+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "gjensidig eksluderende logiske operasjoner forespurt"
 
 #: popt.c:1059
 msgid "opt->arg should not be NULL"
-msgstr ""
+msgstr "opt->arg må ikke være NULL"
 
 #: popt.c:1061
 msgid "aliases nested too deeply"
@@ -52,7 +52,7 @@ msgstr "tallet er for stort eller lite"
 
 #: popt.c:1069
 msgid "memory allocation failed"
-msgstr ""
+msgstr "minneallokering feilet"
 
 #: popt.c:1073
 msgid "unknown error"
@@ -67,9 +67,8 @@ msgid "Display brief usage message"
 msgstr "Vis kort bruksmelding"
 
 #: popthelp.c:36
-#, fuzzy
 msgid "Display option defaults in message"
-msgstr "Vis kort bruksmelding"
+msgstr "Vis forvalgte flagg i melding"
 
 #: popthelp.c:71
 msgid "NONE"
