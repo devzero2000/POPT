@@ -1,0 +1,35 @@
+-I. -I.. -DHAVE_CONFIG_H
+
++partial
+
+-warnunixlib
+-warnposix
+
++unixlib
+
+# don't-bother-me-yet parameters
+#-branchstate
+-mustfree
+
+# not-yet normal parameters
+-boolops		# w->n
+#-null
+-predboolint		# w->n
+-type
+
+
+# -weak paramaters
+#+boolint
+#-boolops
+#+ignorequals
+#+ignoresigns
+#-mustfree
+#+longintegral
+#+matchanyintegral
+#-nullpass
+#-observertrans
+#-predboolint
+#-predboolothers
+#-retvalint
+#-retvalother
+#-shiftsigned
