@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.1\n"
 "POT-Creation-Date: 2001-07-07 14:18-0400\n"
-"PO-Revision-Date: 2001-01-23 01:35+0000\n"
+"PO-Revision-Date: 2001-06-08 01:35+0000\n"
 "Last-Translator: Richard Allen <ra@hp.is>\n"
 "Language-Team: is <kde-isl@mmedia.is>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "beðið um rofa sem slökkva hvor á öðrum"
 
 #: popt.c:1106
 msgid "opt->arg should not be NULL"
-msgstr ""
+msgstr "opt->arg ætti ekki að vera NULL"
 
 #: popt.c:1108
 msgid "aliases nested too deeply"
@@ -52,7 +52,7 @@ msgstr "talan of stór eða smá"
 
 #: popt.c:1116
 msgid "memory allocation failed"
-msgstr ""
+msgstr "ekki tókst að taka frá minni"
 
 #: popt.c:1120
 msgid "unknown error"
@@ -67,9 +67,8 @@ msgid "Display brief usage message"
 msgstr "Sýna stuttar notkunarleiðbeiningar"
 
 #: popthelp.c:51
-#, fuzzy
 msgid "Display option defaults in message"
-msgstr "Sýna stuttar notkunarleiðbeiningar"
+msgstr "Sýna sjálfgefin gildi rofa í skilaboðum"
 
 #: popthelp.c:93
 msgid "NONE"
