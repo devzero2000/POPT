@@ -11,77 +11,9 @@
 #include "system.h"
 #include "poptint.h"
 
-#if !defined(HAVE_STPCPY) && !defined(__LCLINT__)
-static char * stpcpy (char * dest, const char * src)
-	/*@modifies *dest @*/;
-{
-  do
-    *dest++ = *src;
-  while (*src++ != '\0');
-  return dest - 1;
-}
-#endif
-
-#if !defined(HAVE_STPNCPY) && !defined(__LCLINT__)
-static char * stpncpy (char * dest, const char * src, size_t n)
-{
-  char c;
-  char *s = dest;
-
-  if (n >= 4)
-    {
-      size_t n4 = n >> 2;
-
-      for (;;)
-	{
-	  c = *src++;
-	  *dest++ = c;
-	  if (c == '\0')
-	    break;
-	  c = *src++;
-	  *dest++ = c;
-	  if (c == '\0')
-	    break;
-	  c = *src++;
-	  *dest++ = c;
-	  if (c == '\0')
-	    break;
-	  c = *src++;
-	  *dest++ = c;
-	  if (c == '\0')
-	    break;
-	  if (--n4 == 0)
-	    goto last_chars;
-	}
-      n -= dest - s;
-      goto zero_fill;
-    }
-
- last_chars:
-  n &= 3;
-  if (n == 0)
-    return dest;
-
-  for (;;)
-    {
-      c = *src++;
-      --n;
-      *dest++ = c;
-      if (c == '\0')
-	break;
-      if (n == 0)
-	return dest;
-    }
-
- zero_fill:
-  while (n-- > 0)
-    dest[n] = '\0';
-
-  return dest - 1;
-}
-#endif
-
 /**
+ * @param con		context
+ * @param key		option(s)
  */
 static void displayArgs(poptContext con,
 		/*@unused@*/ enum poptCallbackReason foo,
@@ -98,6 +30,17 @@ static void displayArgs(poptContext con,
 #ifdef	NOTYET
 static int show_option_defaults = 0;
 #endif
+
+/**
+ * Empty table marker to enable displaying popt alias/exec options.
+ */
+struct poptOption poptAliasOptions[] = {
+    POPT_TABLEEND
+};
+
+/**
+ * Auto help table options.
+ */
 /*@-castfcnptr@*/
 struct poptOption poptHelpOptions[] = {
   { NULL, '\0', POPT_ARG_CALLBACK, (void *)&displayArgs, '\0', NULL, NULL },
@@ -112,6 +55,7 @@ struct poptOption poptHelpOptions[] = {
 /*@=castfcnptr@*/
 
 /**
+ * @param table		option(s)
  */
 /*@observer@*/ /*@null@*/ static const char *const
 getTableTranslationDomain(/*@null@*/ const struct poptOption *table)
@@ -128,6 +72,8 @@ getTableTranslationDomain(/*@null@*/ const struct poptOption *table)
 }
 
 /**
+ * @param opt		option(s)
+ * @param translation_domain	translation domain
  */
 /*@observer@*/ /*@null@*/ static const char *const
 getArgDescrip(const struct poptOption * opt,
@@ -156,6 +102,8 @@ getArgDescrip(const struct poptOption * opt,
 }
 
 /**
+ * @param opt		option(s)
+ * @param translation_domain	translation domain
  */
 static /*@only@*/ /*@null@*/ char *
 singleOptionDefaultValue(int lineLength,
@@ -172,7 +120,7 @@ singleOptionDefaultValue(int lineLength,
     if (l == NULL) return NULL;	/* XXX can't happen */
     *le = '\0';
     *le++ = '(';
-    le = stpcpy(le, defstr);
+    strcpy(le, defstr);	le += strlen(le);
     *le++ = ':';
     *le++ = ' ';
     if (opt->arg)	/* XXX programmer error */
@@ -196,14 +144,15 @@ singleOptionDefaultValue(int lineLength,
     }	break;
     case POPT_ARG_STRING:
     {	const char * s = *(const char **)opt->arg;
-	if (s == NULL)
-	    le = stpcpy(le, "null");
-	else {
+	if (s == NULL) {
+	    strcpy(le, "null");	le += strlen(le);
+	} else {
 	    size_t slen = 4*lineLength - (le - l) - sizeof("\"...\")");
 	    *le++ = '"';
-	    le = stpncpy(le, s, slen);
-	    if (slen < strlen(s))
-		le = stpcpy(le, "...");
+	    strncpy(le, s, slen); le[slen] = '\0'; le += strlen(le);	
+	    if (slen < strlen(s)) {
+		strcpy(le, "...");	le += strlen(le);
+	    }
 	    *le++ = '"';
 	}
     }	break;
@@ -220,6 +169,9 @@ singleOptionDefaultValue(int lineLength,
 }
 
 /**
+ * @param fp		output file handle
+ * @param opt		option(s)
+ * @param translation_domain	translation domain
  */
 static void singleOptionHelp(FILE * fp, int maxLeftCol, 
 		const struct poptOption * opt,
@@ -270,8 +222,11 @@ static void singleOptionHelp(FILE * fp, int maxLeftCol,
 		if (t) {
 		    char * te = t;
 		    *te = '\0';
-		    if (help) te = stpcpy(te, help);
-		    (void) stpcpy( stpcpy( te, " "), defs);
+		    if (help) {
+			strcpy(te, help);	te += strlen(te);
+		    }
+		    *te++ = ' ';
+		    strcpy(te, defs);
 		    defs = _free(defs);
 		}
 		defs = t;
@@ -308,14 +263,14 @@ static void singleOptionHelp(FILE * fp, int maxLeftCol,
 	    case POPT_ARG_DOUBLE:
 	    case POPT_ARG_STRING:
 		*le++ = '=';
-		le = stpcpy(le, argDescrip);
+		strcpy(le, argDescrip);		le += strlen(le);
 		break;
 	    default:
 		break;
 	    }
 	} else {
 	    *le++ = '=';
-	    le = stpcpy(le, argDescrip);
+	    strcpy(le, argDescrip);		le += strlen(le);
 	}
 	if (opt->argInfo & POPT_ARGFLAG_OPTIONAL)
 	    *le++ = ']';
@@ -360,6 +315,8 @@ out:
 }
 
 /**
+ * @param opt		option(s)
+ * @param translation_domain	translation domain
  */
 static int maxArgWidth(const struct poptOption * opt,
 		       /*@null@*/ const char * translation_domain)
@@ -399,14 +356,48 @@ static int maxArgWidth(const struct poptOption * opt,
 }
 
 /**
+ * Display popt alias and exec help.
+ * @param fp		output file handle
+ * @param items		alias/exec array
+ * @param nitems	no. of alias/exec entries
+ * @param translation_domain	translation domain
  */
-static void singleTableHelp(FILE * fp,
+static void itemHelp(FILE * fp,
+		/*@null@*/ poptItem items, int nitems, int left,
+		/*@null@*/ const char * translation_domain)
+	/*@modifies *fp, fileSystem @*/
+{
+    poptItem item;
+    int i;
+
+    if (items != NULL)
+    for (i = 0, item = items; i < nitems; i++, item++) {
+	const struct poptOption * opt;
+	opt = &item->option;
+	if ((opt->longName || opt->shortName) && 
+	    !(opt->argInfo & POPT_ARGFLAG_DOC_HIDDEN))
+	    singleOptionHelp(fp, left, opt, translation_domain);
+    }
+}
+
+/**
+ * @param fp		output file handle
+ * @param table		option(s)
+ * @param translation_domain	translation domain
+ */
+static void singleTableHelp(poptContext con, FILE * fp,
 		/*@null@*/ const struct poptOption * table, int left,
 		/*@null@*/ const char * translation_domain)
 	/*@modifies *fp, fileSystem @*/
 {
     const struct poptOption * opt;
     const char *sub_transdom;
+
+    if (table == poptAliasOptions) {
+	itemHelp(fp, con->aliases, con->numAliases, left, NULL);
+	itemHelp(fp, con->execs, con->numExecs, left, NULL);
+	return;
+    }
 
     if (table != NULL)
     for (opt = table; (opt->longName || opt->shortName || opt->arg); opt++) {
@@ -417,20 +408,22 @@ static void singleTableHelp(FILE * fp,
 
     if (table != NULL)
     for (opt = table; (opt->longName || opt->shortName || opt->arg); opt++) {
-	if ((opt->argInfo & POPT_ARG_MASK) == POPT_ARG_INCLUDE_TABLE) {
-	    sub_transdom = getTableTranslationDomain(opt->arg);
-	    if (sub_transdom == NULL)
-		sub_transdom = translation_domain;
+	if ((opt->argInfo & POPT_ARG_MASK) != POPT_ARG_INCLUDE_TABLE)
+	    continue;
+	sub_transdom = getTableTranslationDomain(opt->arg);
+	if (sub_transdom == NULL)
+	    sub_transdom = translation_domain;
 	    
-	    if (opt->descrip)
-		fprintf(fp, "\n%s\n", D_(sub_transdom, opt->descrip));
+	if (opt->descrip)
+	    fprintf(fp, "\n%s\n", D_(sub_transdom, opt->descrip));
 
-	    singleTableHelp(fp, opt->arg, left, sub_transdom);
-	}
+	singleTableHelp(con, fp, opt->arg, left, sub_transdom);
     }
 }
 
 /**
+ * @param con		context
+ * @param fp		output file handle
  */
 static int showHelpIntro(poptContext con, FILE * fp)
 	/*@modifies *fp, fileSystem @*/
@@ -463,10 +456,13 @@ void poptPrintHelp(poptContext con, FILE * fp, /*@unused@*/ int flags)
 	fprintf(fp, " %s\n", POPT_("[OPTION...]"));
 
     leftColWidth = maxArgWidth(con->options, NULL);
-    singleTableHelp(fp, con->options, leftColWidth, NULL);
+    singleTableHelp(con, fp, con->options, leftColWidth, NULL);
 }
 
 /**
+ * @param fp		output file handle
+ * @param opt		option(s)
+ * @param translation_domain	translation domain
  */
 static int singleOptionUsage(FILE * fp, int cursor, 
 		const struct poptOption * opt,
@@ -509,20 +505,25 @@ static int singleOptionUsage(FILE * fp, int cursor,
 }
 
 /**
+ * Display popt alias and exec usage.
+ * @param fp		output file handle
+ * @param item		alias/exec array
+ * @param nitems	no. of ara/exec entries
+ * @param translation_domain	translation domain
  */
-static int singleTableUsage(FILE * fp,
-		int cursor, const struct poptOption * opt,
+static int itemUsage(FILE * fp, int cursor, poptItem item, int nitems,
 		/*@null@*/ const char * translation_domain)
 	/*@modifies *fp, fileSystem @*/
 {
+    int i;
+
     /*@-branchstate@*/		/* FIX: W2DO? */
-    if (opt != NULL)
-    for (; (opt->longName || opt->shortName || opt->arg) ; opt++) {
+    if (item != NULL)
+    for (i = 0; i < nitems; i++, item++) {
+	const struct poptOption * opt;
+	opt = &item->option;
         if ((opt->argInfo & POPT_ARG_MASK) == POPT_ARG_INTL_DOMAIN) {
 	    translation_domain = (const char *)opt->arg;
-	} else if ((opt->argInfo & POPT_ARG_MASK) == POPT_ARG_INCLUDE_TABLE) {
-	    if (opt->arg)	/* XXX program error */
-	    cursor = singleTableUsage(fp, cursor, opt->arg, translation_domain);
 	} else if ((opt->longName || opt->shortName) &&
 		 !(opt->argInfo & POPT_ARGFLAG_DOC_HIDDEN)) {
 	    cursor = singleOptionUsage(fp, cursor, opt, translation_domain);
@@ -534,6 +535,40 @@ static int singleTableUsage(FILE * fp,
 }
 
 /**
+ * @param fp		output file handle
+ * @param opt		option(s)
+ * @param translation_domain	translation domain
+ */
+static int singleTableUsage(poptContext con, FILE * fp,
+		int cursor, const struct poptOption * opt,
+		/*@null@*/ const char * translation_domain)
+	/*@modifies *fp, fileSystem @*/
+{
+    /*@-branchstate@*/		/* FIX: W2DO? */
+    if (opt != NULL)
+    for (; (opt->longName || opt->shortName || opt->arg) ; opt++) {
+        if ((opt->argInfo & POPT_ARG_MASK) == POPT_ARG_INTL_DOMAIN) {
+	    translation_domain = (const char *)opt->arg;
+	} else if ((opt->argInfo & POPT_ARG_MASK) == POPT_ARG_INCLUDE_TABLE) {
+	    if (opt->arg)	/* XXX program error */
+	    cursor = singleTableUsage(con, fp, cursor, opt->arg,
+			translation_domain);
+	} else if ((opt->longName || opt->shortName) &&
+		 !(opt->argInfo & POPT_ARGFLAG_DOC_HIDDEN)) {
+	    cursor = singleOptionUsage(fp, cursor, opt, translation_domain);
+	}
+    }
+    /*@=branchstate@*/
+
+    return cursor;
+}
+
+/**
+ * Return concatenated short options for display.
+ * @param opt		option(s)
+ * @param fp		output file handle
+ * @retval str		concatenation of short options
+ * @return		length of display string
  */
 static int showShortOptions(const struct poptOption * opt, FILE * fp,
 		/*@null@*/ char * str)
@@ -571,7 +606,9 @@ void poptPrintUsage(poptContext con, FILE * fp, /*@unused@*/ int flags)
 
     cursor = showHelpIntro(con, fp);
     cursor += showShortOptions(con->options, fp, NULL);
-    (void) singleTableUsage(fp, cursor, con->options, NULL);
+    (void) singleTableUsage(con, fp, cursor, con->options, NULL);
+    (void) itemUsage(fp, cursor, con->aliases, con->numAliases, NULL);
+    (void) itemUsage(fp, cursor, con->execs, con->numExecs, NULL);
 
     if (con->otherHelp) {
 	cursor += strlen(con->otherHelp) + 1;
