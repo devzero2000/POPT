@@ -1,3 +1,5 @@
+/* vim:ts=8:sts=4 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -7,7 +9,7 @@
 int main (int argc, char **argv) {
     char *out;
     int newargc, j, f, ret;
-    const char **newargv;
+    char **newargv;
     FILE *fp;
 
     if (argc == 1) {
