@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.1\n"
 "POT-Creation-Date: 2001-01-17 12:28-0500\n"
-"PO-Revision-Date: 2000-06-22 01:02+01:00\n"
+"PO-Revision-Date: 2001-01-21 19:31+00:00\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <morais@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -11,44 +11,44 @@ msgstr ""
 
 #: popt.c:29
 msgid "unknown errno"
-msgstr ""
+msgstr "errno desconhecido"
 
 #: popt.c:758
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
-msgstr ""
+msgstr "tipo de opção (%d) não implementado no popt\n"
 
 #: popt.c:893
 msgid "missing argument"
-msgstr ""
+msgstr "falta um argumento"
 
 #: popt.c:895
 msgid "unknown option"
-msgstr ""
+msgstr "opção desconhecida"
 
 #: popt.c:897
 msgid "mutually exclusive logical operations requested"
-msgstr ""
+msgstr "foram pedidas operações lógicas mutuamente exclusivas"
 
 #: popt.c:899
 msgid "aliases nested too deeply"
-msgstr ""
+msgstr "'aliases' demasiado aninhados"
 
 #: popt.c:901
 msgid "error in parameter quoting"
-msgstr ""
+msgstr "erros no 'quoting' de parâmetros"
 
 #: popt.c:903
 msgid "invalid numeric value"
-msgstr ""
+msgstr "valor númerico inválido"
 
 #: popt.c:905
 msgid "number too large or too small"
-msgstr ""
+msgstr "número demasiado grando ou pequeno"
 
 #: popt.c:909
 msgid "unknown error"
-msgstr ""
+msgstr "erro desconhecido"
 
 #: popthelp.c:28
 msgid "Show this help message"
@@ -60,40 +60,40 @@ msgstr "Mostrar uma mensagem de utilização sucinta"
 
 #: popthelp.c:60
 msgid "NONE"
-msgstr ""
+msgstr "NONE"
 
 #: popthelp.c:61
 msgid "VAL"
-msgstr ""
+msgstr "VAL"
 
 #: popthelp.c:62
 msgid "INT"
-msgstr ""
+msgstr "INT"
 
 #: popthelp.c:63
 msgid "LONG"
-msgstr ""
+msgstr "LONG"
 
 #: popthelp.c:64
 msgid "STRING"
-msgstr ""
+msgstr "STRING"
 
 #: popthelp.c:65
 msgid "FLOAT"
-msgstr ""
+msgstr "FLOAT"
 
 #: popthelp.c:66
 msgid "DOUBLE"
-msgstr ""
+msgstr "DOUBLE"
 
 #: popthelp.c:67
 msgid "ARG"
-msgstr ""
+msgstr "ARG"
 
 #: popthelp.c:240
 msgid "Usage:"
-msgstr ""
+msgstr "Utilização:"
 
 #: popthelp.c:259
 msgid "[OPTION...]"
-msgstr ""
+msgstr "[OPÇÃO...]"
