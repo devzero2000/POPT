@@ -9,10 +9,6 @@
 #ifndef H_POPT
 #define H_POPT
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <stdio.h>			/* for FILE * */
 
 #define POPT_OPTION_DEPTH	10
@@ -152,6 +148,7 @@ typedef struct poptItem_s {
 /**
  * Empty table marker to enable displaying popt alias/exec options.
  */
+/*@observer@*/ /*@checked@*/
 extern struct poptOption poptAliasOptions[];
 #define POPT_AUTOALIAS { NULL, '\0', POPT_ARG_INCLUDE_TABLE, poptAliasOptions, \
 			0, "Options implemented via popt alias/exec:", NULL },
@@ -159,6 +156,7 @@ extern struct poptOption poptAliasOptions[];
 /**
  * Auto help table options.
  */
+/*@observer@*/ /*@checked@*/
 extern struct poptOption poptHelpOptions[];
 #define POPT_AUTOHELP { NULL, '\0', POPT_ARG_INCLUDE_TABLE, poptHelpOptions, \
 			0, "Help options:", NULL },
@@ -181,6 +179,11 @@ typedef struct poptOption * poptOption;
 enum poptCallbackReason { POPT_CALLBACK_REASON_PRE, 
 			  POPT_CALLBACK_REASON_POST,
 			  POPT_CALLBACK_REASON_OPTION };
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+/*@-type@*/
 
 /** \ingroup popt
  * Table callback prototype.
@@ -226,6 +229,7 @@ void poptResetContext(/*@null@*/poptContext con)
  * @return		next option val, -1 on last item, POPT_ERROR_* on error
  */
 int poptGetNextOpt(/*@null@*/poptContext con)
+	/*@globals fileSystem@*/
 	/*@modifies con, fileSystem @*/;
 
 /*@-redecl@*/
@@ -317,6 +321,7 @@ int poptAddItem(poptContext con, poptItem newItem, int flags)
  * @return		0 on success, POPT_ERROR_ERRNO on failure
  */
 int poptReadConfigFile(poptContext con, const char * fn)
+	/*@globals fileSystem@*/
 	/*@modifies fileSystem,
 		con->execs, con->numExecs @*/;
 
@@ -327,6 +332,7 @@ int poptReadConfigFile(poptContext con, const char * fn)
  * @return		0 on success, POPT_ERROR_ERRNO on failure
  */
 int poptReadDefaultConfig(poptContext con, /*@unused@*/ int useEnv)
+	/*@globals fileSystem@*/
 	/*@modifies fileSystem,
 		con->execs, con->numExecs @*/;
 
@@ -387,6 +393,7 @@ void poptSetExecPath(poptContext con, const char * path, int allowAbsolute)
  * @param flags		(unused)
  */
 void poptPrintHelp(poptContext con, FILE * fp, /*@unused@*/ int flags)
+	/*@globals fileSystem @*/
 	/*@modifies *fp, fileSystem @*/;
 
 /** \ingroup popt
@@ -396,6 +403,7 @@ void poptPrintHelp(poptContext con, FILE * fp, /*@unused@*/ int flags)
  * @param flags		(unused)
  */
 void poptPrintUsage(poptContext con, FILE * fp, /*@unused@*/ int flags)
+	/*@globals fileSystem @*/
 	/*@modifies *fp, fileSystem @*/;
 
 /** \ingroup popt
@@ -430,6 +438,7 @@ int poptStrippedArgv(poptContext con, int argc, char ** argv)
 	/*@modifies *argv @*/;
 /*@=fcnuse@*/
 
+/*@=type@*/
 #ifdef  __cplusplus
 }
 #endif

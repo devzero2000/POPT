@@ -13,7 +13,9 @@
 static void configLine(poptContext con, char * line)
 	/*@modifies con @*/
 {
+    /*@-type@*/
     int nameLength = strlen(con->appName);
+    /*@=type@*/
     const char * entryType;
     const char * opt;
     poptItem item = alloca(sizeof(*item));
@@ -21,7 +23,10 @@ static void configLine(poptContext con, char * line)
     
     memset(item, 0, sizeof(*item));
 
+    /*@-type@*/
     if (strncmp(line, con->appName, nameLength)) return;
+    /*@=type@*/
+
     line += nameLength;
     if (*line == '\0' || !isspace(*line)) return;
 
@@ -39,10 +44,12 @@ static void configLine(poptContext con, char * line)
     while (*line != '\0' && isspace(*line)) line++;
     if (*line == '\0') return;
 
+    /*@-temptrans@*/ /* FIX: line alias is saved */
     if (opt[0] == '-' && opt[1] == '-')
 	item->option.longName = opt + 2;
     else if (opt[0] == '-' && opt[2] == '\0')
 	item->option.shortName = opt[1];
+    /*@=temptrans@*/
 
     if (poptParseArgvString(line, &item->argc, &item->argv)) return;
 
@@ -72,13 +79,14 @@ static void configLine(poptContext con, char * line)
 	item->argv[j] = NULL;
 	item->argc = j;
     }
-    
     /*@=modobserver@*/
 	
+    /*@-nullstate@*/ /* FIX: item->argv[] may be NULL */
     if (!strcmp(entryType, "alias"))
 	(void) poptAddItem(con, item, 0);
     else if (!strcmp(entryType, "exec"))
 	(void) poptAddItem(con, item, 1);
+    /*@=nullstate@*/
 }
 /*@=compmempass@*/
 
@@ -98,7 +106,9 @@ int poptReadConfigFile(poptContext con, const char * fn)
     if (fileLength == -1 || lseek(fd, 0, 0) == -1) {
 	rc = errno;
 	(void) close(fd);
+	/*@-mods@*/
 	errno = rc;
+	/*@=mods@*/
 	return POPT_ERROR_ERRNO;
     }
 
@@ -106,7 +116,9 @@ int poptReadConfigFile(poptContext con, const char * fn)
     if (read(fd, (char *)file, fileLength) != fileLength) {
 	rc = errno;
 	(void) close(fd);
+	/*@-mods@*/
 	errno = rc;
+	/*@=mods@*/
 	return POPT_ERROR_ERRNO;
     }
     if (close(fd) == -1)
@@ -126,7 +138,7 @@ int poptReadConfigFile(poptContext con, const char * fn)
 	    if (*dst && *dst != '#')
 		configLine(con, dst);
 	    chptr++;
-	    break;
+	    /*@switchbreak@*/ break;
 	  case '\\':
 	    *dst++ = *chptr++;
 	    if (chptr < end) {
@@ -136,10 +148,10 @@ int poptReadConfigFile(poptContext con, const char * fn)
 		else
 		    *dst++ = *chptr++;
 	    }
-	    break;
+	    /*@switchbreak@*/ break;
 	  default:
 	    *dst++ = *chptr++;
-	    break;
+	    /*@switchbreak@*/ break;
 	}
     }
     /*@=infloops@*/
@@ -151,7 +163,9 @@ int poptReadDefaultConfig(poptContext con, /*@unused@*/ int useEnv) {
     char * fn, * home;
     int rc;
 
+    /*@-type@*/
     if (!con->appName) return 0;
+    /*@=type@*/
 
     rc = poptReadConfigFile(con, "/etc/popt");
     if (rc) return rc;
