@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.8.1\n"
-"POT-Creation-Date: 2003-03-19 12:16-0500\n"
+"POT-Creation-Date: 2003-09-15 18:58-0400\n"
 "PO-Revision-Date: 2003-06-22 23:43+0200\n"
 "Last-Translator: RPM French Translation <rpm-fr@livna.org>\n"
 "Language-Team: RPM French Translation <rpm-fr@livna.org>\n"
@@ -68,54 +68,54 @@ msgstr "échec de l'allocation de mémoire"
 msgid "unknown error"
 msgstr "erreur inconnue"
 
-#: popthelp.c:57
+#: popthelp.c:60
 msgid "Show this help message"
 msgstr "Montre ce message d'aide"
 
-#: popthelp.c:58
+#: popthelp.c:61
 msgid "Display brief usage message"
 msgstr "Affiche un bref descriptif de l'utilisation"
 
-#: popthelp.c:61
+#: popthelp.c:64
 msgid "Display option defaults in message"
 msgstr "Afficher les valeurs par défaut des options dans le message"
 
-#: popthelp.c:103
+#: popthelp.c:106
 msgid "NONE"
 msgstr "RIEN"
 
-#: popthelp.c:105
+#: popthelp.c:108
 msgid "VAL"
 msgstr "VAL"
 
-#: popthelp.c:109
+#: popthelp.c:112
 msgid "INT"
 msgstr "ENTIER"
 
-#: popthelp.c:110
+#: popthelp.c:113
 msgid "LONG"
 msgstr "LONG"
 
-#: popthelp.c:111
+#: popthelp.c:114
 msgid "STRING"
 msgstr "CHAINE"
 
-#: popthelp.c:112
+#: popthelp.c:115
 msgid "FLOAT"
 msgstr "FLOTTANT"
 
-#: popthelp.c:113
+#: popthelp.c:116
 msgid "DOUBLE"
 msgstr "DOUBLE"
 
-#: popthelp.c:114
+#: popthelp.c:117
 msgid "ARG"
 msgstr "ARG"
 
-#: popthelp.c:486
+#: popthelp.c:489
 msgid "Usage:"
 msgstr "Utilisation:"
 
-#: popthelp.c:510
+#: popthelp.c:513
 msgid "[OPTION...]"
 msgstr "[OPTION...]"
