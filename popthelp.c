@@ -14,7 +14,10 @@
 
 /**
  * @param con		context
+ * @param foo
  * @param key		option(s)
+ * @param arg
+ * @param data
  */
 static void displayArgs(poptContext con,
 		/*@unused@*/ enum poptCallbackReason foo,
@@ -108,6 +111,7 @@ getArgDescrip(const struct poptOption * opt,
 }
 
 /**
+ * @param lineLength
  * @param opt		option(s)
  * @param translation_domain	translation domain
  */
@@ -176,6 +180,7 @@ singleOptionDefaultValue(int lineLength,
 
 /**
  * @param fp		output file handle
+ * @param maxLeftCol
  * @param opt		option(s)
  * @param translation_domain	translation domain
  */
@@ -382,6 +387,7 @@ static int maxArgWidth(const struct poptOption * opt,
  * @param fp		output file handle
  * @param items		alias/exec array
  * @param nitems	no. of alias/exec entries
+ * @param left
  * @param translation_domain	translation domain
  */
 static void itemHelp(FILE * fp,
@@ -404,8 +410,10 @@ static void itemHelp(FILE * fp,
 }
 
 /**
+ * @param con		context
  * @param fp		output file handle
  * @param table		option(s)
+ * @param left
  * @param translation_domain	translation domain
  */
 static void singleTableHelp(poptContext con, FILE * fp,
@@ -486,6 +494,7 @@ void poptPrintHelp(poptContext con, FILE * fp, /*@unused@*/ int flags)
 
 /**
  * @param fp		output file handle
+ * @param cursor
  * @param opt		option(s)
  * @param translation_domain	translation domain
  */
@@ -533,6 +542,7 @@ static int singleOptionUsage(FILE * fp, int cursor,
 /**
  * Display popt alias and exec usage.
  * @param fp		output file handle
+ * @param cursor
  * @param item		alias/exec array
  * @param nitems	no. of ara/exec entries
  * @param translation_domain	translation domain
@@ -562,7 +572,9 @@ static int itemUsage(FILE * fp, int cursor, poptItem item, int nitems,
 }
 
 /**
+ * @param con		context
  * @param fp		output file handle
+ * @param cursor
  * @param opt		option(s)
  * @param translation_domain	translation domain
  */
