@@ -1,157 +1,18 @@
-# translation of popt-1.14.ru.po to Russian
-# This file is put in the public domain.
-# This file is distributed under the same license as the popt package.
-# Eugene Kanter <eugene@blackcatlinux.com>, 2001.
-# Yuri Kozlov <yuray@komyakino.ru>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: popt 1.14\n"
-"Report-Msgid-Bugs-To: <popt-devel@rpm5.org>\n"
-"POT-Creation-Date: 2010-11-04 17:12-0400\n"
-"PO-Revision-Date: 2009-02-01 13:30+0300\n"
-"Last-Translator: Yuri Kozlov <yuray@komyakino.ru>\n"
-"Language-Team: Russian <gnu@mx.ru>\n"
-"Language: ru\n"
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: 2000-09-11 12:28-0400\n"
+"PO-Revision-Date: 2000-08-13 21:00+0300\n"
+"Last-Translator: Leon Kanter <leon@blackcatlinux.com>\n"
+"Language-Team: Black Cat Linux Team <blackcat-support@blackcatlinux.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=koi8-r\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: popt.c:53
-msgid "unknown errno"
-msgstr "неизвестный errno"
-
-#: popt.c:1419
-#, c-format
-msgid "option type (%u) not implemented in popt\n"
-msgstr "обработка параметра (%u) в popt не предусмотрена\n"
-
-#: popt.c:1864
-msgid "missing argument"
-msgstr "пропущен аргумент"
-
-#: popt.c:1866
-msgid "unknown option"
-msgstr "неизвестный параметр"
-
-#: popt.c:1868
-msgid "mutually exclusive logical operations requested"
-msgstr "запрошены взаимно исключающие логические операции"
-
-#: popt.c:1870
-msgid "opt->arg should not be NULL"
-msgstr "opt->arg не может быть NULL"
-
-#: popt.c:1872
-msgid "aliases nested too deeply"
-msgstr "превышен уровень допустимой рекурсии подстановок"
-
-#: popt.c:1874
-msgid "error in parameter quoting"
-msgstr "ошибка помещения параметров в кавычки"
-
-#: popt.c:1876
-msgid "invalid numeric value"
-msgstr "неправильное числовое значение"
-
-#: popt.c:1878
-msgid "number too large or too small"
-msgstr "числовое значение за пределами предусмотренного"
-
-#: popt.c:1880
-msgid "memory allocation failed"
-msgstr "не удалось выделить память"
-
-#: popt.c:1882
-msgid "config file failed sanity test"
-msgstr ""
-
-#: popt.c:1884
-msgid "option does not take an argument"
-msgstr ""
-
-#: popt.c:1886
-msgid "stack underflow"
-msgstr ""
-
-#: popt.c:1888
-msgid "stack overflow"
-msgstr ""
-
-#: popt.c:1892
-msgid "unknown error"
-msgstr "неизвестная ошибка"
-
-#: popthelp.c:83 popthelp.c:94
+#: popthelp.c:23
 msgid "Show this help message"
-msgstr "Показать эту справку"
+msgstr "�������� ��� ���������"
 
-#: popthelp.c:84 popthelp.c:95
+#: popthelp.c:24
 msgid "Display brief usage message"
-msgstr "Показать краткую инструкцию по использованию"
-
-#: popthelp.c:98
-msgid "Display option defaults in message"
-msgstr "Показать параметры по умолчанию"
-
-#: popthelp.c:100
-msgid "Terminate options"
-msgstr "Завершает параметры"
-
-#: popthelp.c:199
-msgid "Help options:"
-msgstr "Параметры вывода справки:"
-
-#: popthelp.c:200
-msgid "Options implemented via popt alias/exec:"
-msgstr "Параметры, реализованные через popt alias/exec:"
-
-#: popthelp.c:208
-msgid "NONE"
-msgstr "NONE"
-
-#: popthelp.c:210
-msgid "VAL"
-msgstr "VAL"
-
-#: popthelp.c:214
-msgid "INT"
-msgstr "INT"
-
-#: popthelp.c:215
-msgid "SHORT"
-msgstr ""
-
-#: popthelp.c:216
-msgid "LONG"
-msgstr "LONG"
-
-#: popthelp.c:217
-msgid "LONGLONG"
-msgstr "LONGLONG"
-
-#: popthelp.c:218
-msgid "STRING"
-msgstr "STRING"
-
-#: popthelp.c:219
-msgid "FLOAT"
-msgstr "FLOAT"
-
-#: popthelp.c:220
-msgid "DOUBLE"
-msgstr "DOUBLE"
-
-#: popthelp.c:223
-msgid "ARG"
-msgstr "ARG"
-
-#: popthelp.c:663
-msgid "Usage:"
-msgstr "Использование:"
-
-#: popthelp.c:689
-msgid "[OPTION...]"
-msgstr "[ПАРАМЕТР...]"
+msgstr "�������� ������� ���������� �� �������������"
