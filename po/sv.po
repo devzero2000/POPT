@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: popt 1.6.1\n"
+"Project-Id-Version: popt\n"
 "POT-Creation-Date: 2001-07-11 00:55-0400\n"
-"PO-Revision-Date: 2001-01-16 00:40+0100\n"
+"PO-Revision-Date: 2001-07-12 22:26+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr "flaggtypen (%d) är inte implementerad i popt\n"
 
 #: popt.c:1100
 msgid "missing argument"
-msgstr "saknat argument"
+msgstr "argument saknas"
 
 #: popt.c:1102
 msgid "unknown option"
@@ -32,7 +32,7 @@ msgstr "ömsesidigt uteslutande logiska operationer begärdes"
 
 #: popt.c:1106
 msgid "opt->arg should not be NULL"
-msgstr ""
+msgstr "opt->arg får inte vara NULL"
 
 #: popt.c:1108
 msgid "aliases nested too deeply"
@@ -52,7 +52,7 @@ msgstr "talet för stort eller för litet"
 
 #: popt.c:1116
 msgid "memory allocation failed"
-msgstr ""
+msgstr "minnesallokering misslyckades"
 
 #: popt.c:1120
 msgid "unknown error"
@@ -67,37 +67,36 @@ msgid "Display brief usage message"
 msgstr "Visa en kortfattad användningstext"
 
 #: popthelp.c:51
-#, fuzzy
 msgid "Display option defaults in message"
-msgstr "Visa en kortfattad användningstext"
+msgstr "Visa standardalternativ för flaggor i meddelande"
 
 #: popthelp.c:93
 msgid "NONE"
-msgstr "INGEN"
+msgstr "INGET"
 
 #: popthelp.c:94
 msgid "VAL"
-msgstr "VAL"
+msgstr "VÄRDE"
 
 #: popthelp.c:95
 msgid "INT"
-msgstr "INT"
+msgstr "HELTAL"
 
 #: popthelp.c:96
 msgid "LONG"
-msgstr "LONG"
+msgstr "LÅNG"
 
 #: popthelp.c:97
 msgid "STRING"
-msgstr "STRING"
+msgstr "STRÄNG"
 
 #: popthelp.c:98
 msgid "FLOAT"
-msgstr "FLOAT"
+msgstr "FLYTTAL"
 
 #: popthelp.c:99
 msgid "DOUBLE"
-msgstr "DOUBLE"
+msgstr "DUBBEL"
 
 #: popthelp.c:100
 msgid "ARG"
