@@ -2,12 +2,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.1\n"
 "POT-Creation-Date: 2001-01-17 12:28-0500\n"
-"PO-Revision-Date: 2000-03-07 05:17+01:00\n"
-"Last-Translator: K. Christiansen <kenneth@gnu.org>\n"
-"Language-Team: Danish/Dansk <dansk@klid.dk>\n"
+"PO-Revision-Date: Sun Jan 21 2001 04:30:32+0200\n"
+"Last-Translator: Martin Hansen <mah@k64.dk>\n"
+"Language-Team: Dansk <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
+"X-Generator: KTranslator v 0.6.0\n"
 
 #: popt.c:29
 msgid "unknown errno"
@@ -16,7 +17,7 @@ msgstr "ukendt fejlnr."
 #: popt.c:758
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
-msgstr "tilvalgstype (%d) er ikke implimenteret i popt\n"
+msgstr "tilvalgstype (%d) er ikke implementeret i popt\n"
 
 #: popt.c:893
 msgid "missing argument"
@@ -28,23 +29,23 @@ msgstr "ukendt tilvalg"
 
 #: popt.c:897
 msgid "mutually exclusive logical operations requested"
-msgstr ""
+msgstr "de ønskede handlinger udelukker hinanden"
 
 #: popt.c:899
 msgid "aliases nested too deeply"
-msgstr ""
+msgstr "aliaser er for dybt indlejret"
 
 #: popt.c:901
 msgid "error in parameter quoting"
-msgstr ""
+msgstr "fejl i parameter citering"
 
 #: popt.c:903
 msgid "invalid numeric value"
-msgstr ""
+msgstr "ugyldig numerisk værdi"
 
 #: popt.c:905
 msgid "number too large or too small"
-msgstr ""
+msgstr "nummer for stort, eller for lille"
 
 #: popt.c:909
 msgid "unknown error"
@@ -64,31 +65,31 @@ msgstr "INGEN"
 
 #: popthelp.c:61
 msgid "VAL"
-msgstr ""
+msgstr "VAL"
 
 #: popthelp.c:62
 msgid "INT"
-msgstr ""
+msgstr "INT"
 
 #: popthelp.c:63
 msgid "LONG"
-msgstr ""
+msgstr "LONG"
 
 #: popthelp.c:64
 msgid "STRING"
-msgstr ""
+msgstr "STRING"
 
 #: popthelp.c:65
 msgid "FLOAT"
-msgstr ""
+msgstr "FLOAT"
 
 #: popthelp.c:66
 msgid "DOUBLE"
-msgstr ""
+msgstr "DOUBLE"
 
 #: popthelp.c:67
 msgid "ARG"
-msgstr ""
+msgstr "ARG"
 
 #: popthelp.c:240
 msgid "Usage:"
