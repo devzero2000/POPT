@@ -64,6 +64,8 @@ extern "C" {
 #define	POPT_BIT_CLR	(POPT_ARG_VAL|POPT_ARGFLAG_NAND)
 					/*!< clear arg bit(s) */
 
+#define	POPT_ARGFLAG_SHOW_DEFAULT 0x00800000 /*!< show default value in --help */
+
 /*@}*/
 
 /** \ingroup popt

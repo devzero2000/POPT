@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.1\n"
-"POT-Creation-Date: 2001-06-05 15:09-0400\n"
+"POT-Creation-Date: 2001-06-16 19:56-0400\n"
 "PO-Revision-Date: 1999-11-11 05:04+0800\n"
 "Last-Translator: Dillion Chen <dillon.chen@turbolinux.com.cn>\n"
 "Language-Team: TLDN\n"
@@ -58,50 +58,55 @@ msgstr ""
 msgid "unknown error"
 msgstr ""
 
-#: popthelp.c:29
+#: popthelp.c:32
 msgid "Show this help message"
 msgstr "显示这条帮助信息"
 
-#: popthelp.c:30
+#: popthelp.c:33
 msgid "Display brief usage message"
 msgstr "显示简短使用信息"
 
-#: popthelp.c:64
+#: popthelp.c:36
+#, fuzzy
+msgid "Display option defaults in message"
+msgstr "显示简短使用信息"
+
+#: popthelp.c:71
 msgid "NONE"
 msgstr ""
 
-#: popthelp.c:65
+#: popthelp.c:72
 msgid "VAL"
 msgstr ""
 
-#: popthelp.c:66
+#: popthelp.c:73
 msgid "INT"
 msgstr ""
 
-#: popthelp.c:67
+#: popthelp.c:74
 msgid "LONG"
 msgstr ""
 
-#: popthelp.c:68
+#: popthelp.c:75
 msgid "STRING"
 msgstr ""
 
-#: popthelp.c:69
+#: popthelp.c:76
 msgid "FLOAT"
 msgstr ""
 
-#: popthelp.c:70
+#: popthelp.c:77
 msgid "DOUBLE"
 msgstr ""
 
-#: popthelp.c:71
+#: popthelp.c:78
 msgid "ARG"
 msgstr ""
 
-#: popthelp.c:255
+#: popthelp.c:346
 msgid "Usage:"
 msgstr ""
 
-#: popthelp.c:277
+#: popthelp.c:368
 msgid "[OPTION...]"
 msgstr ""
