@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: popt\n"
-"POT-Creation-Date: 2001-01-15 16:42-0500\n"
+"Project-Id-Version: popt 1.6.1\n"
+"POT-Creation-Date: 2001-01-17 12:28-0500\n"
 "PO-Revision-Date: 2001-01-17 01:01+0100\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
@@ -35,7 +35,7 @@ msgid "aliases nested too deeply"
 msgstr "aliases aniñados a un nivel demasiado profundo"
 
 #: popt.c:901
-msgid "error in paramter quoting"
+msgid "error in parameter quoting"
 msgstr "erro nas comiñas do parámetro"
 
 #: popt.c:903
