@@ -1,8 +1,9 @@
 -I. -DHAVE_CONFIG_H -D_GNU_SOURCE
 
-#+partial
++partial
 +forcehints
 
+-warnunixlib
 -warnposix
 
 +unixlib
@@ -11,30 +12,54 @@
 
 +strict			# lclint level
 
-# --- in progress
--bounds
--bufferoverflowhigh
--branchstate
-
 # --- +partial artifacts
+-declundef
+-exportheadervar
+-exportlocal
+
+-enummemuse
+-fcnuse
+-typeuse
+-varuse
 
 # --- not-yet at strict level
--elseifcomplete		# 18
--exportfcn		# 29
--ifblock		# 251
--namechecks		# 111
--ptrarith		# 47
+-bitwisesigned		# pita
+-elseifcomplete		# 95 occurences
+-exportconst		# 839 occurences
+-exportfcn
+-exporttype
+-exportvar
+-fielduse		# 1 occurence <bits/sigset.h>
+-forblock		# tedious
+-ifblock		# tedious
+-incondefs		# <bits/{ipc,pthreadtypes}.h> heartburn
+-matchfields		# <bits/ipc.h> heartburn
+-namechecks		# tedious ANSI compliance checks
+-numenummembers 1024	# RPMTAG has 138 members
+-numstructfields 256	# Java jni.h has 229 fields
+-ptrarith		# tedious
 
--mustdefine		# 12
--sys-dir-errors
+-compdestroy
+-mustdefine
+-shiftimplementation
+#-shiftnegative
 
--strictops		# 24
--whileblock		# 15
+-strictops
+-strictusereleased
+-stringliterallen 4096	# redhat*PubKey's are big
+-whileblock		# tedious
 
 # --- not-yet at checks level
--mustfree		# 38
--predboolptr		# 82
+-ansi-reserved
++enumint
+-mustfree
+-predboolptr
+-usedef
 
 # --- not-yet at standard level
--boolops		# 124
--predboolint		# 53
+-boolops
+-predboolint
++boolint
++charint
++ignorequals
++matchanyintegral
