@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.2\n"
-"POT-Creation-Date: 2001-05-29 08:54-0400\n"
+"POT-Creation-Date: 2001-05-29 15:54-0400\n"
 "PO-Revision-Date: 2001-01-23 22:52+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -13,48 +13,48 @@ msgstr ""
 msgid "unknown errno"
 msgstr "ukjent errno"
 
-#: popt.c:851
+#: popt.c:871
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
 msgstr "flaggtype (%d) ikke implementert i popt\n"
 
-#: popt.c:1014
+#: popt.c:1034
 msgid "missing argument"
 msgstr "manglende argument"
 
-#: popt.c:1016
+#: popt.c:1036
 msgid "unknown option"
 msgstr "ukjent flagg"
 
-#: popt.c:1018
+#: popt.c:1038
 msgid "mutually exclusive logical operations requested"
 msgstr "gjensidig eksluderende logiske operasjoner forespurt"
 
-#: popt.c:1020
+#: popt.c:1040
 msgid "opt->arg should not be NULL"
 msgstr ""
 
-#: popt.c:1022
+#: popt.c:1042
 msgid "aliases nested too deeply"
 msgstr "aliaser med for dype løkker"
 
-#: popt.c:1024
+#: popt.c:1044
 msgid "error in parameter quoting"
 msgstr "feil i parametersitering"
 
-#: popt.c:1026
+#: popt.c:1046
 msgid "invalid numeric value"
 msgstr "ugyldig numerisk verdi"
 
-#: popt.c:1028
+#: popt.c:1048
 msgid "number too large or too small"
 msgstr "tallet er for stort eller lite"
 
-#: popt.c:1030
+#: popt.c:1050
 msgid "memory allocation failed"
 msgstr ""
 
-#: popt.c:1034
+#: popt.c:1054
 msgid "unknown error"
 msgstr "ukjent feil"
 
