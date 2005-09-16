@@ -4,7 +4,7 @@ AUTOMAKE_OPTIONS = 1.4 foreign
 
 LINT = splint
 
-EXTRA_DIST = autogen.sh CHANGES $(man_MANS) popt.spec \
+EXTRA_DIST = autogen.sh CHANGES $(man_MANS) popt.spec libpopt.vers \
 	testit.sh test-poptrc test3-data/0* \
 	po/*.in po/*.po po/popt.pot \
 	popt.ps
@@ -39,7 +39,11 @@ usrlibdir = $(libdir)@MARK64@
 usrlib_LTLIBRARIES = libpopt.la
 
 libpopt_la_SOURCES = popt.c findme.c poptparse.c poptconfig.c popthelp.c
-libpopt_la_LDFLAGS = @INTLLIBS@
+libpopt_la_LDFLAGS = -no-undefined @INTLLIBS@
+
+if HAVE_LD_VERSION_SCRIPT
+libpopt_la_LDFLAGS += -Wl,--version-script=$(srcdir)/libpopt.vers
+endif
 
 man_MANS = popt.3
 
