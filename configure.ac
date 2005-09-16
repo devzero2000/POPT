@@ -5,6 +5,14 @@ AC_CONFIG_HEADERS
 AM_INIT_AUTOMAKE(popt, 1.10.3)
 AM_CONFIG_HEADER(config.h)
 
+# Library code modified:                              REVISION++
+# Interfaces changed/added/removed:   CURRENT++       REVISION=0
+# Interfaces added:                             AGE++
+# Interfaces removed:                           AGE=0
+AC_SUBST(LT_CURRENT, 0)
+AC_SUBST(LT_REVISION, 0)
+AC_SUBST(LT_AGE, 0)
+
 ALL_LINGUAS="cs da de es eu_ES fi fr gl hu id is it ja ko no pl pt pt_BR ro ru sk sl sr sv tr uk wa zh zh_CN zh_TW"
 
 AC_ISC_POSIX
@@ -71,6 +79,25 @@ if test -d /usr/ucblib ; then
 else
 	AC_MSG_RESULT(no)
 fi
+
+# For some systems we know that we have ld_version scripts.
+# Use it then as default.
+have_ld_version_script=no
+case "${host}" in
+    *-*-linux*)
+        have_ld_version_script=yes
+        ;;
+    *-*-gnu*)
+        have_ld_version_script=yes
+        ;;
+esac
+AC_ARG_ENABLE([ld-version-script],
+              AC_HELP_STRING([--enable-ld-version-script],
+                             [enable/disable use of linker version script.
+                              (default is system dependent)]),
+              [have_ld_version_script=$enableval],
+              [ : ] )
+AM_CONDITIONAL(HAVE_LD_VERSION_SCRIPT, test "$have_ld_version_script" = "yes")
 
 if test ! -f ../rpm.c
 then

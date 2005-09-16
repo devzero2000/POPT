@@ -1,0 +1,4 @@
+LIBPOPT_0
+{
+  global: *;
+};

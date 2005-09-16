@@ -88,7 +88,7 @@ struct poptOption * poptHelpOptionsI18N = poptHelpOptions2;
 /**
  * @param table		option(s)
  */
-/*@observer@*/ /*@null@*/ static const char *const
+/*@observer@*/ /*@null@*/ static const char *
 getTableTranslationDomain(/*@null@*/ const struct poptOption *table)
 	/*@*/
 {
@@ -106,7 +106,7 @@ getTableTranslationDomain(/*@null@*/ const struct poptOption *table)
  * @param opt		option(s)
  * @param translation_domain	translation domain
  */
-/*@observer@*/ /*@null@*/ static const char *const
+/*@observer@*/ /*@null@*/ static const char *
 getArgDescrip(const struct poptOption * opt,
 		/*@-paramuse@*/ /* FIX: i18n macros disabled with lclint */
 		/*@null@*/ const char * translation_domain)
