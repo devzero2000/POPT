@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-16 09:56-0400\n"
+"POT-Creation-Date: 2005-11-02 12:12-0500\n"
 "PO-Revision-Date: 2000-02-11 13:01+0200\n"
 "Last-Translator: Nilgun Belma Buguner <nilgun@technologist.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
@@ -14,48 +14,48 @@ msgstr ""
 msgid "unknown errno"
 msgstr "bilinmeyen hata no"
 
-#: popt.c:964
+#: popt.c:966
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
 msgstr "seçenek türü (%d) popt için geçersiz\n"
 
-#: popt.c:1184
+#: popt.c:1186
 msgid "missing argument"
 msgstr "argüman eksik"
 
-#: popt.c:1186
+#: popt.c:1188
 msgid "unknown option"
 msgstr "bilinmeyen seçenek"
 
-#: popt.c:1188
+#: popt.c:1190
 msgid "mutually exclusive logical operations requested"
 msgstr "birbirini dýþlayan mantýksal iþlemler istendi"
 
-#: popt.c:1190
+#: popt.c:1192
 msgid "opt->arg should not be NULL"
 msgstr ""
 
-#: popt.c:1192
+#: popt.c:1194
 msgid "aliases nested too deeply"
 msgstr "adlarda çok fazla içiçelikler"
 
-#: popt.c:1194
+#: popt.c:1196
 msgid "error in parameter quoting"
 msgstr "parametrelerde týrnak iþaretleme hatalý "
 
-#: popt.c:1196
+#: popt.c:1198
 msgid "invalid numeric value"
 msgstr "sayýsal deðer geçersiz"
 
-#: popt.c:1198
+#: popt.c:1200
 msgid "number too large or too small"
 msgstr "sayý ya çok büyük ya da çok küçük"
 
-#: popt.c:1200
+#: popt.c:1202
 msgid "memory allocation failed"
 msgstr ""
 
-#: popt.c:1204
+#: popt.c:1206
 msgid "unknown error"
 msgstr "bilinmeyen hata"
 

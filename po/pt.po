@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-16 09:56-0400\n"
+"POT-Creation-Date: 2005-11-02 12:12-0500\n"
 "PO-Revision-Date: 2002-02-13 18:32+0000\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <morais@kde.org>\n"
@@ -14,48 +14,48 @@ msgstr ""
 msgid "unknown errno"
 msgstr "errno desconhecido"
 
-#: popt.c:964
+#: popt.c:966
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
 msgstr "tipo de opção (%d) não implementado no popt\n"
 
-#: popt.c:1184
+#: popt.c:1186
 msgid "missing argument"
 msgstr "falta um argumento"
 
-#: popt.c:1186
+#: popt.c:1188
 msgid "unknown option"
 msgstr "opção desconhecida"
 
-#: popt.c:1188
+#: popt.c:1190
 msgid "mutually exclusive logical operations requested"
 msgstr "foram pedidas operações lógicas mutuamente exclusivas"
 
-#: popt.c:1190
+#: popt.c:1192
 msgid "opt->arg should not be NULL"
 msgstr "opt->arg não deve ser NULL"
 
-#: popt.c:1192
+#: popt.c:1194
 msgid "aliases nested too deeply"
 msgstr "'aliases' demasiado aninhados"
 
-#: popt.c:1194
+#: popt.c:1196
 msgid "error in parameter quoting"
 msgstr "erros no 'quoting' de parâmetros"
 
-#: popt.c:1196
+#: popt.c:1198
 msgid "invalid numeric value"
 msgstr "valor númerico inválido"
 
-#: popt.c:1198
+#: popt.c:1200
 msgid "number too large or too small"
 msgstr "número demasiado grando ou pequeno"
 
-#: popt.c:1200
+#: popt.c:1202
 msgid "memory allocation failed"
 msgstr "alocação de memória falhou"
 
-#: popt.c:1204
+#: popt.c:1206
 msgid "unknown error"
 msgstr "erro desconhecido"
 
