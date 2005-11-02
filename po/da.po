@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-16 09:56-0400\n"
+"POT-Creation-Date: 2005-11-02 12:12-0500\n"
 "PO-Revision-Date: Sun Jan 21 2001 04:30:32+0200\n"
 "Last-Translator: Martin Hansen <mah@k64.dk>\n"
 "Language-Team: Dansk <dansk@klid.dk>\n"
@@ -15,48 +15,48 @@ msgstr ""
 msgid "unknown errno"
 msgstr "ukendt fejlnr."
 
-#: popt.c:964
+#: popt.c:966
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
 msgstr "tilvalgstype (%d) er ikke implementeret i popt\n"
 
-#: popt.c:1184
+#: popt.c:1186
 msgid "missing argument"
 msgstr "mangler argument"
 
-#: popt.c:1186
+#: popt.c:1188
 msgid "unknown option"
 msgstr "ukendt tilvalg"
 
-#: popt.c:1188
+#: popt.c:1190
 msgid "mutually exclusive logical operations requested"
 msgstr "de ønskede handlinger udelukker hinanden"
 
-#: popt.c:1190
+#: popt.c:1192
 msgid "opt->arg should not be NULL"
 msgstr ""
 
-#: popt.c:1192
+#: popt.c:1194
 msgid "aliases nested too deeply"
 msgstr "aliaser er for dybt indlejret"
 
-#: popt.c:1194
+#: popt.c:1196
 msgid "error in parameter quoting"
 msgstr "fejl i parameter citering"
 
-#: popt.c:1196
+#: popt.c:1198
 msgid "invalid numeric value"
 msgstr "ugyldig numerisk værdi"
 
-#: popt.c:1198
+#: popt.c:1200
 msgid "number too large or too small"
 msgstr "nummer for stort, eller for lille"
 
-#: popt.c:1200
+#: popt.c:1202
 msgid "memory allocation failed"
 msgstr ""
 
-#: popt.c:1204
+#: popt.c:1206
 msgid "unknown error"
 msgstr "ukendt fejl"
 

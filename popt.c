@@ -748,7 +748,9 @@ int poptGetNextOpt(poptContext con)
 	    if (origOptString == NULL)	/* XXX can't happen */
 		return POPT_ERROR_BADOPT;
 
-	    if (con->restLeftover || *origOptString != '-') {
+	    if (con->restLeftover || *origOptString != '-' ||
+		(*origOptString == '-' && origOptString[1] == '\0'))
+	    {
 		if (con->flags & POPT_CONTEXT_POSIXMEHARDER)
 		    con->restLeftover = 1;
 		if (con->flags & POPT_CONTEXT_ARG_OPTS) {
