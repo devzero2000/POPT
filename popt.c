@@ -422,7 +422,7 @@ static int execCommand(poptContext con)
 
     argv[argc] = NULL;
 
-#ifdef __hpux
+#if defined(hpux) || defined(__hpux)
     rc = setresgid(getgid(), getgid(),-1);
     if (rc) return POPT_ERROR_ERRNO;
     rc = setresuid(getuid(), getuid(),-1);
