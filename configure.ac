@@ -2,7 +2,7 @@ AC_INIT(popt.h)
 AC_CANONICAL_SYSTEM
 AC_PREREQ(2.12)
 AC_CONFIG_HEADERS
-AM_INIT_AUTOMAKE(popt, 1.10.4)
+AM_INIT_AUTOMAKE(popt, 1.10.5)
 AM_CONFIG_HEADER(config.h)
 
 # Library code modified:                              REVISION++
