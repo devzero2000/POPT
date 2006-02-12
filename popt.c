@@ -891,10 +891,15 @@ int poptGetNextOpt(poptContext con)
 		    }
 		
 		    if (con->os->argv != NULL) {	/* XXX can't happen */
-			/* XXX watchout: subtle side-effects live here. */
-			longArg = con->os->argv[con->os->next++];
-			longArg = expandNextArg(con, longArg);
-			con->os->nextArg = longArg;
+			if (opt->argInfo & POPT_ARGFLAG_OPTIONAL &&
+			    con->os->argv[con->os->next][0] == '-') {
+			    con->os->nextArg = NULL;
+			} else {
+			    /* XXX watchout: subtle side-effects live here. */
+			    longArg = con->os->argv[con->os->next++];
+			    longArg = expandNextArg(con, longArg);
+			    con->os->nextArg = longArg;
+			}
 		    }
 		}
 	    }
