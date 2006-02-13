@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-16 09:01-0500\n"
+"POT-Creation-Date: 2006-02-13 10:03-0500\n"
 "PO-Revision-Date: 1999-09-30 16:54+0200\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -18,48 +18,48 @@ msgstr ""
 msgid "unknown errno"
 msgstr ""
 
-#: popt.c:966
+#: popt.c:971
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
 msgstr ""
 
-#: popt.c:1186
+#: popt.c:1191
 msgid "missing argument"
 msgstr ""
 
-#: popt.c:1188
+#: popt.c:1193
 msgid "unknown option"
 msgstr ""
 
-#: popt.c:1190
+#: popt.c:1195
 msgid "mutually exclusive logical operations requested"
 msgstr ""
 
-#: popt.c:1192
+#: popt.c:1197
 msgid "opt->arg should not be NULL"
 msgstr ""
 
-#: popt.c:1194
+#: popt.c:1199
 msgid "aliases nested too deeply"
 msgstr ""
 
-#: popt.c:1196
+#: popt.c:1201
 msgid "error in parameter quoting"
 msgstr ""
 
-#: popt.c:1198
+#: popt.c:1203
 msgid "invalid numeric value"
 msgstr ""
 
-#: popt.c:1200
+#: popt.c:1205
 msgid "number too large or too small"
 msgstr ""
 
-#: popt.c:1202
+#: popt.c:1207
 msgid "memory allocation failed"
 msgstr ""
 
-#: popt.c:1206
+#: popt.c:1211
 msgid "unknown error"
 msgstr ""
 
