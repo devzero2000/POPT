@@ -775,7 +775,7 @@ static int showShortOptions(const struct poptOption * opt, FILE * fp,
 /*@=boundswrite@*/
 
     /* On return to top level, print the short options, return print length. */
-    if (s == str && *s != '\0') {
+    if (s != str && *s != '\0') {
 	fprintf(fp, " [-%s]", s);
 	len = strlen(s) + sizeof(" [-]")-1;
     }
