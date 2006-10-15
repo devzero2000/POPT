@@ -2,7 +2,7 @@ AC_INIT(popt.h)
 AC_CANONICAL_SYSTEM
 AC_PREREQ(2.12)
 AC_CONFIG_HEADERS
-AM_INIT_AUTOMAKE(popt, 1.10.7)
+AM_INIT_AUTOMAKE(popt, 1.10.8)
 AM_CONFIG_HEADER(config.h)
 
 # Library code modified:                              REVISION++
@@ -11,7 +11,7 @@ AM_CONFIG_HEADER(config.h)
 # Interfaces removed:                           AGE=0
 AC_SUBST(LT_CURRENT, 0)
 AC_SUBST(LT_REVISION, 0)
-AC_SUBST(LT_AGE, 0)
+AC_SUBST(LT_AGE, 8)
 
 ALL_LINGUAS="cs da de es eu_ES fi fr gl hu id is it ja ko no pl pt pt_BR ro ru sk sl sr sv tr uk wa zh zh_CN zh_TW"
 
