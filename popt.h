@@ -197,6 +197,8 @@ typedef struct poptOption * poptOption;
 /*@=exporttype =typeuse@*/
 #endif
 
+/** \ingroup popt
+ */
 /*@-exportconst@*/
 enum poptCallbackReason {
     POPT_CALLBACK_REASON_PRE	= 0, 
