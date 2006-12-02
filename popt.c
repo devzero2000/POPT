@@ -645,12 +645,23 @@ static void poptStripArg(/*@special@*/ poptContext con, int which)
     /*@=compdef@*/
 }
 
+/*@unchecked@*/
+static unsigned int seed = 0;
+
 int poptSaveLong(long * arg, int argInfo, long aLong)
 {
     /* XXX Check alignment, may fail on funky platforms. */
     if (arg == NULL || (((unsigned long)arg) & (sizeof(*arg)-1)))
 	return POPT_ERROR_NULLARG;
 
+    if (aLong != 0 && argInfo & POPT_ARGFLAG_RANDOM) {
+	if (!seed) {
+	    srandom((unsigned)getpid());
+	    srandom((unsigned)random());
+	}
+	aLong = random() % (aLong > 0 ? aLong : -aLong);
+	aLong++;
+    }
     if (argInfo & POPT_ARGFLAG_NOT)
 	aLong = ~aLong;
     switch (argInfo & POPT_ARGFLAG_LOGICALOPS) {
@@ -679,6 +690,14 @@ int poptSaveInt(/*@null@*/ int * arg, int argInfo, long aLong)
     if (arg == NULL || (((unsigned long)arg) & (sizeof(*arg)-1)))
 	return POPT_ERROR_NULLARG;
 
+    if (aLong != 0 && argInfo & POPT_ARGFLAG_RANDOM) {
+	if (!seed) {
+	    srandom((unsigned)getpid());
+	    srandom((unsigned)random());
+	}
+	aLong = random() % (aLong > 0 ? aLong : -aLong);
+	aLong++;
+    }
     if (argInfo & POPT_ARGFLAG_NOT)
 	aLong = ~aLong;
     switch (argInfo & POPT_ARGFLAG_LOGICALOPS) {
