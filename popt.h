@@ -540,7 +540,8 @@ int poptStrippedArgv(poptContext con, int argc, char ** argv)
 /*@-incondefs@*/
 /*@unused@*/
 int poptSaveLong(/*@null@*/ long * arg, int argInfo, long aLong)
-	/*@modifies *arg @*/
+	/*@globals internalState @*/
+	/*@modifies *arg, internalState @*/
 	/*@requires maxSet(arg) >= 0 /\ maxRead(arg) == 0 @*/;
 /*@=incondefs@*/
 
@@ -555,7 +556,8 @@ int poptSaveLong(/*@null@*/ long * arg, int argInfo, long aLong)
 /*@-incondefs@*/
 /*@unused@*/
 int poptSaveInt(/*@null@*/ int * arg, int argInfo, long aLong)
-	/*@modifies *arg @*/
+	/*@globals internalState @*/
+	/*@modifies *arg, internalState @*/
 	/*@requires maxSet(arg) >= 0 /\ maxRead(arg) == 0 @*/;
 /*@=incondefs@*/
 
