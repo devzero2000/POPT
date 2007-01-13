@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.10.1\n"
 "Report-Msgid-Bugs-To: <rpm-devel@lists.dulug.duke.edu>\n"
-"POT-Creation-Date: 2006-12-09 13:13-0500\n"
+"POT-Creation-Date: 2007-01-13 09:07-0500\n"
 "PO-Revision-Date: 2005-04-08 17:52+0800\n"
 "Last-Translator: Wei-Lun Chao <chaoweilun@pcmail.com.tw>\n"
 "Language-Team: zh_TW <zh-l10n@linux.org.tw>\n"
@@ -62,6 +62,14 @@ msgstr "記憶體配置錯誤"
 #: popt.c:1230
 msgid "unknown error"
 msgstr "未知的錯誤"
+
+#: popt.h:170
+msgid "Options implemented via popt alias/exec:"
+msgstr ""
+
+#: popt.h:186
+msgid "Help options:"
+msgstr ""
 
 #: popthelp.c:64 popthelp.c:75
 msgid "Show this help message"
