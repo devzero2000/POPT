@@ -74,7 +74,7 @@ struct poptContext_s {
 /*@only@*/ /*@null@*/
     poptItem aliases;
     int numAliases;
-    int flags;
+    unsigned int flags;
 /*@owned@*/ /*@null@*/
     poptItem execs;
     int numExecs;

@@ -168,7 +168,7 @@ static void invokeCallbacksOPTION(poptContext con,
 }
 
 poptContext poptGetContext(const char * name, int argc, const char ** argv,
-			   const struct poptOption * options, int flags)
+			   const struct poptOption * options, unsigned int flags)
 {
     poptContext con = malloc(sizeof(*con));
 
@@ -605,7 +605,7 @@ expandNextArg(/*@special@*/ poptContext con, const char * s)
 		/*@switchbreak@*/ break;
 	    /* XXX Make sure that findNextArg deletes only next arg. */
 	    if (a == NULL) {
-		if ((a = findNextArg(con, 1, 1)) == NULL)
+		if ((a = findNextArg(con, 1U, 1)) == NULL)
 		    /*@switchbreak@*/ break;
 	    }
 	    s += 3;
@@ -648,7 +648,8 @@ static void poptStripArg(/*@special@*/ poptContext con, int which)
 /*@unchecked@*/
 static unsigned int seed = 0;
 
-int poptSaveLong(long * arg, int argInfo, long aLong)
+/*@-bitwisesigned@*/	/* LCL: logical ops with unsigned. */
+int poptSaveLong(long * arg, unsigned int argInfo, long aLong)
 {
     /* XXX Check alignment, may fail on funky platforms. */
     if (arg == NULL || (((unsigned long)arg) & (sizeof(*arg)-1)))
@@ -683,8 +684,10 @@ int poptSaveLong(long * arg, int argInfo, long aLong)
     }
     return 0;
 }
+/*@=bitwisesigned@*/
 
-int poptSaveInt(/*@null@*/ int * arg, int argInfo, long aLong)
+/*@-bitwisesigned@*/	/* LCL: logical ops with unsigned. */
+int poptSaveInt(/*@null@*/ int * arg, unsigned int argInfo, long aLong)
 {
     /* XXX Check alignment, may fail on funky platforms. */
     if (arg == NULL || (((unsigned long)arg) & (sizeof(*arg)-1)))
@@ -719,6 +722,7 @@ int poptSaveInt(/*@null@*/ int * arg, int argInfo, long aLong)
     }
     return 0;
 }
+/*@=bitwisesigned@*/
 
 /*@-boundswrite@*/
 /* returns 'val' element, -1 on last item, POPT_ERROR_* on error */
@@ -1191,7 +1195,7 @@ int poptAddItem(poptContext con, poptItem newItem, int flags)
 /*@=mustmod@*/
 /*@=boundswrite@*/
 
-const char * poptBadOption(poptContext con, int flags)
+const char * poptBadOption(poptContext con, unsigned int flags)
 {
     struct optionStackEntry * os = NULL;
 
