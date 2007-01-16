@@ -262,7 +262,7 @@ static void singleOptionHelp(FILE * fp, size_t maxLeftCol,
 	    *le++ = '[';
 
 	/* Choose type of output */
-	/*@-branchstate@*/
+/*@-branchstate@*/
 	if (opt->argInfo & POPT_ARGFLAG_SHOW_DEFAULT) {
 	    defs = singleOptionDefaultValue(lineLength, opt, translation_domain);
 	    if (defs) {
@@ -281,7 +281,7 @@ static void singleOptionHelp(FILE * fp, size_t maxLeftCol,
 		defs = t;
 	    }
 	}
-	/*@=branchstate@*/
+/*@=branchstate@*/
 
 	if (opt->argDescrip == NULL) {
 	    switch (opt->argInfo & POPT_ARG_MASK) {
@@ -550,9 +550,9 @@ static size_t showHelpIntro(poptContext con, FILE * fp)
     fprintf(fp, POPT_("Usage:"));
     if (!(con->flags & POPT_CONTEXT_KEEP_FIRST)) {
 /*@-boundsread@*/
-	/*@-nullderef -type@*/	/* LCL: wazzup? */
+/*@-type@*/	/* LCL: wazzup? */
 	fn = con->optionStack->argv[0];
-	/*@=nullderef =type@*/
+/*@=type@*/
 /*@=boundsread@*/
 	if (fn == NULL) return len;
 	if (strchr(fn, '/')) fn = strrchr(fn, '/') + 1;
@@ -672,7 +672,7 @@ static size_t itemUsage(FILE * fp, size_t cursor,
 {
     int i;
 
-    /*@-branchstate@*/		/* FIX: W2DO? */
+/*@-branchstate@*/		/* FIX: W2DO? */
     if (item != NULL)
     for (i = 0; i < nitems; i++, item++) {
 	const struct poptOption * opt;
@@ -684,7 +684,7 @@ static size_t itemUsage(FILE * fp, size_t cursor,
 	    cursor = singleOptionUsage(fp, cursor, opt, translation_domain);
 	}
     }
-    /*@=branchstate@*/
+/*@=branchstate@*/
 
     return cursor;
 }
@@ -715,7 +715,7 @@ static size_t singleTableUsage(poptContext con, FILE * fp, size_t cursor,
 	/*@globals fileSystem @*/
 	/*@modifies *fp, done, fileSystem @*/
 {
-    /*@-branchstate@*/		/* FIX: W2DO? */
+/*@-branchstate@*/		/* FIX: W2DO? */
     if (opt != NULL)
     for (; (opt->longName || opt->shortName || opt->arg) ; opt++) {
         if ((opt->argInfo & POPT_ARG_MASK) == POPT_ARG_INTL_DOMAIN) {
@@ -746,7 +746,7 @@ static size_t singleTableUsage(poptContext con, FILE * fp, size_t cursor,
 	    cursor = singleOptionUsage(fp, cursor, opt, translation_domain);
 	}
     }
-    /*@=branchstate@*/
+/*@=branchstate@*/
 
     return cursor;
 }
