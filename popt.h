@@ -17,22 +17,24 @@
  * \name Arg type identifiers
  */
 /*@{*/
-#define POPT_ARG_NONE		0U	/*!< no arg */
-#define POPT_ARG_STRING		1U	/*!< arg will be saved as string */
-#define POPT_ARG_INT		2U	/*!< arg will be converted to int */
-#define POPT_ARG_LONG		3U	/*!< arg will be converted to long */
-#define POPT_ARG_INCLUDE_TABLE	4U	/*!< arg points to table */
-#define POPT_ARG_CALLBACK	5U	/*!< table-wide callback... must be
+#define POPT_ARG_NONE		 0U	/*!< no arg */
+#define POPT_ARG_STRING		 1U	/*!< arg will be saved as string */
+#define POPT_ARG_INT		 2U	/*!< arg will be converted to int */
+#define POPT_ARG_LONG		 3U	/*!< arg will be converted to long */
+#define POPT_ARG_INCLUDE_TABLE	 4U	/*!< arg points to table */
+#define POPT_ARG_CALLBACK	 5U	/*!< table-wide callback... must be
 					   set first in table; arg points 
 					   to callback, descrip points to 
 					   callback data to pass */
-#define POPT_ARG_INTL_DOMAIN    6U	/*!< set the translation domain
+#define POPT_ARG_INTL_DOMAIN     6U	/*!< set the translation domain
 					   for this table and any
 					   included tables; arg points
 					   to the domain string */
-#define POPT_ARG_VAL		7U	/*!< arg should take value val */
-#define	POPT_ARG_FLOAT		8U	/*!< arg will be converted to float */
-#define	POPT_ARG_DOUBLE		9U	/*!< arg will be converted to double */
+#define POPT_ARG_VAL		 7U	/*!< arg should take value val */
+#define	POPT_ARG_FLOAT		 8U	/*!< arg will be converted to float */
+#define	POPT_ARG_DOUBLE		 9U	/*!< arg will be converted to double */
+
+#define POPT_ARG_MAINCALL	10U 	/*!< return (*arg) (argc, argv) */
 
 #define POPT_ARG_MASK		0x0000FFFFU
 /*@}*/
