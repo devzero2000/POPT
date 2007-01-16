@@ -742,6 +742,12 @@ int poptGetNextOpt(poptContext con)
 	}
 	if (!con->os->nextCharArg && con->os->next == con->os->argc) {
 	    invokeCallbacksPOST(con, con->options);
+
+	    if (con->maincall) {
+		int rc = (*con->maincall) (con->finalArgvCount, con->finalArgv);
+		return -1;
+	    }
+
 	    if (con->doExec) return execCommand(con);
 	    return -1;
 	}
@@ -978,6 +984,9 @@ int poptGetNextOpt(poptContext con)
 			*((float *) opt->arg) = aDouble;
 		    }
 		}   /*@switchbreak@*/ break;
+		case POPT_ARG_MAINCALL:
+		    con->maincall = opt->arg;
+		    /*@switchbreak@*/ break;
 		default:
 		    fprintf(stdout,
 			POPT_("option type (%d) not implemented in popt\n"),

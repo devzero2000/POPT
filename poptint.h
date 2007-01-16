@@ -82,6 +82,7 @@ struct poptContext_s {
     const char ** finalArgv;
     int finalArgvCount;
     int finalArgvAlloced;
+    int (*maincall) (int argc, const char **argv);
 /*@dependent@*/ /*@null@*/
     poptItem doExec;
 /*@only@*/
