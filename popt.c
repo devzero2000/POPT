@@ -744,7 +744,9 @@ int poptGetNextOpt(poptContext con)
 	    invokeCallbacksPOST(con, con->options);
 
 	    if (con->maincall) {
-		int rc = (*con->maincall) (con->finalArgvCount, con->finalArgv);
+		/*@-noeffectuncon @*/
+		(void) (*con->maincall) (con->finalArgvCount, con->finalArgv);
+		/*@=noeffectuncon @*/
 		return -1;
 	    }
 
@@ -985,7 +987,9 @@ int poptGetNextOpt(poptContext con)
 		    }
 		}   /*@switchbreak@*/ break;
 		case POPT_ARG_MAINCALL:
+/*@-type@*/
 		    con->maincall = opt->arg;
+/*@=type@*/
 		    /*@switchbreak@*/ break;
 		default:
 		    fprintf(stdout,
