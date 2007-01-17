@@ -40,6 +40,7 @@ static void displayArgs(poptContext con,
 	poptPrintHelp(con, stdout, 0);
     else
 	poptPrintUsage(con, stdout, 0);
+    con = poptFreeContext(con);		/* XXX keep valgrind happy */
     exit(0);
 }
 
