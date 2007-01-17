@@ -368,9 +368,7 @@ static void singleOptionHelp(FILE * fp, size_t maxLeftCol,
 /*@-branchstate@*/
     if (defs) {
 	help = defs;
-	defs = NULL;
     }
-/*@=branchstate@*/
 
     helpLength = strlen(help);
 /*@-boundsread@*/
@@ -393,8 +391,10 @@ static void singleOptionHelp(FILE * fp, size_t maxLeftCol,
 	helpLength = strlen(help);
     }
 /*@=boundsread@*/
+/*@=branchstate@*/
 
     if (helpLength) fprintf(fp, "%s\n", help);
+    help = NULL;
 
 out:
     /*@-dependenttrans@*/
