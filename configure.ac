@@ -60,9 +60,11 @@ AC_SUBST(TARGET)
 
 dnl XXX Choose /usr/lib or /usr/lib64 for library installs.
 MARK64=
-case "${target_cpu}" in
-x86_64*|powerpc64*|ppc64*|sparc64*|s390x*)        MARK64=64 ;;
-esac
+if ! echo "${libdir}" | grep -q '64$' ; then
+    case "${target_cpu}" in
+    x86_64*|powerpc64*|ppc64*|sparc64*|s390x*) MARK64=64 ;;
+    esac
+fi
 AC_SUBST(MARK64)
 
 AC_CHECK_HEADERS(alloca.h float.h libintl.h mcheck.h unistd.h)
