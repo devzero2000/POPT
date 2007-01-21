@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.3\n"
 "Report-Msgid-Bugs-To: <rpm-devel@lists.dulug.duke.edu>\n"
-"POT-Creation-Date: 2007-01-13 09:07-0500\n"
+"POT-Creation-Date: 2007-01-21 14:25-0500\n"
 "PO-Revision-Date: 2006-10-08 15:30+0200\n"
 "Last-Translator: Robert Scheck <rpm@robert-scheck.de>\n"
 "Language-Team: German <de@li.org>\n"
@@ -18,107 +18,107 @@ msgstr ""
 msgid "unknown errno"
 msgstr "Unbekannte Fehler-Nummer"
 
-#: popt.c:990
+#: popt.c:996
 #, c-format
 msgid "option type (%d) not implemented in popt\n"
 msgstr "Optionstyp (%d) ist in popt nicht vorhanden\n"
 
-#: popt.c:1210
+#: popt.c:1208
 msgid "missing argument"
 msgstr "Fehlendes Argument"
 
-#: popt.c:1212
+#: popt.c:1210
 msgid "unknown option"
 msgstr "Unbekannte Option"
 
-#: popt.c:1214
+#: popt.c:1212
 msgid "mutually exclusive logical operations requested"
 msgstr "Gegenseitig ausschließende logische Operatoren"
 
-#: popt.c:1216
+#: popt.c:1214
 msgid "opt->arg should not be NULL"
 msgstr "opt->arg sollte nicht NULL sein"
 
-#: popt.c:1218
+#: popt.c:1216
 msgid "aliases nested too deeply"
 msgstr "Aliase zu tief verschachtelt"
 
-#: popt.c:1220
+#: popt.c:1218
 msgid "error in parameter quoting"
 msgstr "Fehler beim Quotieren der Parameter"
 
-#: popt.c:1222
+#: popt.c:1220
 msgid "invalid numeric value"
 msgstr "Ungültiger nummerischer Wert"
 
-#: popt.c:1224
+#: popt.c:1222
 msgid "number too large or too small"
 msgstr "Nummer zu groß oder zu klein"
 
-#: popt.c:1226
+#: popt.c:1224
 msgid "memory allocation failed"
 msgstr "Speicherzuordnung fehlgeschlagen"
 
-#: popt.c:1230
+#: popt.c:1228
 msgid "unknown error"
 msgstr "Unbekannter Fehler"
 
-#: popt.h:170
+#: popt.h:172
 msgid "Options implemented via popt alias/exec:"
 msgstr ""
 
-#: popt.h:186
+#: popt.h:188
 msgid "Help options:"
 msgstr ""
 
-#: popthelp.c:64 popthelp.c:75
+#: popthelp.c:68 popthelp.c:79
 msgid "Show this help message"
 msgstr "Zeigt diese Hilfe an"
 
-#: popthelp.c:65 popthelp.c:76
+#: popthelp.c:69 popthelp.c:80
 msgid "Display brief usage message"
 msgstr "Zeigt eine kurze Verwendungsinformation"
 
-#: popthelp.c:79
+#: popthelp.c:83
 msgid "Display option defaults in message"
 msgstr "Zeigt die Standardeinstellungen an"
 
-#: popthelp.c:124
+#: popthelp.c:128
 msgid "NONE"
 msgstr "NICHTS"
 
-#: popthelp.c:126
+#: popthelp.c:130
 msgid "VAL"
 msgstr "WERT"
 
-#: popthelp.c:130
+#: popthelp.c:134
 msgid "INT"
 msgstr "INTEGER"
 
-#: popthelp.c:131
+#: popthelp.c:135
 msgid "LONG"
 msgstr "LONG"
 
-#: popthelp.c:132
+#: popthelp.c:136
 msgid "STRING"
 msgstr "STRING"
 
-#: popthelp.c:133
+#: popthelp.c:137
 msgid "FLOAT"
 msgstr "FLOAT"
 
-#: popthelp.c:134
+#: popthelp.c:138
 msgid "DOUBLE"
 msgstr "DOUBLE"
 
-#: popthelp.c:135
+#: popthelp.c:139
 msgid "ARG"
 msgstr "ARGUMENT"
 
-#: popthelp.c:548
+#: popthelp.c:552
 msgid "Usage:"
 msgstr "Verwendung:"
 
-#: popthelp.c:572
+#: popthelp.c:576
 msgid "[OPTION...]"
 msgstr "[OPTION...]"
