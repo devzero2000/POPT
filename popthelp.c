@@ -29,18 +29,19 @@
  * @param arg		(unused)
  * @param data		(unused)
  */
+/*@exits@*/
 static void displayArgs(poptContext con,
 		/*@unused@*/ enum poptCallbackReason foo,
 		struct poptOption * key, 
 		/*@unused@*/ const char * arg, /*@unused@*/ void * data)
 	/*@globals fileSystem@*/
-	/*@modifies fileSystem@*/
+	/*@modifies con, fileSystem@*/
 {
     if (key->shortName == '?')
 	poptPrintHelp(con, stdout, 0);
     else
 	poptPrintUsage(con, stdout, 0);
-    con = poptFreeContext(con);		/* XXX keep valgrind happy */
+/*@i@*/ con = poptFreeContext(con);		/* XXX keep valgrind happy */
     exit(0);
 }
 
