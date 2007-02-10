@@ -68,18 +68,6 @@ fi
 AC_SUBST(MARK64)
 
 AC_CHECK_HEADERS(alloca.h float.h libintl.h mcheck.h unistd.h)
-AC_MSG_CHECKING(for /usr/ucblib in LIBS)
-if test -d /usr/ucblib ; then
-	if test "$build" = "mips-sni-sysv4" ; then
-		addlib /usr/ccs/lib -lc
-	fi
-
-	addlib /usr/ucblib
-	
-	AC_MSG_RESULT(yes)
-else
-	AC_MSG_RESULT(no)
-fi
 
 # For some systems we know that we have ld_version scripts.
 # Use it then as default.
