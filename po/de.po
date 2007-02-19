@@ -1,13 +1,13 @@
 # Translation of popt to German (Deutsch)
 # This file is distributed under the same license as the popt package.
-# Robert Scheck <rpm@robert-scheck.de>, 2004-2006.
+# Robert Scheck <rpm@robert-scheck.de>, 2004-2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: popt 1.6.3\n"
 "Report-Msgid-Bugs-To: <rpm-devel@lists.dulug.duke.edu>\n"
 "POT-Creation-Date: 2007-01-21 14:25-0500\n"
-"PO-Revision-Date: 2006-10-08 15:30+0200\n"
+"PO-Revision-Date: 2007-02-17 21:00+0100\n"
 "Last-Translator: Robert Scheck <rpm@robert-scheck.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -65,11 +65,11 @@ msgstr "Unbekannter Fehler"
 
 #: popt.h:172
 msgid "Options implemented via popt alias/exec:"
-msgstr ""
+msgstr "Optionen über popt alias/exec implementiert:"
 
 #: popt.h:188
 msgid "Help options:"
-msgstr ""
+msgstr "Hilfe-Optionen:"
 
 #: popthelp.c:68 popthelp.c:79
 msgid "Show this help message"
