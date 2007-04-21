@@ -1,207 +1,145 @@
-#include "system.h"
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <stdio.h>
 #include <stdarg.h>
+#include <errno.h>
+#include <iconv.h>
+#ifdef HAVE_LANGINFO_H
+#include <langinfo.h>
+#endif
+
+#include "system.h"
 #include "poptint.h"
 
-#if defined(HAVE_ASSERT_H)
-#include <assert.h>
-#else
-#define assert(_x)
-#endif
+#define STD_VFPRINTF(stream, format, args, retval) \
+  va_start ((args), (format)); \
+  (retval) = vfprintf ((stream), (format), (args)); \
+  va_end ((args));
 
-/* Any pair of 32 bit hashes can be used. lookup3.c generates pairs, will do. */
-#define _JLU3_jlu32lpair        1
-#define	jlu32lpair	poptJlu32lpair
-#include "lookup3.c"
-
-/*@-varuse +charint +ignoresigns @*/
-/*@unchecked@*/ /*@observer@*/
-static const unsigned char utf8_skip_data[256] = {
-    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-    3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,6,6,1,1
-};
-/*@=varuse =charint =ignoresigns @*/
-
-const char *
-POPT_prev_char (const char *str)
+static char *
+strdup_locale_from_utf8 (char *buffer)
 {
-    const char *p = str;
+  char *codeset = NULL;
+  char *pout = NULL, *dest_str;
+  iconv_t fd;
+  int ib, ob, dest_size;
+  int done, is_error;
+  size_t err, used;
 
-    while (1) {
-	p--;
-	if (((unsigned)*p & 0xc0) != (unsigned)0x80)
-	    return p;
-    }
-}
-
-const char *
-POPT_next_char (const char *str)
-{
-    const char *p = str;
-
-    while (*p != '\0') {
-	p++;
-	if (((unsigned)*p & 0xc0) != (unsigned)0x80)
-	    break;
-    }
-    return p;
-}
-
-#if !defined(POPT_fprintf)	/* XXX lose all the goop ... */
-
-#if defined(HAVE_DCGETTEXT) && !defined(__LCLINT__)
-/*
- * Rebind a "UTF-8" codeset for popt's internal use.
- */
-char *
-POPT_dgettext(const char * dom, const char * str)
-{
-    char * codeset = NULL;
-    char * retval = NULL;
-
-    if (!dom)
-	dom = textdomain(NULL);
-    codeset = bind_textdomain_codeset(dom, NULL);
-    bind_textdomain_codeset(dom, "UTF-8");
-    retval = dgettext(dom, str);
-    bind_textdomain_codeset(dom, codeset);
-
-    return retval;
-}
-#endif
-
-#ifdef HAVE_ICONV
-/**
- * Return malloc'd string converted from UTF-8 to current locale.
- * @param istr		input string (UTF-8 encoding assumed)
- * @return		localized string
- */
-static /*@only@*/ /*@null@*/ char *
-strdup_locale_from_utf8 (/*@null@*/ char * istr)
-	/*@*/
-{
-    char * codeset = NULL;
-    char * ostr = NULL;
-    iconv_t cd;
-
-    if (istr == NULL)
-	return NULL;
+  if (!buffer)
+    return NULL;
 
 #ifdef HAVE_LANGINFO_H
-    codeset = nl_langinfo ((nl_item)CODESET);
+  codeset = nl_langinfo (CODESET);
 #endif
 
-    if (codeset != NULL && strcmp(codeset, "UTF-8") != 0
-     && (cd = iconv_open(codeset, "UTF-8")) != (iconv_t)-1)
-    {
-	char * shift_pin = NULL;
-	size_t db = strlen(istr);
-/*@owned@*/
-	char * dstr = (char*) xmalloc((db + 1) * sizeof(*dstr));
-	char * pin = istr;
-	char * pout = dstr;
-	size_t ib = db;
-	size_t ob = db;
-	size_t err;
+  if (codeset &&
+      strcmp (codeset, "UTF-8") &&
+      (fd = iconv_open (codeset, "UTF-8")) != (iconv_t)-1) {
+    char *pin = buffer;
+    char *shift_pin = NULL;
 
-assert(dstr);	/* XXX can't happen */
-	if (dstr == NULL)
-	    return NULL;
-	err = iconv(cd, NULL, NULL, NULL, NULL);
-	while (1) {
-	    *pout = '\0';
-	    err = iconv(cd, &pin, &ib, &pout, &ob);
-	    if (err != (size_t)-1) {
-		if (shift_pin == NULL) {
-		    shift_pin = pin;
-		    pin = NULL;
-		    ib = 0;
-		    continue;
-		}
-	    } else
-	    switch (errno) {
-	    case E2BIG:
-	    {	size_t used = (size_t)(pout - dstr);
-		db *= 2;
-		dstr = (char*) xrealloc(dstr, (db + 1) * sizeof(*dstr));
-assert(dstr);	/* XXX can't happen */
-		if (dstr != NULL) {
-		    pout = dstr + used;
-		    ob = db - used;
-		    continue;
-		}
-	    }   /*@switchbreak@*/ break;
-	    case EINVAL:
-	    case EILSEQ:
-	    default:
-		/*@switchbreak@*/ break;
-	    }
-	    break;
-	}
-	(void) iconv_close(cd);
-	*pout = '\0';
-	ostr = xstrdup(dstr ? dstr : istr);
-	free(dstr);
-    } else
-	ostr = xstrdup(istr);
+    iconv (fd, NULL, (size_t*)&ib, &pout, (size_t*)&ob);
+    ib = strlen (buffer);
+    dest_size = ob = ib;
+    dest_str = pout = malloc ((dest_size + 1) * sizeof (char));
+    done = is_error = 0;
+    while (!done && !is_error) {
+      err = iconv (fd, (const char**)&pin, (size_t*)&ib, &pout, (size_t*)&ob);
 
-    return ostr;
+      if (err == (size_t)-1) {
+        switch (errno) {
+        case EINVAL:
+          done = 1;
+          break;
+        case E2BIG:
+          used = pout - dest_str;
+          dest_size *= 2;
+          dest_str = realloc (dest_str, (dest_size + 1) * sizeof (char));
+          pout = dest_str + used;
+          ob = dest_size - used;
+          break;
+        case EILSEQ:
+          is_error = 1;
+          break;
+        default:
+          is_error = 1;
+          break;
+        }
+      } else {
+        if (!shift_pin) {
+          shift_pin = pin;
+          pin = NULL;
+          ib = 0;
+        } else {
+          done = 1;
+        }
+      }
+    }
+    iconv_close (fd);
+    *pout = '\0';
+    dest_str = strdup (dest_str);
+  } else {
+    dest_str = strdup (buffer);
+  }
+
+  return dest_str;
 }
-#endif
+
+static char *
+strdup_vprintf (const char *format, va_list args)
+{
+  char *buffer = NULL;
+  va_list args2;
+  char c;
+
+  args2 = args;
+  buffer = calloc (sizeof (char), vsnprintf (&c, 1, format, args) + 1);
+  vsprintf (buffer, format, args2);
+  va_end (args2);
+
+  return buffer;
+}
+
+char *
+POPT_prev_char (const char *str)
+{
+  char *p = (char*)str;
+
+  while (1) {
+    p--;
+    if ((*p & 0xc0) != 0x80)
+      return (char *)p;
+  }
+}
 
 int
-POPT_fprintf (FILE * stream, const char * format, ...)
+POPT_fprintf (FILE* stream, const char *format, ...)
 {
-    char * b = NULL, * ob = NULL;
-    int rc;
-    va_list ap;
+  int retval = 0;
+  va_list args;
+  char *buffer = NULL;
+  char *locale_str = NULL;
 
-#if defined(HAVE_VASPRINTF) && !defined(__LCLINT__)
-    va_start(ap, format);
-    if ((rc = vasprintf(&b, format, ap)) < 0)
-	b = NULL;
-    va_end(ap);
-#else
-    size_t nb = (size_t)1;
+  va_start (args, format);
+  buffer = strdup_vprintf (format, args);
+  va_end (args);
 
-    /* HACK: add +1 to the realloc no. of bytes "just in case". */
-    /* XXX Likely unneeded, the issues wrto vsnprintf(3) return b0rkage have
-     * to do with whether the final '\0' is counted (or not). The code
-     * below already adds +1 for the (possibly already counted) trailing NUL.
-     */
-    while ((b = (char*) xrealloc(b, nb+1)) != NULL) {
-	va_start(ap, format);
-	rc = vsnprintf(b, nb, format, ap);
-	va_end(ap);
-	if (rc > -1) {	/* glibc 2.1 */
-	    if ((size_t)rc < nb)
-		break;
-	    nb = (size_t)(rc + 1);	/* precise buffer length known */
-	} else 		/* glibc 2.0 */
-	    nb += (nb < (size_t)100 ? (size_t)100 : nb);
-	ob = b;
-    }
-#endif
+  locale_str = strdup_locale_from_utf8 (buffer);
+  if (locale_str) {
+    retval = fprintf (stream, "%s", locale_str);
+    free (locale_str);
+  } else {
+    fprintf (stderr, POPT_WARNING "%s\n", "Invalid UTF-8");
+    retval = fprintf (stream, "%s", buffer);
+  }
+  free (buffer);
 
-    rc = 0;
-    if (b != NULL) {
-#ifdef HAVE_ICONV
-	ob = strdup_locale_from_utf8(b);
-	if (ob != NULL) {
-	    rc = fprintf(stream, "%s", ob);
-	    free(ob);
-	} else
-#endif
-	    rc = fprintf(stream, "%s", b);
-	free (b);
-    }
+  return retval;
 
-    return rc;
 }
 
-#endif	/* !defined(POPT_fprintf) */
+#undef STD_VFPRINTF
+

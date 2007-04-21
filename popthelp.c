@@ -532,7 +532,7 @@ static void singleTableHelp(poptContext con, FILE * fp,
 	    sub_transdom = translation_domain;
 	    
 	if (opt->descrip)
-	    fprintf(fp, "\n%s\n", D_(sub_transdom, opt->descrip));
+	    POPT_fprintf(fp, "\n%s\n", D_(sub_transdom, opt->descrip));
 
 	singleTableHelp(con, fp, opt->arg, left, sub_transdom);
     }
