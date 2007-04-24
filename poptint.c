@@ -89,16 +89,13 @@ strdup_locale_from_utf8 (char *buffer)
 }
 
 static char *
-strdup_vprintf (const char *format, va_list args)
+strdup_vprintf (const char *format, va_list ap)
 {
   char *buffer = NULL;
-  va_list args2;
   char c;
 
-  args2 = args;
-  buffer = calloc (sizeof (char), vsnprintf (&c, 1, format, args) + 1);
-  vsprintf (buffer, format, args2);
-  va_end (args2);
+  buffer = calloc (sizeof (char), vsnprintf (&c, 1, format, ap) + 1);
+  vsprintf (buffer, format, ap);
 
   return buffer;
 }
