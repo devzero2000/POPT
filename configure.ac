@@ -12,7 +12,7 @@ AC_SUBST(LT_CURRENT, 0)
 AC_SUBST(LT_REVISION, 0)
 AC_SUBST(LT_AGE, 8)
 
-ALL_LINGUAS="cs da de es eu_ES fi fr gl hu id is it ja ko no pl pt pt_BR ro ru sk sl sr sv tr uk wa zh zh_CN zh_TW"
+ALL_LINGUAS="cs da de es fr gl hu is ko no pl pt ro ru sl sv tr uk wa"
 
 AC_ISC_POSIX
 
