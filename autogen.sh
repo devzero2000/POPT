@@ -17,7 +17,7 @@ esac
 
 cd "$srcdir"
 $libtoolize --copy --force
-gettextize --copy --force
+[ -f po/Makefile.in.in ] || gettextize --copy --force
 aclocal -I m4
 autoheader
 automake -a -c
