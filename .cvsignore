@@ -1,6 +1,8 @@
 .deps
 .depend
 .libs
+ChangeLog
+config.rpath
 Doxyfile
 Makefile
 Makefile.in
@@ -20,6 +22,7 @@ install-sh
 libtool
 ltconfig
 ltmain.sh
+m4
 missing
 stamp-h
 stamp-h1
