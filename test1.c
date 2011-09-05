@@ -91,7 +91,7 @@ static char * lStr =
 "123456789+123456789+123456789+123456789+123456789+ "
 "123456789+123456789+123456789+123456789+123456789+ ";
 /*@unchecked@*/ /*@null@*/
-static char * nStr = NULL; 
+static char * nStr = NULL;
 
 /*@unchecked@*/
 static struct poptOption moreCallbackArgs[] = {
@@ -256,6 +256,7 @@ int main(int argc, const char ** argv)
     const char ** rest;
     int help = 0;
     int usage = 0;
+    char * testpoptrc;
 
 #if defined(HAVE_MCHECK_H) && defined(HAVE_MTRACE)
     /*@-moduncon -noeffectuncon@*/
@@ -269,9 +270,8 @@ int main(int argc, const char ** argv)
 /*@-temptrans@*/
     optCon = poptGetContext("test1", argc, argv, options, 0);
 #ifdef HAVE_STDLIB_H
-    char * testpoptrc;
     testpoptrc = getenv ("testpoptrc");
-    if (testpoptrc != NULL ) 
+    if (testpoptrc != NULL )
     (void) poptReadConfigFile(optCon, testpoptrc);
     else {
     (void) poptReadConfigFile(optCon, "./test-poptrc");
@@ -334,7 +334,7 @@ int main(int argc, const char ** argv)
     if (aLong != bLong)
 	fprintf(stdout, " aLong: %ld", aLong);
     if (aLongLong != bLongLong)
-	fprintf(stdout, " aLongLong: %lld", aLongLong);
+	fprintf(stdout, " aLongLong: %" LONG_LONG_FORMAT, aLongLong);
 /*@-realcompare@*/
     if (aFloat != bFloat)
 	fprintf(stdout, " aFloat: %g", (double)aFloat);
