@@ -1,5 +1,4 @@
 #!/bin/sh
-
 #
 # $Id$
 # autogen.sh: autogen.sh script for popt projects
@@ -36,7 +35,7 @@ Notice() {
 }
 
 
-# Function Used for checking the Version Used for building
+# Function Used for ichecking the Version Used for building
 # 
 # Note this deviates from the version comparison in automake
 # in that it treats 1.5 < 1.5.0, and treats 1.4.4a < 1.4-p3a
@@ -142,7 +141,7 @@ buildreq="\
 autoconf   2.63
 automake   1.11.1
 autopoint  -
-gettext    0.18
+gettext    0.17
 libtool	   1.5.22
 "
 echo
@@ -158,10 +157,19 @@ else
   echo
 fi
 
+if ! printf "$buildreq" | check_versions; then
+  test -f README-prereq &&
+  echo
+  echo "See README-prereq for notes on obtaining these prerequisite programs:" >&2
+  echo
+  print_versions
+  exit 1
+fi
+
 # Libtool
 libtoolize=`which glibtoolize 2>/dev/null`
 case $libtoolize in
-		/*) export LIBTOOL=glibtool;;
+		/*) ;;
 		*)  libtoolize=`which libtoolize 2>/dev/null`
 	case $libtoolize in
     	/*) ;;
@@ -172,20 +180,10 @@ if test -z "$libtoolize"; then
 		Die "libtool not found."
 		echo
 fi
-
-if ! printf "$buildreq" | check_versions; then
-  test -f README-prereq &&
-  echo
-  echo "See README-prereq for notes on obtaining these prerequisite programs:" >&2
-  echo
-  print_versions
-  exit 1
-fi
-
 find . -name "autom4te.cache" | xargs rm -rf 
 [ ! -d m4 ]        && mkdir m4
 [ ! -d build-aux ] && mkdir build-aux
-autoreconf -vfi || Die "bootstrap failed"
+autoreconf -vfi
 po_dir=./po
 LANG=C
 ls "$po_dir"/*.po 2>/dev/null |
