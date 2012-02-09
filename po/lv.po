@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: popt-1.14\n"
 "Report-Msgid-Bugs-To: <popt-devel@rpm5.org>\n"
-"POT-Creation-Date: 2014-01-08 08:09-0800\n"
+"POT-Creation-Date: 2012-02-09 17:12+0100\n"
 "PO-Revision-Date: 2009-04-12 16:34+0300\n"
 "Last-Translator: Rihards Prieditis <RPrieditis@inbox.lv>\n"
 "Language-Team: Latvian <translation-team-lv@lists.sourceforge.net>\n"
-"Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: lv\n"
 "X-Generator: Lokalize 0.3\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
@@ -24,64 +24,64 @@ msgstr ""
 msgid "unknown errno"
 msgstr "nezināms kļūdas numurs"
 
-#: popt.c:1439
+#: popt.c:1437
 #, c-format
 msgid "option type (%u) not implemented in popt\n"
 msgstr "iespējas tips (%u) nav ieviests popt\n"
 
-#: popt.c:1889
+#: popt.c:1887
 msgid "missing argument"
 msgstr "trūkst arguments"
 
-#: popt.c:1891
+#: popt.c:1889
 msgid "unknown option"
 msgstr "nezināma iespēja"
 
-#: popt.c:1893
+#: popt.c:1891
 msgid "mutually exclusive logical operations requested"
 msgstr "pieprasītas savstarpējie izslēdzošas loģiskās operācijas"
 
-#: popt.c:1895
+#: popt.c:1893
 msgid "opt->arg should not be NULL"
 msgstr "opcija->arguments nevar būt NULL"
 
-#: popt.c:1897
+#: popt.c:1895
 msgid "aliases nested too deeply"
 msgstr "aizstājvārdi iegulti pārāk dziļi"
 
-#: popt.c:1899
+#: popt.c:1897
 msgid "error in parameter quoting"
 msgstr "kļuda parametru citēšanā"
 
-#: popt.c:1901
+#: popt.c:1899
 msgid "invalid numeric value"
 msgstr "nederīga skaitļa vērtība"
 
-#: popt.c:1903
+#: popt.c:1901
 msgid "number too large or too small"
 msgstr "skaitlis pārāk liels, vai pārāk mazs"
 
-#: popt.c:1905
+#: popt.c:1903
 msgid "memory allocation failed"
 msgstr "atmiņas iedalīšana neizdevās"
 
-#: popt.c:1907
+#: popt.c:1905
 msgid "config file failed sanity test"
 msgstr ""
 
-#: popt.c:1909
+#: popt.c:1907
 msgid "option does not take an argument"
 msgstr ""
 
-#: popt.c:1911
+#: popt.c:1909
 msgid "stack underflow"
 msgstr ""
 
-#: popt.c:1913
+#: popt.c:1911
 msgid "stack overflow"
 msgstr ""
 
-#: popt.c:1917
+#: popt.c:1915
 msgid "unknown error"
 msgstr "nezināma kļūda"
 
