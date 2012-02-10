@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.63])
+AC_PREREQ(2.63)
 AC_INIT([popt],[1.17.DEVEL],[popt-devel@rpm5.org])
 
 AC_CONFIG_SRCDIR([lookup3.c])
@@ -12,13 +12,12 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CANONICAL_HOST
 AM_INIT_AUTOMAKE([1.11 color-tests -Wall -Werror foreign])
-m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 #
 # Checks for programs.
 # Set common system defines for POSIX extensions, such as GNU_SOURCE
 # Must be called before any macros that run the compiler (like AC-PROG-LIBTOOL)
 AC_USE_SYSTEM_EXTENSIONS
-AM_GNU_GETTEXT_VERSION([0.18])
+AM_GNU_GETTEXT_VERSION([0.17])
 AM_GNU_GETTEXT([external])
 AM_ICONV
 AM_MAINTAINER_MODE
@@ -38,9 +37,7 @@ AC_PROG_CC_STDC
 AC_SYS_LARGEFILE
 AC_PROG_MAKE_SET
 AC_PROG_INSTALL
-AM_PROG_AR
 AC_PROG_LIBTOOL
-AM_PROG_CC_C_O
 
 # Turn gcc warning
 
@@ -168,9 +165,7 @@ AS_IF([ test x"$popt_gcc_mudflap" = x"yes" ],
 			AC_SUBST([MUDFLAP_OPTIONS])
                       ])
               ],
-              [ popt_gcc_mudflap=no
-               AC_MSG_WARN([--enable-mudflap requires GCC])
-              ]
+              [ AC_MSG_WARN([--enable-mudflap requires GCC])]
         )
       ])
      
@@ -192,8 +187,7 @@ AS_IF([test "x$popt_gcc_pie" = xyes],
               [ popt_CFLAGS_ADD([-fpie], [POPT_CFLAGS])
                 popt_LDFLAGS_ADD([-pie], [POPT_LDFLAGS])
               ],
-              [ popt_gcc_pie=no
-                AC_MSG_WARN([--enable-build-pie requires GCC])]
+              [ AC_MSG_WARN([--enable-build-pie requires GCC])]
         )
       ])
 AC_SUBST([POPT_LDFLAGS])
@@ -216,14 +210,13 @@ AC_SUBST([POPT_CFLAGS])
 
 # Support for running test cases using valgrind:
 
-use_valgrind=no
-HAVE_VALGRIND=no
+use_valgrind=false
 VALGRIND_ENVIRONMENT=""
-AC_ARG_ENABLE([valgrind],
+AC_ARG_ENABLE(valgrind,
 [  --enable-valgrind       Use valgrind when running unit tests. ],
-[ use_valgrind=yes ])
+[ use_valgrind=true ])
 
-AS_IF([ test x"$use_valgrind" = x"yes" ], 
+AS_IF([ test x"$use_valgrind" = x"true" ], 
       [
         AC_CHECK_PROG(HAVE_VALGRIND, valgrind, yes, no)
         AS_IF([ test x$HAVE_VALGRIND = no ],
@@ -236,14 +229,16 @@ AS_IF([ test x"$use_valgrind" = x"yes" ],
               		VALGRIND_ENVIRONMENT="libtool --mode=execute "
                     ]
               )
-              VALGRIND_ENVIRONMENT="$VALGRIND_ENVIRONMENT valgrind -q --error-exitcode=3 --leak-check=yes --leak-check=full --log-file=\$(builddir)/popt-valgrind-result"
+              VALGRIND_ENVIRONMENT="$VALGRIND_ENVIRONMENT valgrind -q --error-exitcode=3 --leak-check=yes --leak-check=full --log-file=\$(builddir)/popt-valgrind-result --suppressions=\$(srcdir)/popt-vg.supp "
               AC_SUBST([VALGRIND_ENVIRONMENT])
               ])
       ])
      
+AM_CONDITIONAL([USE_VALGRIND], [test x$use_valgrind != no])
+
 #  Checks for doxygen support. 
 AC_PATH_PROG(DOXYGEN, doxygen, NO_DOXYGEN)
-AC_ARG_ENABLE([doxygen],
+AC_ARG_ENABLE(doxygen,
     AS_HELP_STRING([--disable-doxygen],[disable doxygen API docs generation ]),
     [DOXYGEN_ENABLE=$enableval,
     if test x$DOXYGEN_ENABLE != xno 
@@ -262,8 +257,8 @@ AM_CONDITIONAL([DOXYGEN_ENABLE], [test x$DOXYGEN != xNO_DOXYGEN])
 
 # Check for gcov support.
 # Check for lcov  Makefile conditional
-AC_PATH_PROG(LCOV,lcov, no)
-AC_ARG_ENABLE([build-gcov],
+AC_PATH_PROG(LCOV,lcov, NO_LCOV)
+AC_ARG_ENABLE(build-gcov,
     AS_HELP_STRING([--enable-build-gcov], [build POPT instrumented for gcov @<:@default=no@:>@.]), 
     [enable_build_gcov=${enableval}],
     [enable_build_gcov=no])
@@ -275,10 +270,10 @@ AS_IF([test "x$enable_build_gcov" != xno],
             popt_CFLAGS_ADD([-fprofile-arcs -ftest-coverage], [POPT_CFLAGS])
             AC_SUBST([POPT_CFLAGS])
         else
-            LCOV=no
+            LCOV=NO_LCOV
         fi 
        ])
-AM_CONDITIONAL([HAVE_LCOV], [test x$LCOV != xno])
+AM_CONDITIONAL([HAVE_LCOV], [test x$LCOV != xNO_LCOV])
 
 # Check for api-sanity-autotest.pl Makefile conditional support for check-local
 AC_PATH_PROG(API_SANITY_AUTOTEST,api-sanity-autotest.pl,NO_API_SANITY_AUTOTEST)
@@ -289,9 +284,6 @@ AM_CONDITIONAL([HAVE_SPLINT],[test "x$SPLINT" != xNO_SPLINT])
 # Check for mccabe makefile conditional support
 AC_PATH_PROG(MCCABE,pmccabe,NO_MCCABE)
 AM_CONDITIONAL([HAVE_MCCABE],[test "x$MCCABE" != xNO_MCCABE])
-# Check for cppcheck makefile conditional support
-AC_PATH_PROG(CPPCHECK,cppcheck,NO_CPPCHECK)
-AM_CONDITIONAL([HAVE_CPPCHECK],[test "x$CPPCHECK" != xNO_CPPCHECK])
 # Checks for libraries.
 
 # Checks for header files.
@@ -312,7 +304,7 @@ AC_TYPE_INT64_T
 AC_CHECK_FUNC(setreuid, [], [
     AC_CHECK_LIB(ucb, setreuid, [if echo $LIBS | grep -- -lucb >/dev/null ;then :; else LIBS="$LIBS -lc -lucb" USEUCB=y;fi])
 ])
-AC_CHECK_FUNCS([getuid geteuid iconv mtrace __secure_getenv secure_gentenv setregid stpcpy strerror vasprintf srandom])
+AC_CHECK_FUNCS([getuid geteuid iconv mtrace __secure_getenv setregid stpcpy strerror vasprintf srandom])
 # drop AC_FUNC_MALLOC, REALLOC and STRTOD
 AC_CHECK_FUNCS([malloc realloc strtod memset nl_langinfo stpcpy strchr strerror strrchr])
 
@@ -407,15 +399,3 @@ AC_SUBST([POPT_PKGCONFIG_LIBS],"$popt_pkgconfig_libs")
 AC_CONFIG_FILES([Makefile Doxyfile popt.pc popt.spec po/Makefile.in
     auto/Makefile auto/desc ])
 AC_OUTPUT
-
-# Print a summary of what features we enabled and have 
-AC_MSG_NOTICE([Summary of detected features follows])
-
-popt_MSG_STATUS([gcc-warnings],[$popt_gcc_warnings],[$popt_gcc_warnings])
-popt_MSG_STATUS([mudflap],[$popt_gcc_mudflap],[$popt_gcc_mudflap])
-popt_MSG_STATUS([build-pie],[$popt_gcc_pie],[$popt_gcc_pie])
-popt_MSG_STATUS([valgrind],[$HAVE_VALGRIND],[$use_valgrind])
-popt_MSG_STATUS([doxygen],[$DOXYGEN_ENABLE],[$DOXYGEN_ENABLE])
-popt_MSG_STATUS([build-gcov],[$LCOV], [$enable_build_gcov])
-popt_MSG_STATUS([ld-version-script],[LD_VERSION_SCRIPT_FLAG=$LD_VERSION_SCRIPT_FLAG],[$have_ld_version_script])
-
