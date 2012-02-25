@@ -157,19 +157,10 @@ else
   echo
 fi
 
-if ! printf "$buildreq" | check_versions; then
-  test -f README-prereq &&
-  echo
-  echo "See README-prereq for notes on obtaining these prerequisite programs:" >&2
-  echo
-  print_versions
-  exit 1
-fi
-
 # Libtool
 libtoolize=`which glibtoolize 2>/dev/null`
 case $libtoolize in
-		/*) ;;
+		/*) export LIBTOOL=glibtool;;
 		*)  libtoolize=`which libtoolize 2>/dev/null`
 	case $libtoolize in
     	/*) ;;
@@ -180,6 +171,16 @@ if test -z "$libtoolize"; then
 		Die "libtool not found."
 		echo
 fi
+
+if ! printf "$buildreq" | check_versions; then
+  test -f README-prereq &&
+  echo
+  echo "See README-prereq for notes on obtaining these prerequisite programs:" >&2
+  echo
+  print_versions
+  exit 1
+fi
+
 find . -name "autom4te.cache" | xargs rm -rf 
 [ ! -d m4 ]        && mkdir m4
 [ ! -d build-aux ] && mkdir build-aux
