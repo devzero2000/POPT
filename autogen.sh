@@ -35,7 +35,7 @@ Notice() {
 }
 
 
-# Function Used for ichecking the Version Used for building
+# Function Used for checking the Version Used for building
 # 
 # Note this deviates from the version comparison in automake
 # in that it treats 1.5 < 1.5.0, and treats 1.4.4a < 1.4-p3a
