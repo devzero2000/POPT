@@ -1,5 +1,10 @@
 1.17 -> 2.0:
     - devzero2000: redo the malloc check voo-doo
+      in a more simple way. Drop all the crap
+      around to create a portable shell function for 
+      random number generation.
+      $$ alone suffices to avoid the bias.
+    - devzero2000: redo the malloc check voo-doo
       in a more portable way. Permit testit.sh
       work if it is called directly also.
     - devzero2000: fix compiler warning -Wunused-variable 

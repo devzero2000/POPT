@@ -6,51 +6,8 @@
 # and http://udrepper.livejournal.com/11429.html
 ###############################################
 # 
-#
-: --Get_Random_Number
-#####################
-# Purpose:
-#  Get a Random Number from 0-256 range in a shell 
-#  portable way
-#  see here for more info on RANDOM bashism
-#  http://mywiki.wooledge.org/Bashism
-#####################
-Get_Random_Number() {
-
-local RANDOM_NUMBER="${RANDOM}"
-
-if [ -n "${RANDOM_NUMBER}" ] 
-then 
-  RANDOM_NUMBER="$(expr \( ${RANDOM_NUMBER} % 255 \) + 1)"
-else
- if type awk >/dev/null 2>&1 
- then 
-	 RANDOM_NUMBER="$(awk 'BEGIN{srand(); printf "%d\n",(rand()*256)}')" 
- else
-  if type hexdump >/dev/null 2>&1 && [ -e /dev/urandom ] 
-  then 
-	 RANDOM_NUMBER="$(hexdump -n 1 -e '/1 "%u"' /dev/urandom)"
-  else
-   if type od >/dev/null 2>&1 && [ -e /dev/urandom ] 
-   then 
-         RANDOM_NUMBER="$(od -A n -N 1 -t u1 /dev/urandom)"
-   else
-    if type cksum >/dev/null 2>&1 && type ps >/dev/null 2>&1 
-    then 
-        TEMP_RANDOM="$(ps -ef | cksum | cut -f1 -d" " 2>/dev/null)"
-        RANDOM_NUMBER="$(expr \( ${TEMP_RANDOM} % 255 \) + 1)"
-    else
-        TEMP_RANDOM=1234567890
-        RANDOM_NUMBER="$(expr \( ${TEMP_RANDOM} % 255 \) + 1)"
-    fi
-   fi
-  fi
- fi
-fi
-echo "${RANDOM_NUMBER}"
-}
 export MALLOC_CHECK_=3
-export MALLOC_PERTURB_="$(Get_Random_Number)"
+export MALLOC_PERTURB_="$( expr \( $$ % 255 \) + 1)"
 #
 
 run() {
