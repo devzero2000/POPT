@@ -1,4 +1,7 @@
 1.17 -> 2.0:
+    - devzero2000: redo the malloc check voo-doo
+      in a more portable way. Permit testit.sh
+      work if it is called directly also.
     - devzero2000: fix compiler warning -Wunused-variable 
     - devzero2000: Enable many more gcc warnings for popt
       Inspired by http://www.spinics.net/lists/selinux/msg11726.html

@@ -1,46 +1,57 @@
-#!/bin/sh
+#!/bin/sh 
 ###############################################
 # malloc voo-doo
 ###############################################
 # see http://lists.gnupg.org/pipermail/gcrypt-devel/2010-June/001605.html
 # and http://udrepper.livejournal.com/11429.html
-# and http://git.661346.n2.nabble.com/PATCHv2-Add-MALLOC-CHECK-and-MALLOC-PERTURB-libc-env-to-the-test-suite-for-detecting-heap-corruption-td7566915.html
-#
-# Please note: we dont't use malloc_check if executing valgrind
-#
-# The test suite can use also valgrind(memcheck) via 'configure --enable-valgrind'
-#
-# Memcheck wraps client calls to malloc(), and puts a "red zone" on
-# each end of each block in order to detect access overruns.
-# Memcheck already detects double free() (up to the limit of the buffer
-# which remembers pending free()). Thus memcheck subsumes all the
-# documented coverage of MALLOC_CHECK_.
-# If MALLOC_CHECK_ is set non-zero when running memcheck, then the
-# overruns that might be detected by MALLOC_CHECK_ would be overruns
-# on the wrapped blocks which include the red zones.  Thus MALLOC_CHECK_
-# would be checking memcheck, and not the client.  This is not useful,
-# and actually is wasteful.  The only possible [documented] advantage
-# of using MALLOC_CHECK_ and memcheck together, would be if MALLOC_CHECK_
-# detected duplicate free() in more cases than memcheck because memcheck's
-# buffer is too small.
-# Therefore we don't use MALLOC_CHECK_ and valgrind(memcheck) at the
-# same time.
 ###############################################
-if [ -z "${valgrind_environment}" ]
-then
-	MALLOC_CHECK_=3
-	export MALLOC_CHECK_
-	[ -n "${RANDOM}" ] && MALLOC_PERTURB_=`expr \( $RANDOM % 255 \) + 1 `
-	export MALLOC_PERTURB_
-	#
-	if [ -z "${MALLOC_PERTURB_}" ]  # RANDOM is a bashism
-	then
-		r=`ps -ef | cksum | cut -f1 -d" " 2>/dev/null`
-		[ -z "${r}" ] && r=1234567890
-		MALLOC_PERTURB_=`expr \( $r % 255 \) + 1 `
-		export MALLOC_PERTURB_
-	fi
+# 
+#
+: --Get_Random_Number
+#####################
+# Purpose:
+#  Get a Random Number from 0-256 range in a shell 
+#  portable way
+#  see here for more info on RANDOM bashism
+#  http://mywiki.wooledge.org/Bashism
+#####################
+Get_Random_Number() {
+
+local RANDOM_NUMBER="${RANDOM}"
+
+if [ -n "${RANDOM_NUMBER}" ] 
+then 
+  RANDOM_NUMBER="$(expr \( ${RANDOM_NUMBER} % 255 \) + 1)"
+else
+ if type awk >/dev/null 2>&1 
+ then 
+	 RANDOM_NUMBER="$(awk 'BEGIN{srand(); printf "%d\n",(rand()*256)}')" 
+ else
+  if type hexdump >/dev/null 2>&1 && [ -e /dev/urandom ] 
+  then 
+	 RANDOM_NUMBER="$(hexdump -n 1 -e '/1 "%u"' /dev/urandom)"
+  else
+   if type od >/dev/null 2>&1 && [ -e /dev/urandom ] 
+   then 
+         RANDOM_NUMBER="$(od -A n -N 1 -t u1 /dev/urandom)"
+   else
+    if type cksum >/dev/null 2>&1 && type ps >/dev/null 2>&1 
+    then 
+        TEMP_RANDOM="$(ps -ef | cksum | cut -f1 -d" " 2>/dev/null)"
+        RANDOM_NUMBER="$(expr \( ${TEMP_RANDOM} % 255 \) + 1)"
+    else
+        TEMP_RANDOM=1234567890
+        RANDOM_NUMBER="$(expr \( ${TEMP_RANDOM} % 255 \) + 1)"
+    fi
+   fi
+  fi
+ fi
 fi
+echo "${RANDOM_NUMBER}"
+}
+export MALLOC_CHECK_=3
+export MALLOC_PERTURB_="$(Get_Random_Number)"
+#
 
 run() {
     prog=$1; shift
@@ -48,6 +59,8 @@ run() {
     answer=$1; shift
 
     echo Running test $name.
+
+    echo $PWD
 
     result=`HOME=$builddir $builddir/$prog $* 2>&1`
 
@@ -82,7 +95,7 @@ run_diff() {
 }
 
 builddir=`pwd`
-#srcdir=$builddir
+[ -z "$srcdir" ] && srcdir=$builddir
 cd ${srcdir}
 test1=${builddir}/test1
 echo "Running tests in $builddir" 
@@ -542,12 +555,12 @@ if [ -f /usr/share/dict/words ]
 then
 run tdict "tdict - 1" "\
 ===== Some words are in /usr/share/dict/words
-hope:	YES
-faith:	YES
-charity:	YES
-troofth:	NO
-juicetess:	NO
-total(5) = hits(3) + misses(2)" hope faith charity troofth juicetess
+a:	YES
+b:	YES
+rpm:	YES
+dpkg:	YES
+ipkg:	NO
+total(5) = hits(4) + misses(1)" a b rpm dpkg ipkg
 run tdict "tdict - 2" "\
 Usage: tdict [-?] [-d|--debug] [-v|--verbose] [-?|--help] [--usage]" --usage
 run tdict "tdict - 3" "\
