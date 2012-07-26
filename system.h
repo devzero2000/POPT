@@ -203,11 +203,11 @@ static inline char * stpcpy (char *dest, const char * src) {
 #endif  /* defined(HAVE_MCHECK_H) && defined(__GNUC__) */
 
 #if !defined(__LCLINT__)
-#if defined(HAVE___SECURE_GETENV) 
-#define	getenv(_s)	__secure_getenv(_s)
-#else
 #if defined(HAVE_SECURE_GETENV) 
 #define	getenv(_s)	secure_getenv(_s)
+#else
+#if defined(HAVE___SECURE_GETENV) 
+#define	getenv(_s)	__secure_getenv(_s)
 #endif /* defined(HAVE_SECURE_GETENV)   */
 #endif /* defined(HAVE___SECURE_GETENV) */
 #endif /* !defined(__LCLINT__)          */
