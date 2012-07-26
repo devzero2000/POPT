@@ -1,4 +1,10 @@
 1.17 -> 2.0:
+    - devzero2000: check secure_getenv for glibc 2.17
+      In glibc 2.17, __secure_getenv was renamed to secure_getenv.
+      So check also for it.
+      Reference: 
+          http://sourceware.org/glibc/wiki/Tips_and_Tricks/secure_getenv
+          http://marc.info/?t=134192618500001&r=1&w=2
     - devzero2000: redo the malloc check voo-doo
       in a more simple way. Drop all the crap
       around to create a portable shell function for 
