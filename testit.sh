@@ -6,8 +6,10 @@
 # and http://udrepper.livejournal.com/11429.html
 ###############################################
 # 
-export MALLOC_CHECK_=3
-export MALLOC_PERTURB_="$( expr \( $$ % 255 \) + 1)"
+MALLOC_CHECK_=3
+export MALLOC_CHECK_
+MALLOC_PERTURB_="$( expr \( $$ % 255 \) + 1)"
+export MALLOC_PERTURB_
 #
 
 run() {
