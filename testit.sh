@@ -21,7 +21,7 @@ run() {
 
     echo $PWD
 
-    result=`HOME=$builddir $builddir/$prog $* 2>&1`
+    result=`HOME=$builddir $valgrind_environment $builddir/$prog $* 2>&1`
 
     if [ "$answer" != "$result" ]; then
 	echo "Test \"$prog $*\" failed with: \"$result\" != \"$answer\" "

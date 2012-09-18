@@ -1,4 +1,8 @@
 1.17 -> 2.0:
+    - devzero2000: redo the --enable-valgrind autoconf check
+      It is much better to analyze with valgrind only the test suite 
+      and not the shell that invokes them. Drop also the unused
+      AM_CONDITIONAL macro USE_VALGRIND
     - devzero2000: malloc check voodo portability quirk
       Get rid of a non portable shell export VAR=VALUE
       costruct. "Posix requires export to honor assignments 

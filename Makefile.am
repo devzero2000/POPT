@@ -3,7 +3,7 @@
 ACLOCAL_AMFLAGS = -I m4
 AM_CPPFLAGS = -I. -I$(top_srcdir)
 AM_CFLAGS = $(POPT_CFLAGS)
-AM_LDFLAGS = $(POPT_LDFLAGS) $(INTLLIBS)
+AM_LDFLAGS = $(POPT_LDFLAGS)
 
 ## begin configmake
 
@@ -110,7 +110,8 @@ tdict_LDADD  = $(top_builddir)/$(usrlib_LTLIBRARIES)
 test3_LDADD  = $(top_builddir)/$(usrlib_LTLIBRARIES)
 
 TESTS_ENVIRONMENT = top_srcdir=$(top_srcdir) MUDFLAP_OPTIONS="$(MUDFLAP_OPTIONS)" testpoptrc="$(top_srcdir)/test-poptrc" PATH=.:../src:$$PATH \
-                        valgrind_environment="$(VALGRIND_ENVIRONMENT)"
+                        valgrind_environment="$(VALGRIND_ENVIRONMENT)" \
+			$(SHELL)
 
 
 TESTS = testit.sh
@@ -122,7 +123,6 @@ usrlib_LTLIBRARIES = libpopt.la
 
 libpopt_la_SOURCES = popt.c poptparse.c poptconfig.c popthelp.c poptint.c
 libpopt_la_LDFLAGS = -no-undefined $(AM_LDFLAGS)
-libpopt_la_LIBADD = $(LTLIBICONV)
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = popt.pc
@@ -158,28 +158,12 @@ mccabe:
 
 endif
 
-if HAVE_CPPCHECK
-cppcheck:
-	$(CPPCHECK) -I. -I$(includedir) --inline-suppr --enable=all $(libpopt_la_SOURCES)
-
-endif
-
-
 if DOXYGEN_ENABLE
 doxygen: Doxyfile
 	rm -rf doxygen
 	mkdir -p doxygen
 	$(DOXYGEN)
 endif 
-
-# --- scan.coverity.com manual submission in popt.tgz
-COVDIR =	cov-int
-COVBUILD =	cov-build --dir $(COVDIR)
-covscan::
-	rm -rf $(COVDIR) popt.tgz
-	make clean
-	$(COVBUILD) make
-	tar czf popt.tgz $(COVDIR)
 
 if HAVE_LCOV
 # run lcov from scratch, always
