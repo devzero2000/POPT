@@ -4,12 +4,35 @@
 ###############################################
 # see http://lists.gnupg.org/pipermail/gcrypt-devel/2010-June/001605.html
 # and http://udrepper.livejournal.com/11429.html
-###############################################
-# 
-MALLOC_CHECK_=3
-export MALLOC_CHECK_
-MALLOC_PERTURB_="$( expr \( $$ % 255 \) + 1)"
-export MALLOC_PERTURB_
+# and http://git.661346.n2.nabble.com/PATCHv2-Add-MALLOC-CHECK-and-MALLOC-PERTURB-libc-env-to-the-test-suite-for-detecting-heap-corruption-td7566915.html
+#
+# Please note: we dont't use malloc_check if executing valgrind
+#
+# The test suite can use also valgrind(memcheck) via 'configure --enable-valgrind'
+#
+# Memcheck wraps client calls to malloc(), and puts a "red zone" on
+# each end of each block in order to detect access overruns.
+# Memcheck already detects double free() (up to the limit of the buffer
+# which remembers pending free()). Thus memcheck subsumes all the
+# documented coverage of MALLOC_CHECK_.
+# If MALLOC_CHECK_ is set non-zero when running memcheck, then the
+# overruns that might be detected by MALLOC_CHECK_ would be overruns
+# on the wrapped blocks which include the red zones.  Thus MALLOC_CHECK_
+# would be checking memcheck, and not the client.  This is not useful,
+# and actually is wasteful.  The only possible [documented] advantage
+# of using MALLOC_CHECK_ and memcheck together, would be if MALLOC_CHECK_
+# detected duplicate free() in more cases than memcheck because memcheck's
+# buffer is too small.
+# Therefore we don't use MALLOC_CHECK_ and valgrind(memcheck) at the
+# same time.
+############################################### 
+if [ -z "$valgrind_environment" ]
+then
+	MALLOC_CHECK_=3
+	export MALLOC_CHECK_
+	MALLOC_PERTURB_="$( expr \( $$ % 255 \) + 1)"
+	export MALLOC_PERTURB_
+fi
 #
 
 run() {
