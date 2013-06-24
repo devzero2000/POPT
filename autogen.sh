@@ -1,4 +1,5 @@
 #!/bin/sh
+
 #
 # $Id$
 # autogen.sh: autogen.sh script for popt projects
