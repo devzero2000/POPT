@@ -142,7 +142,7 @@ buildreq="\
 autoconf   2.63
 automake   1.11.1
 autopoint  -
-gettext    0.17
+gettext    0.18
 libtool	   1.5.22
 "
 echo
