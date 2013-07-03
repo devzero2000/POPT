@@ -185,7 +185,7 @@ fi
 find . -name "autom4te.cache" | xargs rm -rf 
 [ ! -d m4 ]        && mkdir m4
 [ ! -d build-aux ] && mkdir build-aux
-autoreconf -vfi
+autoreconf -vfi || Die "bootstrap failed"
 po_dir=./po
 LANG=C
 ls "$po_dir"/*.po 2>/dev/null |
