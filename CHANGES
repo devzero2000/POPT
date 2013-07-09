@@ -1,63 +1,4 @@
 1.17 -> 2.0:
-    - devzero2000: quote AC_PREREQ in configure.ac
-      for a old bug autoupdate don't do it before autoconf v2.66
-      (http://lists.gnu.org/archive/html/autoconf-patches/2010-06/msg00014.html)
-    - jbj: add sr.po (Translation Project).
-    - devzero2000: fix compiler warning -Wunused-variable 
-    - jbj: use words instead of jargon to increase portability 
-    - jbj: macosx: needs $(INTLLIBS) explictly.
-    - jbj: autofu: fix: MacPorts uses glibtool/gliboolize. test earlier.
-    - jbj: i18n: msgmerge (Translation Project).
-    - devzero2000: Enable many more gcc warnings for popt
-      Inspired by http://www.spinics.net/lists/selinux/msg11726.html
-      but popt can, unlike libselinux now, also detect if  
-      gcc support a compiler flag or not 
-    - devzero2000: Fix move popt.m4 to acinclude.m4
-      so we can put it under version control
-    - devzero2000: give some color to autogen.sh
-      Certainly not so useful but not hurt either.
-    - jbj: i18n: msgmerge (Translation Project).
-    - devzero2000: redo commit 8396019 
-      Useless to have format crap just for conforming
-      to oddball platform 
-      (http://rpm5.org/community/rpm-devel/5166.html).
-      Keep the patch only inside MinGW.
-    - devzero2000: merge commit fc8836e from git pull request  
-      https://github.com/devzero2000/POPT/pull/2 
-      "Fix more MSVC build warnings"
-      by asenm (Matt Arsenault). This is the last commit
-      of this patch series and pull request.
-    - devzero2000: merge commit aee9f24 from git pull request  
-      https://github.com/devzero2000/POPT/pull/2 
-      "Add makefile for mingw" 
-      by asenm (Matt Arsenault). Include these new object 
-      in EXTRA_DIST (Makefile.am) by devzero2000 (Elia Pinto)
-    - devzero2000: merge commit 8396019 from git pull request  
-      https://github.com/devzero2000/POPT/pull/2 
-      "Work around missing format for long long in windows; fix warnings"
-      by asenm (Matt Arsenault)
-    - devzero2000: merge  commit ea2978d from git pull request 
-      https://github.com/devzero2000/POPT/pull/2 
-      "Fix build with MinGW 32/64 + MSVC" by arsenm
-      (Matt Arsenault)
-    - devzero2000: fix compiler warning -Wunused-but-set-variable (GCC 4.6)
-    - devzero2000: redo the autofu vendor-script linker script check for openindiana native
-      ld, using modern and not deprecated autoconf construct. Even if the check is not perfect 
-      but it is based on a resultant ld warning, on openindiana the result actually work
-      with gcc and native ld. This patch also fix the build 
-      on openindiana broken by the precedent patch.
-    - devzero2000: add missing README-prereq
-    - devzero2000: try to redo the bootstrap check better
-    - devzero2000: add configmake.h to .gitignore
-    - devzero2000: document the /etc/popt.d use in popt(3)
-    - jbj: fix: plug another memory leak related to contiguous argv malloc.
-    - jbj: fix: plug a memory leak related to contiguous argv malloc.
-    - devzero2000: fix the configmake.h make rule: update its timestamp also if it don't change.
-    - devzero2000: revert bad commit: add missing glob.h and fnmatch.h in configure.ac, add struct sb in poptconfig.c
-    - devzero2000: Rewrite the logic in poptReadDefaultConfig 
-      for finding the popt alias file
-    - devzero2000: update .cvsignore
-    - devzero2000: fix compiler warning [-Wuninitialized]
     - jbj: i18n: update po files (Translation Project).
     - devzero2000: add version-script linker capability also for openindiana native ld
     - devzero2000: add test3 to the unit test, add color-tests automake option
@@ -66,7 +7,7 @@
     - devzero2000: fix: add missing automake per target test* LDFLAGS
     - devzero2000: require, as in autogen.sh, a minimal automake version for bootstrap 
     - devzero2000: added --enable-valgrind autoconf option
-    - devzero2000: Fixed VPATH building with arbitrary directory structure
+    - Fixed VPATH building with arbitrary directory structure
     - devzero2000: some minor fix to autofu and also a minor portability problem on AIX
       with the native compiler
     - devzero2000: add malloc vodo to testit.sh
@@ -89,6 +30,9 @@
     - jbj: change error returns to assert failures for development.
 
 1.16 -> 1.17:
+    - jbj: resurrect "make distcheck".
+    - jbj: add explicit versions for latest autotools (for now).
+    - jbj: i18n: update po files (Translation Project).
     - jbj: add an RPN calculator to do logical and add/subtract operations.
     - devzero2000: update to new autofu/automagic. Do make distcheck work.
     - test1: fix test 59, libtool/argv[0] conventions differ various platforms.
