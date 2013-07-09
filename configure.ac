@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.63])
+AC_PREREQ(2.63)
 AC_INIT([popt],[1.17.DEVEL],[popt-devel@rpm5.org])
 
 AC_CONFIG_SRCDIR([lookup3.c])
@@ -11,13 +11,15 @@ AC_CONFIG_MACRO_DIR([m4])
 # Must come before AM_INIT_AUTOMAKE.
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CANONICAL_HOST
-AM_INIT_AUTOMAKE([1.11 color-tests -Wall -Werror foreign])
+AM_INIT_AUTOMAKE([1.12 color-tests -Wall -Werror foreign])
 #
 # Checks for programs.
 # Set common system defines for POSIX extensions, such as GNU_SOURCE
 # Must be called before any macros that run the compiler (like AC-PROG-LIBTOOL)
 AC_USE_SYSTEM_EXTENSIONS
-AM_GNU_GETTEXT_VERSION([0.18])
+# This is a new thing required to stop a warning from automake 1.12
+m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
+AM_GNU_GETTEXT_VERSION([0.18.3])
 AM_GNU_GETTEXT([external])
 AM_ICONV
 AM_MAINTAINER_MODE
@@ -37,9 +39,7 @@ AC_PROG_CC_STDC
 AC_SYS_LARGEFILE
 AC_PROG_MAKE_SET
 AC_PROG_INSTALL
-AM_PROG_AR
 AC_PROG_LIBTOOL
-AM_PROG_CC_C_O
 
 # Turn gcc warning
 
@@ -56,7 +56,6 @@ AC_ARG_ENABLE([gcc-warnings],
 
 AS_IF([test "x$popt_gcc_warnings" = xyes],
   [ # Add/Delete as needed
-  MAX_STACK_SIZE=32768
   popt_CFLAGS_ADD([-Wall], [POPT_CFLAGS])
   popt_CFLAGS_ADD([-pedantic], [POPT_CFLAGS])
   popt_CFLAGS_ADD([-Wextra], [POPT_CFLAGS])
@@ -67,68 +66,6 @@ AS_IF([test "x$popt_gcc_warnings" = xyes],
   popt_CFLAGS_ADD([-Wstrict-overflow],[POPT_CFLAGS])
   popt_CFLAGS_ADD([-fstrict-overflow],[POPT_CFLAGS])
   popt_CFLAGS_ADD([-Wpointer-arith],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wundef],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wformat-security],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Winit-self],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wmissing-include-dirs],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wunused],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wunknown-pragmas],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wstrict-aliasing],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wshadow],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wbad-function-cast],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wcast-align],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wwrite-strings],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wlogical-op],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Waggregate-return],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wstrict-prototypes],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wold-style-definition],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wmissing-prototypes],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wmissing-declarations],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wmissing-noreturn],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wmissing-format-attribute],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wredundant-decls],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wnested-externs],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Winline],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Winvalid-pch],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wvolatile-register-var],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wdisabled-optimization],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wbuiltin-macro-redefined],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wmudflap],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wpacked-bitfield-compat],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wsync-nand],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wattributes],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wcoverage-mismatch],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wmultichar],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wcpp],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wdeprecated-declarations],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wdiv-by-zero],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wdouble-promotion],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wendif-labels],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wformat-contains-nul],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wformat-extra-args],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wformat-zero-length],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wformat=2],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wmultichar],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wnormalized=nfc],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Woverflow],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wpointer-to-int-cast],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wpragmas],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wsuggest-attribute=const],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wsuggest-attribute=noreturn],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wsuggest-attribute=pure],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wtrampolines],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wno-missing-field-initializers],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wno-sign-compare],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wjump-misses-init],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wno-format-nonliteral],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wframe-larger-than=$MAX_STACK_SIZE],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-fstack-protector-all],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-fasynchronous-unwind-tables],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-fdiagnostics-show-option],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-funit-at-a-time],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-fipa-pure-const],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wno-aggregate-return],[POPT_CFLAGS])
-  popt_CFLAGS_ADD([-Wno-redundant-decls],[POPT_CFLAGS])
   ])
 
 # build popt with mudflap instrumentation (GCC only)
@@ -198,7 +135,7 @@ AC_SUBST([POPT_LDFLAGS])
 # -fno-delete-null-pointer as the kernel does http://patchwork.kernel.org/patch/36060/
 # GNU GCC (usually "gcc")
 AS_IF([test "x$GCC" != x],
- [ for c in -fno-delete-null-pointer-checks -Wp,-D_FORTIFY_SOURCE=2 -fstack-protector -fexceptions
+ [ for c in -fno-delete-null-pointer-checks -D_FORTIFY_SOURCE=2 -fstack-protector -fexceptions
    do
   	popt_CFLAGS_ADD([$c], [POPT_CFLAGS])
    done
@@ -256,6 +193,10 @@ AC_ARG_ENABLE(doxygen,
     [DOXYGEN_ENABLE=yes])
 AM_CONDITIONAL([DOXYGEN_ENABLE], [test x$DOXYGEN != xNO_DOXYGEN])
 
+# Define for popt_sysconfig 
+popt_sysconfdir="${sysconfdir}"
+eval "popt_sysconfdir=\"${popt_sysconfdir}\"" # expand contained ${prefix}
+AC_DEFINE_UNQUOTED([POPT_SYSCONFDIR], ["$popt_sysconfdir"], [Full path to default POPT configuration directory])
 
 # Check for gcov support.
 # Check for lcov  Makefile conditional
@@ -289,7 +230,7 @@ AM_CONDITIONAL([HAVE_MCCABE],[test "x$MCCABE" != xNO_MCCABE])
 # Checks for libraries.
 
 # Checks for header files.
-AC_CHECK_HEADERS([assert.h glob.h fnmatch.h fcntl.h float.h langinfo.h libintl.h limits.h sys/ioctl.h wchar.h alloca.h])
+AC_CHECK_HEADERS([assert.h fcntl.h float.h langinfo.h libintl.h limits.h sys/ioctl.h wchar.h alloca.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_INLINE
@@ -310,7 +251,6 @@ AC_CHECK_FUNCS([getuid geteuid iconv mtrace __secure_getenv setregid stpcpy stre
 # drop AC_FUNC_MALLOC, REALLOC and STRTOD
 AC_CHECK_FUNCS([malloc realloc strtod memset nl_langinfo stpcpy strchr strerror strrchr])
 
-dnl check for version script support in the linker (GNU ld, or Solaris ld style)
 AC_ARG_ENABLE([ld-version-script],
               AS_HELP_STRING([--enable-ld-version-script],[enable/disable use of linker version script.
                               (default is system dependent)]),
@@ -319,51 +259,53 @@ AC_ARG_ENABLE([ld-version-script],
 
 AS_IF([test "x$have_ld_version_script" = xyes],
   [ 
-    AC_MSG_CHECKING([if ld version-script works - GNU ld, Solaris ld])
-    cat > conftest.map <<EOF
+	dnl check for version script support in the linker (GNU ld, or Solaris ld style)
+	AC_CACHE_CHECK([for ld --version-script], [popt_cv_ld_version_script], [dnl
+  cat > conftest.c <<EOF
+void cl_symbol1(void) {}
+void cli_symbol2(void) {}
+EOF
+  cat > conftest.map <<EOF
 RELEASE
 {
 	global:
-		popt_*;
+		cl_*;
 	local:
 		*;
 };
 PRIVATE
 {
 	global:
-		popti_*;
+		cli_*;
 	local:
 		*;
 };
 EOF
-    save_LDFLAGS="$LDFLAGS"
-    LDFLAGS="$LDFLAGS -Wl,--version-script=conftest.map"
-    AC_LINK_IFELSE([AC_LANG_PROGRAM([[
-                   void popt_symbol1(void) {}
-                   void popti_symbol2(void) {}
-                   ]], [])],
-                   [have_ld_version_script=yes], [have_ld_version_script=no])
-    LDFLAGS="$save_LDFLAGS"
-    if test x$have_ld_version_script != xyes
-    then
-    	save_LDFLAGS="$LDFLAGS"
-    	LDFLAGS="$LDFLAGS -Wl,-M,conftest.map"
-        AC_LINK_IFELSE([AC_LANG_PROGRAM([[
-                   void popt_symbol1(void) {}
-                   void popti_symbol2(void) {}
-                   ]], [])],
-                   [have_ld_version_script=yes], [have_ld_version_script=no])
-    	LDFLAGS="$save_LDFLAGS"
-    	if test x$have_ld_version_script = xyes
-    	then
-		LD_VERSION_SCRIPT_FLAG=-M
-    	fi
-    else
+  dnl check for GNU ld style linker version script
+  if AC_TRY_COMMAND([${CC-cc} $CFLAGS $pic_flag $LDFLAGS -shared
+				-o conftest.so conftest.c
+				-Wl,--version-script,conftest.map
+		       1>&AS_MESSAGE_LOG_FD]);
+  then
       LD_VERSION_SCRIPT_FLAG=--version-script
-    fi
-    AC_MSG_RESULT($have_ld_version_script)
-    rm -f conftest.map conftest.c
-])
+      popt_cv_ld_version_script=yes
+  else
+	dnl check for Solaris ld style linker version script
+	if AC_TRY_COMMAND([${CC-cc} $CFLAGS $pic_flag $LDFLAGS -shared
+				-o conftest.so conftest.c
+				-Wl,-M,conftest.map
+			1>&AS_MESSAGE_LOG_FD]);
+	then
+		LD_VERSION_SCRIPT_FLAG=-M
+		popt_cv_ld_version_script=yes;
+	else
+		popt_cv_ld_version_script=no
+	fi
+  fi
+ have_ld_version_script=$popt_cv_ld_version_script
+ rm -f conftest*])
+  ])
+
 AC_SUBST([LD_VERSION_SCRIPT_FLAG])
 AM_CONDITIONAL([HAVE_LD_VERSION_SCRIPT],[test "$have_ld_version_script" = "yes"])
 
