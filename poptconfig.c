@@ -74,12 +74,6 @@ glob_pattern_p (const char * pattern, int quote)
 }
 #endif	/* !defined(__GLIBC__) */
 
-#if defined(HAVE_ASSERT_H)
-#include <assert.h>
-#else
-#define assert(_x)
-#endif
-
 /*@unchecked@*/
 static int poptGlobFlags = 0;
 
@@ -338,7 +332,7 @@ static int poptConfigLine(poptContext con, char * line)
 		longName++;
 	    else
 		longName = fn;
-assert(longName != NULL);	/* XXX can't happen. */
+	    if (longName == NULL)	/* XXX can't happen. */
 		goto exit;
 	    /* Single character basenames are treated as short options. */
 	    if (longName[1] != '\0')
@@ -387,7 +381,7 @@ assert(longName != NULL);	/* XXX can't happen. */
 /*@=nullstate@*/
 exit:
     rc = 0;	/* XXX for now, always return success */
-    b = _free(b);
+    b=_free(b);
     return rc;
 }
 /*@=compmempass@*/
@@ -419,7 +413,8 @@ int poptReadConfigFile(poptContext con, const char * fn)
 	    te = t;
 	    while (*te && _isspaceptr(te)) te++;
 	    if (*te && *te != '#') {
-		poptConfigLine(con, te); /* XXX: unchecked */
+                int xx;
+		xx = poptConfigLine(con, te); /* XXX: unchecked */
             }
 	    /*@switchbreak@*/ break;
 /*@-usedef@*/	/* XXX *se may be uninitialized */
@@ -438,11 +433,11 @@ int poptReadConfigFile(poptContext con, const char * fn)
 	}
     }
 
-    t=_free(t);
+    t = _free(t);
     rc = 0;
 
 exit:
-     b=_free(b);
+     b = _free(b);
     return rc;
 }
 
@@ -499,22 +494,28 @@ int poptReadConfigFiles(poptContext con, const char * paths)
 
 int poptReadDefaultConfig(poptContext con, /*@unused@*/ UNUSED(int useEnv))
 {
-    static const char _popt_alias[] = POPT_ALIAS;
+    static const char _popt_sysconfdir[] = POPT_SYSCONFDIR "/popt";
+    static const char _popt_etc[] = "/etc/popt";
     char * home;
     struct stat sb;
     int rc = 0;		/* assume success */
 
     if (con->appName == NULL) goto exit;
 
-    rc = poptReadConfigFile(con, _popt_alias);
+    if (strcmp(_popt_sysconfdir, _popt_etc)) {
+	rc = poptReadConfigFile(con, _popt_sysconfdir);
+	if (rc) goto exit;
+    }
+
+    rc = poptReadConfigFile(con, _popt_etc);
     if (rc) goto exit;
 
 #if defined(HAVE_GLOB_H)
-    if (!stat("SYSCONFDIR/popt.d", &sb) && S_ISDIR(sb.st_mode)) {
+    if (!stat("/etc/popt.d", &sb) && S_ISDIR(sb.st_mode)) {
 	const char ** av = NULL;
 	int ac = 0;
 
-	if ((rc = poptGlob(con, "SYSCONFDIR/popt.d/*", &ac, &av)) == 0) {
+	if ((rc = poptGlob(con, "/etc/popt.d/*", &ac, &av)) == 0) {
 	    int i;
 	    for (i = 0; rc == 0 && i < ac; i++) {
 		const char * fn = av[i];
