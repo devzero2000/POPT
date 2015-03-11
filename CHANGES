@@ -1,4 +1,5 @@
 1.17 -> 2.0:
+    - devzero2000: fix autofu for automake 1.14 and gettext 0.19
     - devzero2000: fix misspelling
       Fix misspelling using  http://github.com/lyda/misspell-check
     - devzero2000: don't use MALLOC_CHECK_ and valgrind(memcheck) at the$

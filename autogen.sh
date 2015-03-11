@@ -139,9 +139,9 @@ print_versions() {
 # Build prerequisites
 buildreq="\
 autoconf   2.63
-automake   1.11.1
+automake   1.14.1
 autopoint  -
-gettext    0.17
+gettext    0.19
 libtool	   1.5.22
 "
 echo

@@ -11,13 +11,14 @@ AC_CONFIG_MACRO_DIR([m4])
 # Must come before AM_INIT_AUTOMAKE.
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CANONICAL_HOST
-AM_INIT_AUTOMAKE([1.11 color-tests -Wall -Werror foreign])
+AM_INIT_AUTOMAKE([1.12 color-tests -Wall -Werror foreign serial-tests])
 #
 # Checks for programs.
 # Set common system defines for POSIX extensions, such as GNU_SOURCE
 # Must be called before any macros that run the compiler (like AC-PROG-LIBTOOL)
 AC_USE_SYSTEM_EXTENSIONS
-AM_GNU_GETTEXT_VERSION([0.17])
+AM_PROG_AR
+AM_GNU_GETTEXT_VERSION([0.19])
 AM_GNU_GETTEXT([external])
 AM_ICONV
 AM_MAINTAINER_MODE
