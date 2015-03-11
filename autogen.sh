@@ -22,6 +22,13 @@ test "X$$TERM" != Xdumb \
   blu='[1;34m'; \
   std='[m'; \
 }
+#
+# git repository for autoconf config.guess and config.sub
+#
+_CONFIG_URL="http://git.savannah.gnu.org/gitweb/"
+_CONFIG_GUESS_URL="${_CONFIG_URL}?p=config.git;a=blob_plain;f=config.guess;hb=HEAD"
+_CONFIG_SUB_URL="${_CONFIG_URL}?p=config.git;a=blob_plain;f=config.guess;hb=HEAD"
+
 
 Die()    {
         color="$red"
@@ -133,6 +140,64 @@ print_versions() {
   # can't depend on column -t
 }
 
+usage ( ) {
+
+cat <<EOF
+Usage: ${_PROGNAME} [-h|--help]  [-d|--download]
+
+--help      Help on $NAME_OF_AUTOGEN usage
+--download  Download the latest config.guess from gnulib
+
+EOF
+
+    return 0
+}
+
+download_gnulib_config_guess () {
+    config_guess_temp="config.guess.$$.download"
+    config_sub_temp="config.sub.$$.download"
+    ret=1
+    for __cmd in wget curl fetch ; do
+	${__cmd} --version > /dev/null 2>&1
+	ret=$?
+	if [ ! $ret = 0 ] ; then
+	    continue
+        fi
+
+	__cmd_version=`${__cmd} --version | head -n 1 | sed -e 's/^[^0-9]\+//' -e 's/ .*//'`
+
+	opts=""
+	case ${__cmd} in
+	    wget)
+		opts="--timeout=5  -O" 
+		;;
+	    curl)
+		opts="--max-time=5 -o"
+		;;
+	    fetch)
+		opts="-t 5 -f"
+		;;
+	esac
+
+	eval "$__cmd \"${_CONFIG_GUESS_URL}\" $opts \"${config_guess_temp}\"" > /dev/null 2>&1
+	if [ $? = 0 ] ; then
+	    mv -f "${config_guess_temp}" ${_aux_dir}/config.guess
+            eval "$__cmd \"${_CONFIG_SUB_URL}\" $opts \"${config_sub_temp}\"" > /dev/null 2>&1
+	    if [ $? = 0 ] ; then
+	        mv -f "${config_sub_temp}" ${_aux_dir}/config.sub
+	        ret=0
+	        break
+	    fi
+        fi
+    done
+
+    if [ ! $ret = 0 ] ; then
+	Notice "Warning: config.{guess,sub} download failed from ${_CONFIG_URL}"
+	rm -f "${config_guess_temp}"
+	rm -f "${config_sub_temp}"
+    fi
+}
+
 #######################
 # Begin  Bootstrapping
 #######################
@@ -144,6 +209,24 @@ autopoint  -
 gettext    0.19
 libtool	   1.5.22
 "
+##################
+# argument check #
+##################
+ARGS="$*"
+#
+for arg in $ARGS ; do
+    case "x$arg" in
+	x--help) usage && exit 0;;
+	x-[dD]) DOWNLOAD=yes ;;
+	x--download) DOWNLOAD=yes ;;
+	*)
+	    echo "${_PROGNAME}:Unknown option: $arg"
+	    echo
+	    usage
+	    exit 1
+	    ;;
+    esac
+done
 echo
 Notice "Bootstrapping popt build system..."
 echo
@@ -156,8 +239,16 @@ else
   Die "could not find configure.ac or configure.in"
   echo
 fi
-
-if ! printf "$buildreq" | check_versions; then
+#
+# detect the aux dir
+# for config.{sub,guess}
+aux_dir="`grep AC_CONFIG_AUX_DIR $conffile | grep -v '.*#.*AC_CONFIG_AUX_DIR' | tail -${TAIL_N}1 | sed 's/^[      ]*AC_CONFIG_AUX_DIR(\(.*\)).*/\1/' | sed 's/.*\[\(.*\)\].*/\1/'`"
+if test ! -d "$_aux_dir" 
+then
+        _aux_dir=.
+fi
+#
+if ! printf "$buildreq" | check_versions; then test -f README-prereq &&
   test -f README-prereq &&
   echo
   echo "See README-prereq for notes on obtaining these prerequisite programs:" >&2
@@ -190,6 +281,7 @@ ls "$po_dir"/*.po 2>/dev/null |
               sed 's|.*/||; s|\.po$||' > "$po_dir/LINGUAS"
 
 #
+[ ${DOWNLOAD} = "yes" ] && download_gnulib_config_guess
 echo
 Notice "done.  Now you can run './configure'."
 #######################
