@@ -3,7 +3,7 @@
 # $Id$
 # autogen.sh: autogen.sh script for popt projects
 #
-# Copyright (c) 2010-2011 Elia Pinto <devzero2000@rpm5.org>
+# Copyright (c) 2010-2015 Elia Pinto <devzero2000@rpm5.org>
 #
 # This program have the same copyright notice as popt
 # itself
