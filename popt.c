@@ -254,7 +254,7 @@ void poptResetContext(poptContext con)
     con->os->argb = PBM_FREE(con->os->argb);
     con->os->currAlias = NULL;
     con->os->nextCharArg = NULL;
-    con->os->nextArg = NULL;
+    con->os->nextArg = _free(con->os->nextArg);
     con->os->next = 1;			/* skip argv[0] */
 
     con->numLeftovers = 0;
@@ -1789,7 +1789,6 @@ poptContext poptFreeContext(poptContext con)
 {
     if (con == NULL) return con;
     poptResetContext(con);
-    con->os->argb = _free(con->os->argb);
 
     con->aliases = poptFreeItems(con->aliases, con->numAliases);
     con->numAliases = 0;
